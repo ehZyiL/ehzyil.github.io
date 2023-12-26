@@ -1,5 +1,5 @@
 ---
-title: git拉取远程分支到本地
+title: Git常用操作
 author: ehzyil
 tags:
   - git
@@ -8,6 +8,8 @@ categories:
 date: 2023-10-15 18:19:34
 headimg: #
 ---
+
+### Git拉取远程分支到本地
 
 以`https://github.com/houqingying/ChatViewer/tree/main`该仓库为例，拉取`frontend`分支的代码到`ChatViewer-frontend`文件夹
 
@@ -140,3 +142,28 @@ git pull origin frontend
 
 
 
+### Git提交全部代码
+
+1. git add . 
+
+   git add xx命令可以将xx文件添加到暂存区，如果有很多改动可以通过 git add -A .来一次添加所有改变的文件。注意 -A 选项后面还有一个句点。 git add -A表示添加所有内容， git add . 表示添加新文件和编辑过的文件不包括删除的文件; git add -u 表示添加编辑或者删除的文件，不包括新添加的文件
+
+2. git commit -m "提交注释"
+
+3. git push origin  分支名称，一般使用：git push origin master
+
+
+
+### Git删除分支
+
+```bash
+// 删除本地分支
+git branch -d localBranchName
+
+// 删除远程分支
+git push origin --delete remoteBranchName
+```
+
+
+
+[Git 操作——如何删除本地分支和远程分支](https://www.freecodecamp.org/chinese/news/how-to-delete-a-git-branch-both-locally-and-remotely/)
