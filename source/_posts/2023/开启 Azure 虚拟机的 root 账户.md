@@ -58,3 +58,8 @@ root@AzureVM:/home/ehzyil/data/script# bash <(curl -L https://raw.githubusercont
 
 ```
 
+
+
+> 相似系统启用Root用户
+
+​	 [Ubuntu 及 Ubuntu SSH 启用 Root 用户 - 欧尼酱的小屋](https://jmdonj.com/ubuntu-%e5%8f%8a-ubuntu-ssh-%e5%90%af%e7%94%a8-root-%e7%94%a8%e6%88%b7.html) 
