@@ -1,5 +1,5 @@
 ---
-title: Docker指令报错的解决方法：'permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:'
+title: Docker指令报错的解决方法'permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:'
 author: ehzyil
 tags:
   - Docker
