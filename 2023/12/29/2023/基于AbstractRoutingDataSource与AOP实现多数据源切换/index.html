@@ -5,8 +5,8 @@
   <meta name="Volantis" content="6.0.0-alpha.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://blog.ehzyil.xyz/tags/springboot/"/>
+  
+  <link rel="canonical" href="https://blog.ehzyil.xyz/2023/12/29/2023/基于abstractroutingdatasource与aop实现多数据源切换/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -37,18 +37,22 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：Springboot - ehzyil's blog</title>
-  <meta name="keywords" content="null">
+  <title>基于AbstractRoutingDataSource与AOP实现多数据源切换 - ehzyil's blog</title>
+  <meta name="keywords" content="SpringBoot,MySQL,null">
   <meta desc name="description" content="test description - John Doe - ehzyil's blog">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="ehzyil&#39;s blog">
-<meta property="og:url" content="https://blog.ehzyil.xyz/tags/Springboot/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于AbstractRoutingDataSource与AOP实现多数据源切换">
+<meta property="og:url" content="https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/index.html">
 <meta property="og:site_name" content="ehzyil&#39;s blog">
-<meta property="og:description" content="test description">
+<meta property="og:description" content="环境准备环境配置代码地址 &lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt; &lt;depe">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2023-12-29T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-29T04:28:54.699Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2160,7 +2164,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2168,7 +2172,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1703754606579),
+    lastupdate: new Date(1703824149437),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2849,25 +2853,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/28/2023/数据库表自动初始化/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/29/2023/基于AbstractRoutingDataSource与AOP实现多数据源切换/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2876,80 +2864,836 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="test description">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/28/2023/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"  itemprop="url">
-        数据库表自动初始化
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        数据库表自动初始化Liquibase数据库表版本管理依赖配置在Maven的pom文件中添加Liquibase依赖
-&lt;dependency>
-    &lt;groupId>org.liquibase&lt;/groupId>
-    &lt;artifactId>liquibase-core&lt;/artifactId>
-&lt;/dependency>
+    
+      <h1 class="title" itemprop="name headline">
+        基于AbstractRoutingDataSource与AOP实现多数据源切换
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' target="_blank" href="https://ehzyil.github.io/" rel="nofollow noopener">
+    <img itemprop="image" src="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689" class="lazyload" data-srcset="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">ehzyil</p>
+  </a>
+</div>
 
-配置数据源和Liquiba...
-      
+          
+        
+          
+            
+  
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+      </span>
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-28T00:00:00+00:00">2023-12-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
+
+
+
           
         
+          
+            
+  
+  
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SpringBoot/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>SpringBoot</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>MySQL</p></a></div>
+  <span hidden itemprop="keywords">SpringBoot MySQL</span>
+  
+
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-12-29T00:00:00+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2023年12月29日</p>
+  </a>
+</div>
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p><a target="_blank" rel="noopener" href="https://github.com/ehZyiL/SpringBootStudy/tree/master/multi-datasource">代码地址</a></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.google.guava&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;guava&lt;&#x2F;artifactId&gt;
+    &lt;version&gt;30.1-jre&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-generator&lt;&#x2F;artifactId&gt;
+    &lt;version&gt;3.4.1&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.commons&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;commons-lang3&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;
+    &lt;version&gt;1.3.2&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;druid-spring-boot-starter&lt;&#x2F;artifactId&gt;
+    &lt;version&gt;1.2.16&lt;&#x2F;version&gt;
+    &lt;scope&gt;provided&lt;&#x2F;scope&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>application.yml</p>
+<pre class="line-numbers language-none"><code class="language-none"># 默认的数据库名
+database:
+  name: story
+
+spring:
+  dynamic:
+    primary: master11 # 这个表示默认的数据源
+    datasource:
+      master:
+        # 数据库名，从配置 database.name 中获取
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;story?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+        # 注意下面这个type,选择DruidDataSource时，请确保项目中添加了druid相关依赖
+        type: com.alibaba.druid.pool.DruidDataSource
+        #DruidDataSource自有属性
+        filters: stat
+        initialSize: 0
+        minIdle: 1
+        maxActive: 200
+        maxWait: 10000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 200000
+        testWhileIdle: true
+        testOnBorrow: true
+        validationQuery: select 1
+      shop:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;shop?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+      blog:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;sg_blog?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+
+
+logging:
+  level:
+    default: debug
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="基础知识点"><a href="#基础知识点" class="headerlink" title="基础知识点"></a>基础知识点</h3><p>主要借助AbstractRoutingDataSource来实现动态数据源，简单介绍下它：</p>
+<p>AbstractRoutingDataSource 是 Spring 提供的一个抽象类，它可以让我们动态切换数据源。在使用 AbstractRoutingDataSource 时，我们需要<strong>实现它的 determineCurrentLookupKey() 方法，该方法返回当前线程使用的数据源的名称或标识符。</strong></p>
+<p>AbstractRoutingDataSource 两个重要的成员变量：</p>
+<ol>
+<li>defaultTargetDataSource：默认数据源，即当无法确定使用哪个数据源时，将使用该默认数据源。在AbstractRoutingDataSource中，我们可以通过调用setDefaultTargetDataSource()方法来设置默认数据源。</li>
+<li>targetDataSources：一个Map类型的成员变量，其中保存了多个数据源实例。在AbstractRoutingDataSource中，我们可以通过调用setTargetDataSources()方法来设置多个数据源实例，其中Map的key为数据源标识符或名称，value为对应的数据源实例。</li>
+</ol>
+<p>使用AbstractRoutingDataSource实现数据源切换的原理如下：</p>
+<ol>
+<li>在应用启动时，我们需要配置多个数据源，并将它们注册到AbstractRoutingDataSource中。</li>
+<li>当应用发起数据库操作时，AbstractRoutingDataSource会根据determineCurrentLookupKey()方法返回的值，查找对应的数据源。</li>
+<li>在determineCurrentLookupKey()方法中，我们可以根据不同的策略来决定使用哪个数据源。例如，可以根据当前请求的用户信息、请求的URL、当前时间等来选择不同的数据源。</li>
+</ol>
+<p>其核心代码如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 返回选中的数据源</span>
+<span class="token keyword">protected</span> <span class="token class-name">DataSource</span> <span class="token function">determineTargetDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>resolvedDataSources<span class="token punctuation">,</span> <span class="token string">"DataSource router not initialized"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Object</span> lookupKey <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">determineCurrentLookupKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">DataSource</span> dataSource <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">DataSource</span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>resolvedDataSources<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>lookupKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>lenientFallback <span class="token operator">||</span> lookupKey <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        dataSource <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>resolvedDefaultDataSource<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>dataSource <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">"Cannot determine target DataSource for lookup key ["</span> <span class="token operator">+</span> lookupKey <span class="token operator">+</span> <span class="token string">"]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> dataSource<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token class-name">Object</span> <span class="token function">determineCurrentLookupKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><p>基于上面的动态数据源的几个核心知识点，所以当我们需要实现动态数据源切换时，自然而然可以想到的一个方案就是在每次db执行之前，塞入这个希望使用的数据源key</p>
+<p>![d82673ae-8d87-48ba-8fbc-288ebdcb237b (1)](..&#x2F;..&#x2F;..&#x2F;images&#x2F;2023&#x2F;assets&#x2F;d82673ae-8d87-48ba-8fbc-288ebdcb237b (1).png)</p>
+<p>如上的设计思路，主要借助aop的思想来实现，通过上下文来存储当前方法的执行，具体希望使用的数据源，然后再执行的sql的时候，AbstractRoutingDataSource直接从上下文中获取key，以此来抉择具体的数据源</p>
+<p>基于上面的方案，接下来我们补充一下细节</p>
+<h3 id="1-数据源选择方式"><a href="#1-数据源选择方式" class="headerlink" title="1.数据源选择方式"></a>1.数据源选择方式</h3><p>通过AOP的方式进行拦截，写入数据源选择，这种方式适用于方法级别的粒度，基于此常见的实现方式就是通过自定义注解，来标注需要使用的数据源</p>
+<p>如自定义注解，通过设置ds值来指定这个方法执行时选择的数据源</p>
+<pre class="line-numbers language-none"><code class="language-none">@Retention(RetentionPolicy.RUNTIME)
+@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)
+public @interface DsAno &#123;
+    &#x2F;**
+     * 启用的数据源，默认主库
+     *
+     * @return
+     *&#x2F;
+    MasterSlaveDsEnum value() default MasterSlaveDsEnum.MASTER;
+
+    &#x2F;**
+     * 启用的数据源，如果存在，则优先使用它来替换默认的value
+     *
+     * @return
+     *&#x2F;
+    String ds() default &quot;&quot;;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-上下文"><a href="#2-上下文" class="headerlink" title="2.上下文"></a>2.上下文</h3><p>通过上下文来保存当前选中的数据源，因此可以借助 ThreadLocal 来实现一个简单的数据源选择上下文，使用继承的线程上下文，支持异步时选择传递。</p>
+<pre class="line-numbers language-none"><code class="language-none">private static final ThreadLocal&lt;String&gt; CONTEXT_HOLDER &#x3D; new InheritableThreadLocal&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="3-动态数据源选择"><a href="#3-动态数据源选择" class="headerlink" title="3.动态数据源选择"></a>3.动态数据源选择</h3><pre class="line-numbers language-none"><code class="language-none">public class MyRoutingDataSource extends AbstractRoutingDataSource &#123;
+    @Nullable
+    @Override
+    protected Object determineCurrentLookupKey() &#123;
+        return DsContextHolder.get();
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-aop拦截"><a href="#4-aop拦截" class="headerlink" title="4.aop拦截"></a>4.aop拦截</h3><p>借助AOP，拦截方法、类上拥有DS注解的方法执行，然后从这个注解中读取选中的数据源，然后写入上下文；再方法执行完毕之后，清空上下文</p>
+<pre class="line-numbers language-none"><code class="language-none">@Aspect
+public class DsAspect &#123;
+
+    &#x2F;**
+     * 切入点, 拦截类上、方法上有注解的方法，用于切换数据源
+     *&#x2F;
+    @Pointcut(&quot;@annotation(com.example.multidatasource.dal.DsAno)||@within(com.example.multidatasource.dal.DsAno)&quot;)
+    public void pointcut() &#123;
+    &#125;
+
+    @Around(&quot;pointcut()&quot;)
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable &#123;
+        DsAno ds &#x3D; getDsAno(proceedingJoinPoint);
+        try &#123;
+            if (ds !&#x3D; null &amp;&amp; (StringUtils.isNotBlank(ds.ds()) || ds.value() !&#x3D; null)) &#123;
+                &#x2F;&#x2F; 当上下文中没有时，则写入线程上下文，应该用哪个DB
+                DsContextHolder.set(StringUtils.isNoneBlank(ds.ds()) ? ds.ds() : ds.value().name());
+            &#125;
+            return proceedingJoinPoint.proceed();
+        &#125; finally &#123;
+            &#x2F;&#x2F; 清空上下文信息
+            if (ds !&#x3D; null) &#123;
+                DsContextHolder.reset();
+            &#125;
+        &#125;
+    &#125;
+
+    private DsAno getDsAno(ProceedingJoinPoint proceedingJoinPoint) &#123;
+        MethodSignature signature &#x3D; (MethodSignature) proceedingJoinPoint.getSignature();
+        Method method &#x3D; signature.getMethod();
+        DsAno ds &#x3D; method.getAnnotation(DsAno.class);
+        if (ds &#x3D;&#x3D; null) &#123;
+            &#x2F;&#x2F; 获取类上的注解
+            ds &#x3D; (DsAno) proceedingJoinPoint.getSignature().getDeclaringType().getAnnotation(DsAno.class);
+        &#125;
+        return ds;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="多数据源实现"><a href="#多数据源实现" class="headerlink" title="多数据源实现"></a>多数据源实现</h2><h3 id="1-多数据源定义"><a href="#1-多数据源定义" class="headerlink" title="1.多数据源定义"></a>1.多数据源定义</h3><p>对于多数据源，因此无法直接使用默认的数据源配置，我们借助默认的配置规则，加一个多数据源版本的设计对应的多数据源的配置规则如下</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">dynamic</span><span class="token punctuation">:</span>
+    <span class="token key atrule">primary</span><span class="token punctuation">:</span> master <span class="token comment"># 这个表示默认的数据源</span>
+    <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+      <span class="token key atrule">story</span><span class="token punctuation">:</span>
+        <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/$<span class="token punctuation">&#123;</span>database.name<span class="token punctuation">&#125;</span><span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai</span>
+        <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+        <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">666666</span>
+      <span class="token key atrule">shop</span><span class="token punctuation">:</span>
+        <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/shop<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai</span>
+        <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+        <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">666666</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意上面的定义：</p>
+<ul>
+<li>spring.dynamic.primary: 指定默认启用的数据源</li>
+<li>spring.dynamic.datasource.数据源名.配置: 这里的数据源名不能重复（忽略大小写），数据源下的配置与默认的配置参数要求一致</li>
+</ul>
+<p>对应的数据源配置加载方式直接借助了Spring的ConfigurationProperties来实现</p>
+<h3 id="2-多数据源注册"><a href="#2-多数据源注册" class="headerlink" title="2.多数据源注册"></a>2.多数据源注册</h3><p>上面是数据源的配置定义与加载，但是我们需要基于上面的数据源配置来实例化对应的datasource。</p>
+<pre class="line-numbers language-none"><code class="language-none">@Slf4j
+@Configuration
+@ConditionalOnProperty(prefix &#x3D; &quot;spring.dynamic&quot;, name &#x3D; &quot;primary&quot;)
+@EnableConfigurationProperties(DsProperties.class)
+public class DataSourceConfig &#123;
+
+    public DataSourceConfig() &#123;
+        log.info(&quot;动态数据源初始化!&quot;);
+    &#125;
+
+    @Bean
+    public DsAspect dsAspect() &#123;
+        return new DsAspect();
+    &#125;
+
+    &#x2F;**
+     * 整合主从数据源
+     *
+     * @param dsProperties
+     * @return 1
+     *&#x2F;
+    @Bean
+    @Primary
+    public DataSource dataSource(DsProperties dsProperties) &#123;
+        Map&lt;Object, Object&gt; targetDataSources &#x3D; Maps.newHashMapWithExpectedSize(dsProperties.getDatasource().size());
+        dsProperties.getDatasource().forEach((k, v) -&gt; targetDataSources.put(k.toUpperCase(), v.initializeDataSourceBuilder().build()));
+
+        if (CollectionUtils.isEmpty(targetDataSources)) &#123;
+            throw new IllegalStateException(&quot;多数据源配置，请以 spring.dynamic 开头&quot;);
+        &#125;
+
+        MyRoutingDataSource myRoutingDataSource &#x3D; new MyRoutingDataSource();
+        Object key &#x3D; dsProperties.getPrimary().toUpperCase();
+        if (!targetDataSources.containsKey(key)) &#123;
+            if (targetDataSources.containsKey(MasterSlaveDsEnum.MASTER.name())) &#123;
+                &#x2F;&#x2F; 当们没有配置primary对应的数据源时，存在MASTER数据源，则将主库作为默认的数据源
+                key &#x3D; MasterSlaveDsEnum.MASTER.name();
+            &#125; else &#123;
+                key &#x3D; targetDataSources.keySet().iterator().next();
+            &#125;
+        &#125;
+
+        log.info(&quot;动态数据源，默认启用为： &quot; + key);
+        myRoutingDataSource.setDefaultTargetDataSource(targetDataSources.get(key));
+        myRoutingDataSource.setTargetDataSources(targetDataSources);
+        return myRoutingDataSource;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ul>
+<li><p>@ConditionalOnProperty: 这是Spring Boot框架提供的条件注解，它表示只有当指定的属性满足特定条件时，才会创建这个配置类所定义的bean。</p>
+</li>
+<li><p>@EnableConfigurationProperties(DsProperties.class): 这个注解告诉Spring Boot去启用特定的配置属性类（DsProperties），使其可以被注入到其他bean中。</p>
+</li>
+<li><p>@Primary: 这个注解用于标识在多个bean候选者中，优先选择被注解的bean作为自动装配的首选项。</p>
+</li>
+<li><p>datasource实例化方式</p>
+<pre class="line-numbers language-none"><code class="language-none">DataSourceProperties.initializeDataSourceBuilder().build()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>通过上面的方式创建的DataSource为默认的HikariDataSource</p>
+</li>
+</ul>
+<h3 id="3-上下文定义"><a href="#3-上下文定义" class="headerlink" title="3.上下文定义"></a>3.上下文定义</h3><pre class="line-numbers language-none"><code class="language-none">public class DsContextHolder &#123;
+    &#x2F;**
+     * 使用继承的线程上下文，支持异步时选择传递
+     * 使用DsNode，支持链式的数据源切换，如最外层使用master数据源，内部某个方法使用slave数据源；但是请注意，对于事务的场景，不要交叉
+     *&#x2F;
+    private static final ThreadLocal&lt;String&gt; CONTEXT_HOLDER &#x3D; new InheritableThreadLocal&lt;&gt;();
+
+    private DsContextHolder() &#123;
+    &#125;
+    
+    public static void set(String dbType) &#123;
+        CONTEXT_HOLDER.set(dbType);
+    &#125;
+
+    public static String get() &#123;
+        return CONTEXT_HOLDER.get();
+    &#125;
+
+    public static void set(DS ds) &#123;
+        set(ds.name().toUpperCase());
+    &#125;
+
+    &#x2F;**
+     * 移除上下文
+     *&#x2F;
+    public static void reset() &#123;
+        CONTEXT_HOLDER.remove();
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4-AOP实现"><a href="#4-AOP实现" class="headerlink" title="4.AOP实现"></a>4.AOP实现</h3><p>借助AOP来简化数据源的选择，因此我们先定义一个注解DsAno，可以放在类上，表示这个类下所有的共有方法，都走某个数据源；也可以放在方法上，且方法上的优先级大于类上的注解</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface DS &#123;
+    &#x2F;**
+     * 使用的数据源名
+     *
+     * @return
+     *&#x2F;
+    String name();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">@Retention(RetentionPolicy.RUNTIME)
+@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)
+public @interface DsAno &#123;
+    &#x2F;**
+     * 启用的数据源，默认主库
+     *
+     * @return
+     *&#x2F;
+    MasterSlaveDsEnum value() default MasterSlaveDsEnum.MASTER;
+
+    &#x2F;**
+     * 启用的数据源，如果存在，则优先使用它来替换默认的value
+     *
+     * @return
+     *&#x2F;
+    String ds() default &quot;&quot;;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">@Aspect
+public class DsAspect &#123;
+    
+    &#x2F;**
+     * 切入点, 拦截类上、方法上有注解的方法，用于切换数据源
+     *&#x2F;
+    @Pointcut(&quot;@annotation(com.example.multidatasource.dal.DsAno)||@within(com.example.multidatasource.dal.DsAno)&quot;)
+    public void pointcut() &#123;
+    &#125;
+
+    @Around(&quot;pointcut()&quot;)
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable &#123;
+        DsAno ds &#x3D; getDsAno(proceedingJoinPoint);
+        try &#123;
+            if (ds !&#x3D; null &amp;&amp; (StringUtils.isNotBlank(ds.ds()) || ds.value() !&#x3D; null)) &#123;
+                &#x2F;&#x2F; 当上下文中没有时，则写入线程上下文，应该用哪个DB
+                DsContextHolder.set(StringUtils.isNoneBlank(ds.ds()) ? ds.ds() : ds.value().name());
+            &#125;
+            return proceedingJoinPoint.proceed();
+        &#125; finally &#123;
+            &#x2F;&#x2F; 清空上下文信息
+            if (ds !&#x3D; null) &#123;
+                DsContextHolder.reset();
+            &#125;
+        &#125;
+    &#125;
+
+    private DsAno getDsAno(ProceedingJoinPoint proceedingJoinPoint) &#123;
+        MethodSignature signature &#x3D; (MethodSignature) proceedingJoinPoint.getSignature();
+        Method method &#x3D; signature.getMethod();
+        DsAno ds &#x3D; method.getAnnotation(DsAno.class);
+        if (ds &#x3D;&#x3D; null) &#123;
+            &#x2F;&#x2F; 获取类上的注解
+            ds &#x3D; (DsAno) proceedingJoinPoint.getSignature().getDeclaringType().getAnnotation(DsAno.class);
+        &#125;
+        return ds;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>上面的设计中，针对常见的主从切换做了一个简单的兼容，定义了一个主从数据源的枚举，同样也是基于简化使用体验的出发，枚举类设计如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">public enum MasterSlaveDsEnum implements DS &#123;
+    MASTER, SHOP, STORY;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-编程式数据源选择与小结"><a href="#5-编程式数据源选择与小结" class="headerlink" title="5.编程式数据源选择与小结"></a>5.编程式数据源选择与小结</h3><pre class="line-numbers language-none"><code class="language-none">import java.util.function.Supplier;
+
+&#x2F;**
+ * 手动指定数据源的用法
+ *&#x2F;
+public class DsSelectExecutor &#123;
+
+    &#x2F;**
+     * 有返回结果
+     *
+     * @param ds       数据源
+     * @param supplier 供应商
+     * @param &lt;T&gt;      泛型类型
+     * @return 返回结果
+     *&#x2F;
+    public static &lt;T&gt; T submit(DS ds, Supplier&lt;T&gt; supplier) &#123;
+        DsContextHolder.set(ds);
+        try &#123;
+            return supplier.get();
+        &#125; finally &#123;
+            DsContextHolder.reset();
+        &#125;
+    &#125;
+
+    &#x2F;**
+     * 无返回结果
+     *
+     * @param ds   数据源
+     * @param call 可调用对象
+     *&#x2F;
+    public static void execute(DS ds, Runnable call) &#123;
+        DsContextHolder.set(ds);
+        try &#123;
+            call.run();
+        &#125; finally &#123;
+            DsContextHolder.reset();
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>submit方法：接收一个数据库连接和一个Supplier接口实例作为参数，返回Supplier接口的返回值。该方法的目的是使用给定的数据库连接执行传入的Supplier接口实例，然后返回该接口的返回值。在方法中，首先通过DsContextHolder类将数据库连接设置到连接池中，然后使用supplier.get()方法获取Supplier接口的返回值。最后，在finally块中重置数据库连接池的状态，以确保数据库连接被正确释放。</li>
+<li>execute方法：接收一个数据库连接和一个Runnable接口实例作为参数，无返回值。该方法的目的是使用给定的数据库连接执行传入的Runnable接口实例中的代码。在方法中，首先通过DsContextHolder类将数据库连接设置到连接池中，然后使用call.run()方法执行Runnable接口的代码。最后，在finally块中重置数据库连接池的状态，以确保数据库连接被正确释放。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>小结一下整个的设计实现，主要基于AOP + 上下文的方式，配合AbstractRoutingDataSource来实现多数据源的自由选择</p>
+<p>但是请注意，上面的实现，还有几个缺陷：</p>
+<ol>
+<li>如果一个方法上有数据源选择注解，但是内部开了子线程做异步处理，那么上下文存储的数据源会失效</li>
+<li>一个方法上指定了数据源，它又调用其他有也指定了数据源的方法，当前的方案会存在数据源的选择冲突</li>
+<li>druid数据源怎么兼容？</li>
+</ol>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="支持嵌套的数据源选择方案"><a href="#支持嵌套的数据源选择方案" class="headerlink" title="支持嵌套的数据源选择方案"></a>支持嵌套的数据源选择方案</h3><p>前面提出的一个非常大的问题就是再整个链路中，只支持选择一次的数据源，显然这种方式缺陷比较大，也很容易出现问题；</p>
+<p>若我们希望实现在选择了一个数据源之后，在执行某个代码片段时，还可以继续再选择其他的数据源，那么应该怎么实现呢？</p>
+<p>首先我们来看一下之前的实现方案</p>
+<p>![d82673ae-8d87-48ba-8fbc-288ebdcb237b (1)](..&#x2F;..&#x2F;..&#x2F;images&#x2F;2023&#x2F;assets&#x2F;d82673ae-8d87-48ba-8fbc-288ebdcb237b (1).png)</p>
+<p>在执行sql时，从上下文中获取当前选中的数据源,前面设计的上下文直接使用线程上线文保存</p>
+<pre class="line-numbers language-none"><code class="language-none">private static final ThreadLocal&lt;String&gt; CONTEXT_HOLDER &#x3D; new InheritableThreadLocal&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>从上面的这个实现来看，上下文赋值只能有一次，当我们希望可以实现标题的效果，自然我们应该想到的数据结构就是栈 – 后进先出</p>
+<p>我们定义一个DsNode节点来存储选中的数据源，区别于之前的String，它除了记录选中的数据源之外，还记录前一次选中的数据源</p>
+<pre class="line-numbers language-none"><code class="language-none">public static class DsNode &#123;
+    DsNode pre;
+    String ds;
+
+    public DsNode(DsNode parent, String ds) &#123;
+        pre &#x3D; parent;
+        this.ds &#x3D; ds;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>移除上下文则不能像之前那么粗暴，而是要实现栈的弹出效果</p>
+<ul>
+<li><p>如果无选中的数据源，直接返回</p>
+</li>
+<li><p>若之前选中的DsNode，存在上一个节点，则将上一个节点重新写入上下文</p>
+</li>
+<li><p>若之前选中的DsNode，不存在上一个节点，则清空上下文</p>
+<pre class="line-numbers language-none"><code class="language-none">public static String get() &#123;
+    DsNode dsNode &#x3D; CONTEXT_HOLDER.get();
+    log.info(&quot;get dbType:&#123;&#125;&quot;, CONTEXT_HOLDER.get());
+    return dsNode&#x3D;&#x3D;null? null:dsNode.ds;
+&#125;
+  
+public static void set(String dbType) &#123;
+    DsNode current &#x3D; CONTEXT_HOLDER.get();
+    CONTEXT_HOLDER.set(new DsNode(current,dbType));
+&#125;
+  
+public static void set(DS ds) &#123;
+  
+    set(ds.name().toUpperCase());
+&#125;
+  
+&#x2F;**
+ * 移除上下文
+ *&#x2F;
+public static void reset() &#123;
+    DsNode ds &#x3D; CONTEXT_HOLDER.get();
+    if (ds &#x3D;&#x3D; null) &#123;
+        return;
+    &#125;
+  
+    if (ds.pre !&#x3D; null) &#123;
+        &#x2F;&#x2F; 退出当前的数据源选择，切回去走上一次的数据源配置
+        CONTEXT_HOLDER.set(ds.pre);
+    &#125; else &#123;
+        CONTEXT_HOLDER.remove();
+    &#125;
+&#125;
+  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="Druid数据源支持"><a href="#Druid数据源支持" class="headerlink" title="Druid数据源支持"></a>Druid数据源支持</h3><pre class="line-numbers language-none"><code class="language-none">dsProperties.getDatasource().forEach((k, v) -&gt; targetDataSources.put(k.toUpperCase(), initDataSource(k, v)));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上面代码中使用<code>v.initializeDataSourceBuilder().build()</code>初始化的数据源默认是<code>HikarDataSource</code>,当我们使用Druid数据源时就无法适配，因此需要做以下修改。</p>
+<p>1.检查是否引入Druid相关资源</p>
+<pre class="line-numbers language-none"><code class="language-none">public class DruidCheckUtil &#123;
+
+    &#x2F;**
+     * 判断是否包含durid相关的数据包
+     *
+     * @return
+     *&#x2F;
+    public static boolean hasDuridPkg() &#123;
+        return ClassUtils.isPresent(&quot;com.alibaba.druid.pool.DruidDataSource&quot;, DataSourceConfig.class.getClassLoader());
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2.创建InitDatasourse方法用来判断是否初始化Druid数据源</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
+  * 初始化数据源
+  * @param prefix 数据源前缀
+  * @param properties 数据源属性
+  * @return 数据源
+  *&#x2F;
+ public DataSource initDataSource(String prefix, DataSourceProperties properties) &#123;
+     &#x2F;&#x2F; 检查是否包含Druid包
+     if (!DruidCheckUtil.hasDuridPkg()) &#123;
+         log.info(&quot;实例化HikarDataSource: &#123;&#125;&quot;, prefix);
+         &#x2F;&#x2F; 使用数据源属性初始化数据源构建器并构建数据源
+         return properties.initializeDataSourceBuilder().build();
+     &#125;
+
+     &#x2F;&#x2F; 如果数据源类型为空或者数据源类型不是DruidDataSource类
+     if (properties.getType() &#x3D;&#x3D; null || !properties.getType().isAssignableFrom(DruidDataSource.class)) &#123;
+         log.info(&quot;实例化HikarDataSource: &#123;&#125;&quot;, prefix);
+         &#x2F;&#x2F; 使用数据源属性初始化数据源构建器并构建数据源
+         return properties.initializeDataSourceBuilder().build();
+     &#125;
+
+     log.info(&quot;实例化DruidDataSource: &#123;&#125;&quot;, prefix);
+     &#x2F;&#x2F; 使用Spring Binder 绑定或创建一个 &quot;spring.dynamic.datasource.&quot; + prefix 的DruidDataSource对象
+     return Binder.get(environment).bindOrCreate(&quot;spring.dynamic.datasource.&quot; + prefix, DruidDataSource.class);
+ &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面方法会读取spring.dynamic.datasource.xxx的配置信息，我们只需添加type属性和Druid的配置信息即可初始化DruidDataSource。</p>
+<p>配置文件如下：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 默认的数据库名
+database:
+  name: story
+
+spring:
+  dynamic:
+    primary: master # 这个表示默认的数据源
+    datasource:
+      master:
+        # 数据库名，从配置 database.name 中获取
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;$&#123;database.name&#125;?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+        # 注意下面这个type,选择DruidDataSource时，请确保项目中添加了druid相关依赖
+        type: com.alibaba.druid.pool.DruidDataSource
+        #DruidDataSource自有属性
+        filters: stat
+        initialSize: 0
+        minIdle: 1
+        maxActive: 200
+        maxWait: 10000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 200000
+        testWhileIdle: true
+        testOnBorrow: true
+        validationQuery: select 1
+      story:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;$&#123;database.name&#125;?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+      shop:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;shop?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666
+      blog:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;sg_blog?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai
+        username: root
+        password: 666666<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2023/12/28/2023/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-12-29T04:28:54+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2023年12月29日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
+  
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SpringBoot/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>SpringBoot</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>MySQL</p></a></div>
+  <span hidden itemprop="keywords">SpringBoot MySQL</span>
   
 
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/&title=基于AbstractRoutingDataSource与AOP实现多数据源切换 - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/&title=基于AbstractRoutingDataSource与AOP实现多数据源切换 - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/&title=基于AbstractRoutingDataSource与AOP实现多数据源切换 - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2023/12/28/2023/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/'>
+          <p class='title'>数据库表自动初始化<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>数据库表自动初始化Liquibase数据库表版本管理依赖配置在Maven的pom文件中添加Liquibase依赖
+&lt;dependency>
+    &lt;groupId>org.liqu...</p>
+        </a>
+      
+    </div>
+  
+  <!-- 文章推荐 -->
+  
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
+    
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2958,219 +3702,31 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget blogger desktop mobile ">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">ehzyil's blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:lyz010217@gmail.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget desktop mobile">
-    
-  <header>
-    
-      <a href='memos/'><i class="fa-solid fa-volume-high fa-fw" aria-hidden="true"></i><span class='name'>说说</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-        <div class='bber-talk'>
-            <ul class='talk-list'>说说加载中...</ul>
-        </div>
-    </div>
-    <script>
-        
-        
-        
-        var bbCarouselMemos = {
-            api: 'http://memos.ehzyil.xyz:5230/' + 'api/v1/memo?creatorId=1&tag=&limit=6',
-            image_icon: '<i class="fa-solid fa-image"></i>',
-            link_icon: '<i class="fa-solid fa-link"></i>',
-        }
-    </script>
-    <script>volantis.js("https://unpkg.com/penndu@4.0.1/memos_carousel.js");</script>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Docker/" href="/categories/Docker/"
-            active-action="action-categoriesDocker"
-            ><div class='name'>Docker</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Linux/" href="/categories/Linux/"
-            active-action="action-categoriesLinux"
-            ><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%B7%A5%E5%85%B7/" href="/categories/%E5%B7%A5%E5%85%B7/"
-            active-action="action-categoriesE5B7A5E585B7"
-            ><div class='name'>工具</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%8A%80%E6%9C%AF/" href="/categories/%E6%8A%80%E6%9C%AF/"
-            active-action="action-categoriesE68A80E69CAF"
-            ><div class='name'>技术</div><div class='badge'>(27)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"
-            active-action="action-categoriesE695B0E68DAEE7BB93E69E84E4B88EE7AE97E6B395"
-            ><div class='name'>数据结构与算法</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%B0%E5%BD%95/" href="/categories/%E8%AE%B0%E5%BD%95/"
-            active-action="action-categoriesE8AEB0E5BD95"
-            ><div class='name'>记录</div><div class='badge'>(10)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/Azure/" style="font-size: 14px; color: #999">Azure</a> <a href="/tags/CentOS/" style="font-size: 15.67px; color: #8e8e8e">CentOS</a> <a href="/tags/Docker/" style="font-size: 19px; color: #777">Docker</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 14px; color: #999">IntelliJ IDEA</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java-Script/" style="font-size: 14px; color: #999">Java Script</a> <a href="/tags/Leetcode/" style="font-size: 15.67px; color: #8e8e8e">Leetcode</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Nacos/" style="font-size: 14px; color: #999">Nacos</a> <a href="/tags/Quartz/" style="font-size: 15.67px; color: #8e8e8e">Quartz</a> <a href="/tags/Spring/" style="font-size: 14px; color: #999">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 14px; color: #999">Spring Security</a> <a href="/tags/SpringBoot/" style="font-size: 20.67px; color: #6c6c6c">SpringBoot</a> <a href="/tags/Springboot/" style="font-size: 14px; color: #999">Springboot</a> <a href="/tags/Telegram/" style="font-size: 15.67px; color: #8e8e8e">Telegram</a> <a href="/tags/Yauaa/" style="font-size: 14px; color: #999">Yauaa</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/linux/" style="font-size: 15.67px; color: #8e8e8e">linux</a> <a href="/tags/node-js/" style="font-size: 14px; color: #999">node.js</a> <a href="/tags/render/" style="font-size: 14px; color: #999">render</a> <a href="/tags/rss/" style="font-size: 14px; color: #999">rss</a> <a href="/tags/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" style="font-size: 14px; color: #999">图片上传</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 15.67px; color: #8e8e8e">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">数据结构与算法</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 14px; color: #999">日志</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 14px; color: #999">服务器</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/" style="font-size: 14px; color: #999">标签插件</a> <a href="/tags/%E7%BD%91%E4%B8%8A%E5%86%B2%E6%B5%AA%E6%8C%87%E5%8D%97/" style="font-size: 14px; color: #999">网上冲浪指南</a> <a href="/tags/%E7%BD%91%E7%9B%98/" style="font-size: 14px; color: #999">网盘</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 17.33px; color: #828282">软件</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget desktop">
-  
-  <header>
-    
-      <i class="fa-solid fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>47 篇</div>
-        </div>
-      
-
-      
-
-
-      
-
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          <div id="last-update-show">2023-12-28 日</div>
-        </div>
-      
-    </div>
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky">
+
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">基础知识点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-text">设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E6%BA%90%E9%80%89%E6%8B%A9%E6%96%B9%E5%BC%8F"><span class="toc-text">1.数据源选择方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">2.上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E9%80%89%E6%8B%A9"><span class="toc-text">3.动态数据源选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-aop%E6%8B%A6%E6%88%AA"><span class="toc-text">4.aop拦截</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%AE%9E%E7%8E%B0"><span class="toc-text">多数据源实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%AE%9A%E4%B9%89"><span class="toc-text">1.多数据源定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%B3%A8%E5%86%8C"><span class="toc-text">2.多数据源注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AE%9A%E4%B9%89"><span class="toc-text">3.上下文定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-AOP%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.AOP实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BC%96%E7%A8%8B%E5%BC%8F%E6%95%B0%E6%8D%AE%E6%BA%90%E9%80%89%E6%8B%A9%E4%B8%8E%E5%B0%8F%E7%BB%93"><span class="toc-text">5.编程式数据源选择与小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-text">优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%B5%8C%E5%A5%97%E7%9A%84%E6%95%B0%E6%8D%AE%E6%BA%90%E9%80%89%E6%8B%A9%E6%96%B9%E6%A1%88"><span class="toc-text">支持嵌套的数据源选择方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Druid%E6%95%B0%E6%8D%AE%E6%BA%90%E6%94%AF%E6%8C%81"><span class="toc-text">Druid数据源支持</span></a></li></ol></li></ol>
+  </div>
+</section>
+
+  
 
 </div>
 
@@ -3178,6 +3734,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <!-- Custom Files side end -->
 </aside>
+
 
 
         </div>
@@ -4033,7 +4590,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/tags/Springboot/","name":"Springboot"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/技术/","name":"技术"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2023/12/29/2023/基于AbstractRoutingDataSource与AOP实现多数据源切换/","name":"基于AbstractRoutingDataSource与AOP实现多数据源切换"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于AbstractRoutingDataSource与AOP实现多数据源切换","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/","wordCount":0,"datePublished":"2023-12-29T00:00:00.000Z","dateModified":"2023-12-29T04:28:54.699Z","articleSection":"技术","keywords":"SpringBoot,MySQL","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
