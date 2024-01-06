@@ -171,7 +171,7 @@ navbar:
         #   url: https://drivezero.ehzyil.xyz/
         - name: memos
           icon: fa fa-solid fa-hard-drive 
-          url: http://47.93.26.115:5230/
+          url: http://azure.ehzyil.cloudns.org:5230/
         - name: rss
           icon: fa fa-solid fa-hard-drive 
           url: http://47.93.26.115:3000/
@@ -714,7 +714,7 @@ sidebar:
         icon: fa-solid fa-volume-high
         title: 说说
         url: memos/ # 说说页面的地址
-      url: 'http://memos.ehzyil.xyz:5230/' # 替换城自己的域名，也可以用杜老师的平台托管
+      url: 'http://azure.ehzyil.cloudns.org:5230/' # 替换城自己的域名，也可以用杜老师的平台托管
       limit: '6' # 展示数量限制
       creatorId: '1' # 替换成自己的用户的ID
       tag: '' # 要展示的内容的标签
@@ -979,7 +979,7 @@ plugins:
   # Memos https://usememos.com
   memos:
     # Set `plugins: ["memos"]` to enable in front-matter
-    url: 'http://memos.ehzyil.xyz:5230/' # 替换成自己的域名，也可以用杜老师的平台托管
+    url: 'http://azure.ehzyil.cloudns.org:5230/' # 替换成自己的域名，也可以用杜老师的平台托管
     limit: '10' # 展示数量限制
     id: '1' # 替换成自己的用户的ID
 
