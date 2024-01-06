@@ -167,3 +167,30 @@ git push origin --delete remoteBranchName
 
 
 [Git 操作——如何删除本地分支和远程分支](https://www.freecodecamp.org/chinese/news/how-to-delete-a-git-branch-both-locally-and-remotely/)
+
+
+
+### Git 如何退出merging
+
+如果你想在合并时退出，你可以使用 `git merge --abort` 来取消合并操作。这会使 Git 回到未合并之前的状态。如果您已经提交了合并，那么可以使用 `git reset --hard HEAD` 来撤销合并。这将丢弃合并的提交，并回滚到未合并之前的状态。
+
+### 使用idea 把一个git分支的部分提交记录合并到另一个git分支上
+
+
+
+![](https://telegra.ph/file/4e829cab8e3f6871ce202.png)
+
+###  Git cherry-pick合并特定的提交
+
+```bash
+git cherry-pick [<options>] <commit-ish>...
+常用options:
+    --quit                退出当前的chery-pick序列
+    --continue            继续当前的chery-pick序列
+    --abort               取消当前的chery-pick序列，恢复当前分支
+    -n, --no-commit       不自动提交
+    -e, --edit            编辑提交信息
+    
+```
+
+[git cherry-pick的使用](https://blog.csdn.net/FightFightFight/article/details/81039050)
