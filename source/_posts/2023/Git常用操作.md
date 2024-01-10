@@ -194,3 +194,83 @@ git cherry-pick [<options>] <commit-ish>...
 ```
 
 [git cherry-pick的使用](https://blog.csdn.net/FightFightFight/article/details/81039050)
+
+### Git stash 暂存代码
+
+> 当我们在某分支开发功能的时候，功能开发到一半，业务方突然传来一个噩耗，有一个bug需要紧急处理一下，优先级为0，这时我们该怎么办呢？？？
+>
+> - 提交我们的修改--这样会产生一次无意义的提交
+> - 放弃我们写的代码--我们并不傻
+>
+> 那我们该怎么办呢？
+>
+> 使用stash命令将修改还未提交的代码存储到缓存区
+>
+> 转载[git-命令行-使用 git stash 暂存代码](https://blog.csdn.net/WEB_CSDN_SHARE/article/details/98086421)
+
+
+
+**解决方案：**
+
+```bash
+//使用stash命令将修改还未提交的代码存储到缓存区
+git stash
+ 
+//切换到需要解决bug的分支
+git checkout <分支名>
+ 
+//修改完bug后回到当前开发分支，取出缓存中的代码
+git stash pop
+```
+
+
+
+**查看修改**
+那么我们确定你操作成功了呢？
+
+```
+git stash show //查看刚才暂存的修改
+```
+
+**我们的修改存储到什么位置了?**
+当我们使用 git init给项目添加版本控制的时候，会在项目路径下生成一个 .git 隐藏文件夹。.git 中存储着版本管理的所有信息。 
+
+- .git/refs/stash 中，存储的是最后一个 stash 对应的节点指针
+- 在 .git/log/refs/stash 中可以看到我们全部的 stash 记录信息
+
+**多个 stash 的情况我们该怎么办？**
+存储多个stash
+
+```
+//提交多个stash，我们需要区分每次提交的内容，这样我们可以给每次提交起一个名字来区分
+git stash save <名称>
+```
+
+多个stash取出方式
+
+```
+git stash pop //取出最近一次暂存并删除记录列表中对应记录
+ 
+因为 git stash pop 是弹出栈顶的一个 stash ，也就是最后一次存储的 stash。在存储多个stash 时，想取出非栈顶的一个的情况下，是不适用的。
+ 
+这个时候要使用：
+ 
+git stash list //查看暂存区的所有暂存修改
+ 
+$>git stash list
+stash@{0}: WIP on book: 51bea1d... fixed images
+stash@{1}: WIP on master: 9705ae6... changed the browse code to the official repo
+ 
+ 
+git stash apply stash@{X} //取出相应的暂存
+git stash drop stash@{X} //将记录列表中取出的对应暂存记录删除
+```
+
+**清空stash栈**
+
+```
+git stash clear
+```
+
+
+
