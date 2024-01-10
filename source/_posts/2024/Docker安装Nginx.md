@@ -1,4 +1,15 @@
+---
+title: Docker安装Nginx
+author: ehzyil
+tags:
+  - docker
+  - git
+categories:
+  - 技术
 
+date: 2024-01-09 20:22:46
+headimg:
+---
 
 ###  创建挂载目录
 
