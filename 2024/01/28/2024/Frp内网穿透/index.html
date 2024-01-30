@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="https://blog.ehzyil.xyz/2024/01/20/2024/git问题：解决“sshconnect to host github.com port 22 connection timed out”/"/>
+  <link rel="canonical" href="https://blog.ehzyil.xyz/2024/01/28/2024/frp内网穿透/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -37,20 +37,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>ehzyil's blog</title>
-  <meta name="keywords" content="null">
+  <title>Frp内网穿透 - ehzyil's blog</title>
+  <meta name="keywords" content="内网穿透,null">
   <meta desc name="description" content="test description - John Doe - ehzyil's blog">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="ehzyil&#39;s blog">
-<meta property="og:url" content="https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/index.html">
+<meta property="og:title" content="Frp内网穿透">
+<meta property="og:url" content="https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html">
 <meta property="og:site_name" content="ehzyil&#39;s blog">
-<meta property="og:description" content="在写毕设的时候提交代码发现报错，查了查以为公司网禁不能提交代码，后来发现用自己热点也提交不了，于是继续在网上寻找解决方案。  Push failed  ssh: connect to host github.com port 22: Connection timed out Could not read from remote repository. Please make sure you ha">
+<meta property="og:description" content="Frp本地安装查看服务器架构使用cat &#x2F;proc&#x2F;version查看服务器架构，可以使用下列的其他两种 root@iZj6caytd8hmoddao18kslZ:&#x2F;data# cat &#x2F;proc&#x2F;version Linux version 5.10.0-15-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2024-01-20T10:13:55.584Z">
-<meta property="article:modified_time" content="2024-01-20T10:13:55.584Z">
+<meta property="article:published_time" content="2024-01-28T20:22:46.000Z">
+<meta property="article:modified_time" content="2024-01-30T06:30:58.143Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="内网穿透">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2162,7 +2163,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2170,7 +2171,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1705745646014),
+    lastupdate: new Date(1706596270639),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2853,7 +2854,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 <div id="l_main" class=''>
   <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/01/20/2024/Git问题：解决“sshconnect to host github.com port 22 Connection timed out”/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/01/28/2024/Frp内网穿透/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2873,47 +2874,260 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
-      <span hidden itemprop="name headline">
+      <h1 class="title" itemprop="name headline">
+        Frp内网穿透
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' target="_blank" href="https://ehzyil.github.io/" rel="nofollow noopener">
+    <img itemprop="image" src="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689" class="lazyload" data-srcset="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">ehzyil</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
       </span>
+    
+  </div>
+  
+
+
+
+          
+        
+          
+            
+  
+  
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>内网穿透</p></a></div>
+  <span hidden itemprop="keywords">内网穿透</span>
+  
+
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2024-01-28T20:22:46+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2024年1月28日</p>
+  </a>
+</div>
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
+      </div>
     
   </div>
 
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>在写毕设的时候提交代码发现报错，查了查以为公司网禁不能提交代码，后来发现用自己热点也提交不了，于是继续在网上寻找解决方案。</p>
-<blockquote>
-<p><strong>Push failed</strong> </p>
-<p>ssh: connect to host github.com port 22: Connection timed out Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.</p>
-</blockquote>
-<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>可能是由于电脑的防火墙或者其他网络原因导致ssh连接方式端口22被封锁。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>因为端口被封锁，就换成443端口</p>
-<p><strong>操作方法：</strong></p>
-<p>1.进入~&#x2F;.ssh下</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.ssh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+    <h2 id="Frp本地安装"><a href="#Frp本地安装" class="headerlink" title="Frp本地安装"></a>Frp本地安装</h2><h3 id="查看服务器架构"><a href="#查看服务器架构" class="headerlink" title="查看服务器架构"></a>查看服务器架构</h3><p>使用<code>cat /proc/version</code>查看服务器架构，可以使用下列的其他两种</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">root@iZj6caytd8hmoddao18kslZ:/data<span class="token comment"># cat /proc/version</span>
+Linux version <span class="token number">5.10</span>.0-15-amd64 <span class="token punctuation">(</span>debian-kernel@lists.debian.org<span class="token punctuation">)</span> <span class="token punctuation">(</span>gcc-10 <span class="token punctuation">(</span>Debian <span class="token number">10.2</span>.1-6<span class="token punctuation">)</span> <span class="token number">10.2</span>.1 <span class="token number">20210110</span>, GNU ld <span class="token punctuation">(</span>GNU Binutils <span class="token keyword">for</span> Debian<span class="token punctuation">)</span> <span class="token number">2.35</span>.2<span class="token punctuation">)</span> <span class="token comment">#1 SMP Debian 5.10.120-1 (2022-06-09)</span>
+root@iZj6caytd8hmoddao18kslZ:/data<span class="token comment"># uname -a</span>
+Linux iZj6caytd8hmoddao18kslZ <span class="token number">5.10</span>.0-15-amd64 <span class="token comment">#1 SMP Debian 5.10.120-1 (2022-06-09) x86_64 GNU/Linux</span>
+root@iZj6caytd8hmoddao18kslZ:/data<span class="token comment"># uname -r</span>
+<span class="token number">5.10</span>.0-15-amd64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>2.创建一个config文件</p>
-<p>3.编辑文件内容：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host github.com
-User <span class="token function">git</span>
-Hostname ssh.github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-Port <span class="token number">443</span>
+<p>下载release包：根据设备和frp版本下载：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> https://github.com/fatedier/frp/releases/download/v0.53.2/frp_0.53.2_linux_amd64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-Host gitlab.com
-Hostname altssh.gitlab.com
-User <span class="token function">git</span>
-Port <span class="token number">443</span>
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看当前文件夹下的文件</p>
+<pre class="line-numbers language-none"><code class="language-none">root@iZj6caytd8hmoddao18kslZ:&#x2F;data# ls
+frp_0.53.2_linux_amd64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>4.保存退出</p>
-<p>5.检查是否成功<code>ssh -T git@github.com</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ehZyiL@DESKTOP-1H567GC MINGW64 ~/.ssh
-$ <span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com
-Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>解压：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> frp_0.53.2_linux_amd64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>相关文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">root@iZj6caytd8hmoddao18kslZ:&#x2F;data# cd frp_0.53.2_linux_amd64&#x2F;
+root@iZj6caytd8hmoddao18kslZ:&#x2F;data&#x2F;frp_0.53.2_linux_amd64# ls
+frpc  frpc.toml  frps  frps.toml  LICENSE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>frps*：是frp服务器相关文件。</li>
+<li>frpc*：是frp客户端相关文件。</li>
+</ul>
+<h3 id="配置FRP服务端"><a href="#配置FRP服务端" class="headerlink" title="配置FRP服务端"></a>配置FRP服务端</h3><p>修改服务端配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> frps.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>文件内容：</p>
+<pre class="line-numbers language-none"><code class="language-none"># [common] is integral section
+[common]
+server_addr &#x3D; 8.210.2.174
+# 如果有多个IP，可以选择绑定到不同的ip上
+bind_port &#x3D; 7000
+
+# 虚拟主机配置，不能和系统中已监听的端口冲突。http和https可以设置成同一个
+vhost_http_port &#x3D; 7080
+vhost_https_port &#x3D; 7081
+
+# 服务端web面板
+dashboard_addr &#x3D; 0.0.0.0
+dashboard_port &#x3D; 7500
+# 设置用户名密码，默认都是admin，请注意做修改
+dashboard_user &#x3D; admin
+dashboard_pwd &#x3D; Li021712
+
+# 普罗米修斯运维服务，go语言相关监控，可以关闭
+enable_prometheus &#x3D; false
+
+# 设置日志文件地址
+log_file &#x3D; &#x2F;data&#x2F;frp&#x2F;frps.log
+# trace, debug, info, warn, error
+log_level &#x3D; info
+log_max_days &#x3D; 3
+# disable log colors when log_file is console, default is false
+disable_log_color &#x3D; false
+# DetailedErrorsToClient defines whether to send the specific error (with debug info) to frpc. By default, this value is true.
+detailed_errors_to_client &#x3D; true
+
+
+# 最新版本支持的验证方式比较多，这里还是选用token模式
+# AuthenticationMethod specifies what authentication method to use authenticate frpc with frps.
+# If &quot;token&quot; is specified - token will be read into login message.
+authentication_method &#x3D; token
+# AuthenticateHeartBeats specifies whether to include authentication token in heartbeats sent to frps. By default, this value is false.
+authenticate_heartbeats &#x3D; false
+# AuthenticateNewWorkConns specifies whether to include authentication token in new work connections sent to frps. By default, this value is false.
+authenticate_new_work_conns &#x3D; false
+# auth token 相当于密码，请注意保护
+token &#x3D; 123456
+
+# 允许配置绑定的端口
+# only allow frpc to bind ports you list, if you set nothing, there won&#39;t be any limit
+# allow_ports &#x3D; 2000-3000,3001,3003,4000-50000
+
+# pool_count in each proxy will change to max_pool_count if they exceed the maximum value
+max_pool_count &#x3D; 5
+
+# max ports can be used for each client, default value is 0 means no limit
+max_ports_per_client &#x3D; 0
+
+# TlsOnly specifies whether to only accept TLS-encrypted connections. By default, the value is false.
+tls_only &#x3D; false
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><h3 id="配置FRP服务端-1"><a href="#配置FRP服务端-1" class="headerlink" title="配置FRP服务端"></a>配置FRP服务端</h3><p>修改服务端配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> frps.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>文件内容：</p>
+<pre class="line-numbers language-none"><code class="language-none"># [common] is integral section
+[common]
+server_addr &#x3D; 8.210.2.174
+# 如果有多个IP，可以选择绑定到不同的ip上
+bind_port &#x3D; 7000
+
+# 虚拟主机配置，不能和系统中已监听的端口冲突。http和https可以设置成同一个
+vhost_http_port &#x3D; 7080
+vhost_https_port &#x3D; 7081
+
+# 服务端web面板
+dashboard_addr &#x3D; 0.0.0.0
+dashboard_port &#x3D; 7500
+# 设置用户名密码，默认都是admin，请注意做修改
+dashboard_user &#x3D; admin
+dashboard_pwd &#x3D; Li021712
+
+# 普罗米修斯运维服务，go语言相关监控，可以关闭
+enable_prometheus &#x3D; false
+
+# 设置日志文件地址
+log_file &#x3D; &#x2F;data&#x2F;frp&#x2F;frps.log
+# trace, debug, info, warn, error
+log_level &#x3D; info
+log_max_days &#x3D; 3
+# disable log colors when log_file is console, default is false
+disable_log_color &#x3D; false
+# DetailedErrorsToClient defines whether to send the specific error (with debug info) to frpc. By default, this value is true.
+detailed_errors_to_client &#x3D; true
+
+
+# 最新版本支持的验证方式比较多，这里还是选用token模式
+# AuthenticationMethod specifies what authentication method to use authenticate frpc with frps.
+# If &quot;token&quot; is specified - token will be read into login message.
+authentication_method &#x3D; token
+# AuthenticateHeartBeats specifies whether to include authentication token in heartbeats sent to frps. By default, this value is false.
+authenticate_heartbeats &#x3D; false
+# AuthenticateNewWorkConns specifies whether to include authentication token in new work connections sent to frps. By default, this value is false.
+authenticate_new_work_conns &#x3D; false
+# auth token 相当于密码，请注意保护
+token &#x3D; 123456
+
+# 允许配置绑定的端口
+# only allow frpc to bind ports you list, if you set nothing, there won&#39;t be any limit
+# allow_ports &#x3D; 2000-3000,3001,3003,4000-50000
+
+# pool_count in each proxy will change to max_pool_count if they exceed the maximum value
+max_pool_count &#x3D; 5
+
+# max ports can be used for each client, default value is 0 means no limit
+max_ports_per_client &#x3D; 0
+
+# TlsOnly specifies whether to only accept TLS-encrypted connections. By default, the value is false.
+tls_only &#x3D; false
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="拉取docker镜像并运行"><a href="#拉取docker镜像并运行" class="headerlink" title="拉取docker镜像并运行"></a>拉取docker镜像并运行</h3><pre class="line-numbers language-none"><code class="language-none">docker run --restart&#x3D;always --network host -d -v &#x2F;data&#x2F;frp&#x2F;frps.ini:&#x2F;etc&#x2F;frp&#x2F;frps.toml --name frps snowdreamtech&#x2F;frps<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="配置FRP客户端"><a href="#配置FRP客户端" class="headerlink" title="配置FRP客户端"></a>配置FRP客户端</h3><p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">下载客户端</a></p>
+<pre class="line-numbers language-none"><code class="language-none"># FRP客户端
+[common]
+server_addr &#x3D; 8.210.2.174
+ # 与frps.ini的bind_port一致
+server_port &#x3D; 7000
+ # 与frps.ini的token一致
+token &#x3D; 123456
+
+# [一个例子_这里尽量全英文]
+# type &#x3D; 链接协议默认就是tcp不需要改
+# local_ip &#x3D; 如果你要内网穿透的就是本机地址就写127.0.0.1
+# local_port &#x3D; 假设你是要远程桌面(windows)那就在这里写3389
+# remote_port &#x3D; 如果你是按照我博客的步骤填写的是30000-40000，在这里你可以随便写一个30000-40000之间的数字
+
+[forum]
+type &#x3D; tcp
+local_ip &#x3D; 127.0.0.1
+local_port &#x3D; 8080
+remote_port &#x3D; 80
+
+[palword]
+type &#x3D; udp
+local_ip &#x3D; 127.0.0.1
+local_port &#x3D; 8211
+remote_port &#x3D; 36422
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre class="line-numbers language-none"><code class="language-none">frpc.exe -c frpc.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
   </div>
   
   
@@ -2937,10 +3151,10 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-01-20T10:13:55+00:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-01-30T06:30:58+00:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年1月20日</p>
+    <p>更新于：2024年1月30日</p>
   </a>
 </div>
 
@@ -2948,6 +3162,13 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
       
         
           
+  
+  
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>内网穿透</p></a></div>
+  <span hidden itemprop="keywords">内网穿透</span>
+  
+
 
         
       
@@ -2959,7 +3180,7 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/&title= - ehzyil's blog&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/&title=Frp内网穿透 - ehzyil's blog&summary="
           
           >
           
@@ -2971,7 +3192,7 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/&title= - ehzyil's blog&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/&title=Frp内网穿透 - ehzyil's blog&summary="
           
           >
           
@@ -2983,7 +3204,7 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/&title= - ehzyil's blog&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/&title=Frp内网穿透 - ehzyil's blog&summary="
           
           >
           
@@ -3016,6 +3237,14 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
   
     <div class="prev-next">
       
+        <a class='prev' href='/2024/01/30/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>2024年1月28日</p>
+          <p class='content'>在写毕设的时候提交代码发现报错，查了查以为公司网禁不能提交代码，后来发现用自己热点也提交不了，于是继续在网上寻找解决方案。
+
+Push failed 
+ssh: connect to host ...</p>
+        </a>
+      
       
         <a class='next' href='/2024/01/12/2024/%E4%BD%BF%E7%94%A8StringUtils.isNotEmpty%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/'>
           <p class='title'>使用StringUtils.isNotEmpty遇到的问题<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
@@ -3041,7 +3270,7 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
 
   <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/index.html#comments">
+      <meta itemprop="discussionUrl" content="/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html#comments">
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
@@ -3083,7 +3312,7 @@ Hi ehZyiL<span class="token operator">!</span> You've successfully authenticated
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0"><span class="toc-text">问题原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Frp%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85"><span class="toc-text">Frp本地安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84"><span class="toc-text">查看服务器架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEFRP%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">配置FRP服务端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="toc-text">Docker安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEFRP%E6%9C%8D%E5%8A%A1%E7%AB%AF-1"><span class="toc-text">配置FRP服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%B9%B6%E8%BF%90%E8%A1%8C"><span class="toc-text">拉取docker镜像并运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEFRP%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">配置FRP客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-text">运行</span></a></li></ol></li></ol>
   </div>
 </section>
 
@@ -3951,7 +4180,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2024/01/20/2024/Git问题：解决“sshconnect to host github.com port 22 Connection timed out”/"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2024/01/20/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/","wordCount":0,"datePublished":"2024-01-20T10:13:55.584Z","dateModified":"2024-01-20T10:13:55.584Z","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/技术/","name":"技术"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2024/01/28/2024/Frp内网穿透/","name":"Frp内网穿透"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Frp内网穿透","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2024/01/28/2024/Frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/","wordCount":0,"datePublished":"2024-01-28T20:22:46.000Z","dateModified":"2024-01-30T06:30:58.143Z","articleSection":"技术","keywords":"内网穿透","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
