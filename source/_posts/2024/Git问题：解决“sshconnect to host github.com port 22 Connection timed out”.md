@@ -1,14 +1,26 @@
+---
+title: Git连接超时
+author: ehzyil
+tags:
+  - Git
+categories:
+  - 记录
+date: 2024-03-11 20:22:46
+headimg:
+---
+
+## Git问题：解决“sshconnect to host github.com port 22 Connection timed out”
 在写毕设的时候提交代码发现报错，查了查以为公司网禁不能提交代码，后来发现用自己热点也提交不了，于是继续在网上寻找解决方案。
 
 > **Push failed** 
 >
 > ssh: connect to host github.com port 22: Connection timed out Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
 
-## 问题原因
+### 问题原因
 
 可能是由于电脑的防火墙或者其他网络原因导致ssh连接方式端口22被封锁。
 
-## 解决方案
+### 解决方案
 
 因为端口被封锁，就换成443端口
 

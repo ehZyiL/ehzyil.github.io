@@ -171,7 +171,7 @@ protected abstract Object determineCurrentLookupKey();
 
 基于上面的动态数据源的几个核心知识点，所以当我们需要实现动态数据源切换时，自然而然可以想到的一个方案就是在每次db执行之前，塞入这个希望使用的数据源key
 
-![d82673ae-8d87-48ba-8fbc-288ebdcb237b (1)](../../../images/2023/assets/d82673ae-8d87-48ba-8fbc-288ebdcb237b (1).png)
+![](../../../images/2023/assets/d82673ae-8d87-48ba-8fbc-288ebdcb237b (1).png)
 
 
 如上的设计思路，主要借助aop的思想来实现，通过上下文来存储当前方法的执行，具体希望使用的数据源，然后再执行的sql的时候，AbstractRoutingDataSource直接从上下文中获取key，以此来抉择具体的数据源
