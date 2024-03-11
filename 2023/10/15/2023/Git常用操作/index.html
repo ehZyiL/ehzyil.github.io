@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2023-10-15T18:19:34.000Z">
-<meta property="article:modified_time" content="2024-01-30T06:30:58.127Z">
+<meta property="article:modified_time" content="2024-03-11T14:53:57.533Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -2171,7 +2171,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1706596270639),
+    lastupdate: new Date(1710168847589),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2951,7 +2951,7 @@ $ <span class="token function">git</span> init
 Initialized empty Git repository <span class="token keyword">in</span> D:/Study/Java/Code/ChatViewer/ChatViewer-frontend/.git/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>3、自己要与origin master建立连接（下划线为远程仓库链接）</p>
-<p><strong>git remote add origin <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:XXXX&#x2F;xxx.git</strong></p>
+<p><strong>git remote add origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a>:XXXX&#x2F;xxx.git</strong></p>
 <p>远程仓库链接在这里，如下图红色框内所示的链接：</p>
 <p><img src="/../../../images/git%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/image-20231015183150134.png" class="lazyload" data-srcset="/../../../images/git%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/image-20231015183150134.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image-20231015183150134"></p>
 <p>输入命令：</p>
@@ -3143,6 +3143,34 @@ git stash drop stash@&#123;X&#125; &#x2F;&#x2F;将记录列表中取出的对应
 <p><strong>–hard</strong></p>
 <p>删除工作空间改动代码，撤销commit，撤销git add . </p>
 <p>注意完成这个操作后，就恢复到了上一次的commit状态。</p>
+<h3 id="Git丢弃本地修改的所有文件（新增、删除、修改）"><a href="#Git丢弃本地修改的所有文件（新增、删除、修改）" class="headerlink" title="Git丢弃本地修改的所有文件（新增、删除、修改）"></a>Git丢弃本地修改的所有文件（新增、删除、修改）</h3><blockquote>
+<p>refer <a target="_blank" rel="noopener" href="https://blog.csdn.net/leedaning/article/details/51304690">git丢弃本地修改的所有文件（新增、删除、修改）_git怎么将已经提交的新增修改全部丢失-CSDN博客</a> </p>
+</blockquote>
+<p>本地修改了许多文件，其中有些是新增的，因为开发需要这些都不要了，想要丢弃掉，可以使用如下命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态
+git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
+
+git reset --hard HASH #返回到某个节点，不保留修改，已有的改动会丢失。
+git reset --soft HASH #返回到某个节点, 保留修改，已有的改动会保留，在未提交中，git status或git diff可看。
+
+git clean -df #返回到某个节点，（未跟踪文件的删除）
+git clean 参数
+    -n 不实际删除，只是进行演练，展示将要进行的操作，有哪些文件将要被删除。（可先使用该命令参数，然后再决定是否执行）
+    -f 删除文件
+    -i 显示将要删除的文件
+    -d 递归删除目录及文件（未跟踪的）
+    -q 仅显示错误，成功删除的文件不显示
+
+
+注：
+git reset 删除的是已跟踪的文件，将已commit的回退。
+git clean 删除的是未跟踪的文件
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>也可以使用：</p>
+<pre class="line-numbers language-none"><code class="language-none">git clean -nxdf（查看要删除的文件及目录，确认无误后再使用下面的命令进行删除）
+git checkout . &amp;&amp; git clean -xdf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 
   </div>
   
@@ -3167,10 +3195,10 @@ git stash drop stash@&#123;X&#125; &#x2F;&#x2F;将记录列表中取出的对应
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-01-30T06:30:58+00:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-03-11T14:53:57+00:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年1月30日</p>
+    <p>更新于：2024年3月11日</p>
   </a>
 </div>
 
@@ -3326,7 +3354,7 @@ Spring Boot整合Quartz 详见 Quartz 使用教程
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-text">Git拉取远程分支到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E6%8F%90%E4%BA%A4%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">Git提交全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="toc-text">Git删除分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E5%A6%82%E4%BD%95%E9%80%80%E5%87%BAmerging"><span class="toc-text">Git 如何退出merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8idea-%E6%8A%8A%E4%B8%80%E4%B8%AAgit%E5%88%86%E6%94%AF%E7%9A%84%E9%83%A8%E5%88%86%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AAgit%E5%88%86%E6%94%AF%E4%B8%8A"><span class="toc-text">使用idea 把一个git分支的部分提交记录合并到另一个git分支上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-cherry-pick%E5%90%88%E5%B9%B6%E7%89%B9%E5%AE%9A%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">Git cherry-pick合并特定的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-stash-%E6%9A%82%E5%AD%98%E4%BB%A3%E7%A0%81"><span class="toc-text">Git stash 暂存代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-commit%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80commit"><span class="toc-text">Git commit之后，想撤销commit</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-text">Git拉取远程分支到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E6%8F%90%E4%BA%A4%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">Git提交全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="toc-text">Git删除分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E5%A6%82%E4%BD%95%E9%80%80%E5%87%BAmerging"><span class="toc-text">Git 如何退出merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8idea-%E6%8A%8A%E4%B8%80%E4%B8%AAgit%E5%88%86%E6%94%AF%E7%9A%84%E9%83%A8%E5%88%86%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AAgit%E5%88%86%E6%94%AF%E4%B8%8A"><span class="toc-text">使用idea 把一个git分支的部分提交记录合并到另一个git分支上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-cherry-pick%E5%90%88%E5%B9%B6%E7%89%B9%E5%AE%9A%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">Git cherry-pick合并特定的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-stash-%E6%9A%82%E5%AD%98%E4%BB%A3%E7%A0%81"><span class="toc-text">Git stash 暂存代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-commit%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80commit"><span class="toc-text">Git commit之后，想撤销commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E4%B8%A2%E5%BC%83%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%EF%BC%88%E6%96%B0%E5%A2%9E%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E4%BF%AE%E6%94%B9%EF%BC%89"><span class="toc-text">Git丢弃本地修改的所有文件（新增、删除、修改）</span></a></li></ol>
   </div>
 </section>
 
@@ -4194,7 +4222,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/技术/","name":"技术"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2023/10/15/2023/Git常用操作/","name":"Git常用操作"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Git常用操作","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/","wordCount":0,"datePublished":"2023-10-15T18:19:34.000Z","dateModified":"2024-01-30T06:30:58.127Z","articleSection":"技术","keywords":"git","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/技术/","name":"技术"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2023/10/15/2023/Git常用操作/","name":"Git常用操作"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Git常用操作","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/","wordCount":0,"datePublished":"2023-10-15T18:19:34.000Z","dateModified":"2024-03-11T14:53:57.533Z","articleSection":"技术","keywords":"git","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
