@@ -1,0 +1,360 @@
+---
+title: PostgreSQL 使用记录
+author: ehzyil
+tags:
+  - 数据库
+  - PostgreSQL
+  - Docker
+categories:
+  - 记录
+date: 2024-3-22
+headimg:
+---
+
+## PostgreSQL 使用记录
+
+### Docker安装PostgreSQL 
+
+**安装 Docker**
+
+1. 访问 Docker 官方网站：https://docs.docker.com/desktop/
+
+**拉取 PostgreSQL 镜像**
+
+1. 打开终端或命令提示符。
+2. 运行以下命令拉取 PostgreSQL 镜像：
+
+```
+docker pull postgres:13.0
+```
+
+**创建 PostgreSQL 容器**
+
+运行以下命令创建 PostgreSQL 容器：
+
+```
+docker run --name postgres_db -e POSTGRES_PASSWORD=postgresql -e POSTGRES_USER=ehzyil -e POSTGRES_DB=freshrss -v /data/postgresql:/var/lib/postgresql/data -p 5433:5432 -d postgres
+```
+
+- `--name postgres_db`：将创建的容器命名为 `postgres_db`。
+- `-e POSTGRES_PASSWORD=postgresql`：设置环境变量 `POSTGRES_PASSWORD`，该环境变量定义了PostgreSQL数据库的超级用户密码，这里设置为 `postgresql`。
+- `-e POSTGRES_USER=ehzyil`：设置环境变量 `POSTGRES_USER`，以创建具有超级用户权限的新用户，这里用户名设为 `ehzyil`。
+- `-e POSTGRES_DB=freshrss`：设置环境变量 `POSTGRES_DB`，以创建一个名为 `freshrss` 的新数据库。
+- `-v /data/postgresql:/var/lib/postgresql/data`：将宿主机的 `/data/postgresql` 目录挂载到容器内的 `/var/lib/postgresql/data` 目录。这样做可以保证数据库的数据即使在容器停止后也能够持久化。
+- `-p 5432:5432`：将宿主机的 `5432` 端口映射到容器内的 `5432` 端口，允许您从宿主机的该端口连接到PostgreSQL服务。
+- `-d postgres`：以守护进程模式在后台启动 `postgres` 镜像的容器。 
+
+**连接到容器**
+
+1. 运行以下命令连接到容器：
+
+```
+docker exec -it postgres_db psql -U ehzyil -d freshrss
+```
+
+- `docker exec -it some-postgres`：`docker exec` 命令允许您在运行中的容器里执行命令，`-it` 参数让您可以交互式地使用容器的命令行接口。
+- `psql`：是PostgreSQL的命令行工具。
+- `-U ehzyil`：`-U` 参数用于指定要以哪个用户身份登录，这里您应使用您创建容器时设置的用户`ehzyil`。
+- `-d freshrss`：`-d` 参数用于指定要连接的数据库, 这里是您创建的数据库`freshrss`。 如果您的宿主机上安装有psql客户端或其他数据库管理工具，您也可以直接使用本机的管理工具连接到容器的数据库。假设您的容器正运行在同一台宿主机上，您可以使用如下命令：
+
+2. 已连接到容器，可以使用 `psql` 命令连接到 PostgreSQL 数据库：
+
+```
+psql -U postgres
+```
+
+3. 执行 SQL 查询，例如：
+
+```
+select now();
+```
+
+
+
+
+
+## 创建新的数据库用户
+
+### 1. 进入数据库命令行
+
+首先，以 PostgreSQL 用户身份登录，然后使用 `psql` 命令进入数据库命令行：
+
+```
+sudo su postgres
+psql
+```
+
+2. 创建新用户
+
+使用以下命令创建新的数据库用户 `dbuser`，并设置密码 `<CUSTOM PASSWORD>`：
+
+```
+CREATE USER dbuser WITH PASSWORD '<CUSTOM PASSWORD>';
+```
+
+3. 创建数据库
+
+创建名为 `exampledb` 的新数据库，并将其所有者设置为 `dbuser`：
+
+```
+CREATE DATABASE exampledb OWNER dbuser;
+```
+
+4. 授予数据库权限
+
+将 `exampledb` 数据库的所有权限授予 `dbuser`：
+
+```
+GRANT ALL PRIVILEGES ON DATABASE exampledb TO dbuser;
+```
+
+5. 授予表权限（可选）
+
+如果需要授予 `dbuser` 对特定表的读写权限，请使用以下命令：
+
+```
+GRANT ALL PRIVILEGES ON TABLE mytable TO dbuser;
+```
+
+
+
+**注意：**
+
+- 授予权限的命令必须在要操作的数据库中执行。
+- 授予所有权限时，请谨慎操作，因为它会授予用户对数据库的完全控制权。
+- 对于生产环境，建议使用更细粒度的权限授予策略。
+
+
+
+
+
+```
+drop role memos; # 删除角色
+```
+
+
+
+
+
+```
+docker run -d --name memos -p 5230:5230 -v /home/ehzyil/data/docker_data/memos/:/var/opt/memos ghcr.io/usememos/memos:latest
+```
+
+
+
+### 安装freshrss
+
+```
+docker run -d --restart unless-stopped --log-opt max-size=10m \
+  -p 39954:80 \
+  -e CRON_MIN='*/45' \
+  -e TZ=Asia/Shanghai \
+  -v /data/freshrss/data:/var/www/FreshRSS/data \
+  -v /data/freshrss/extensions:/var/www/FreshRSS/extensions \
+  --name freshrss-app \
+  freshrss/freshrss
+```
+
+注意在数据库配置时
+
+用户名、密码、数据库分别对应之前 Docker Compose 配置文件中的 `POSTGRES_USER`、`POSTGRES_PASSWORD`、`POSTGRES_DB`；表前缀任意填；主机名要稍微注意一下，既非 `127.0.0.1`/`localhost`，而要用容器的 IP，用下述命令可以得到。
+
+```
+# 获取 Container ID
+docker ps
+
+# 查看指定容器信息
+docker inspect <container id> |grep IP
+
+# 例如
+root@iZj6caytd8hmoddao18kslZ:~# docker inspect 70705536578b|grep IP
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:3",
+            "GlobalIPv6PrefixLen": 80,
+            "IPAddress": "172.18.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "fd00:dead:beef:c0::1",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.18.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "fd00:dead:beef:c0::1",
+                    "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:3",
+                    "GlobalIPv6PrefixLen": 80,
+
+```
+
+
+
+解决因为docker重启造成docker内部ip变动造成的无法连接
+
+> HTTP 500: Application problem
+>
+> Access to database is denied for `ehzyil`: SQLSTATE[08006] [7] connection to server at "172.18.0.3", port 5432 failed: Connection refused
+
+ 修改`/data/freshrss/data/config.php`下的host为postgresql的docker内部ip
+
+```
+ 'db' => 
+  array (
+    'type' => 'pgsql',
+    'host' => '172.18.0.3',
+    'user' => 'ehzyil',
+    'password' => 'postgresql',
+    'base' => 'freshrss',
+    'prefix' => '',
+    'connection_uri_params' => '',
+    'pdo_options' => 
+    array (
+    ),
+  ),
+
+```
+
+
+
+### 安装青龙面板
+
+```
+docker run -dit \
+   -v $PWD/ql/config:/ql/config \
+   -v $PWD/ql/log:/ql/log \
+   -v $PWD/ql/db:/ql/db \
+   -p 5700:5700 \
+   --privileged=true \
+   --name qinglong \
+   --hostname qinglong \
+   --restart always \
+   whyour/qinglong:latest
+   
+```
+
+如果忘记账号密码，也可以在控制台执行一下命令查看
+
+```
+docker exec -it qinglong cat /ql/config/auth.json
+```
+
+
+
+MTIxNzgyMTI5NTg2NjI4NjE3M
+
+### 将容器放在一个网络下
+
+1. **创建网络**
+
+```bash
+docker network create freshrss-network
+```
+
+2. **将容器连接到网络**
+
+```bash
+docker network connect freshrss-network freshrss-app
+docker network connect freshrss-network postgres_db
+```
+
+现在，`freshrss-app` 和 `postgres_db` 容器将位于同一个网络中。它们可以通过其容器名称或 IP 地址相互通信。
+
+**验证**
+
+要验证容器是否已连接到网络，可以使用以下命令：
+
+```bash
+docker network inspect freshrss-network
+```
+
+输出应显示已连接到网络的容器列表，包括 `freshrss-app` 和 `postgres_db`。
+
+**其他提示**
+
+* 可以使用 `docker network ls` 命令列出所有可用的网络。
+* 可以使用 `docker network rm` 命令删除网络。
+* 有关 Docker 网络的更多信息，请参阅 Docker 文档：https://docs.docker.com/network/
+
+
+
+### 如何使容器重启后ip不改变
+
+
+
+> freshrss-app和postgres_db已经在一个网络了  如何让 postgres_db在容器内的ip重启后不改变
+
+**方法：创建的 Docker 网络中为容器分配静态 IP。**
+
+1.首先，从网络中删除 `postgres_db` 容器。注意：您可能需要先停止容器，然后再将其从网络中删除。
+
+```bash
+docker network disconnect freshrss-network postgres_db
+```
+
+2.接下来，您需要检查网络以查找子网和网关来定义网络使用的 IP 范围。
+
+```bash
+docker network inspect freshrss-network
+```
+
+3.根据子网和网关信息，选择位于同一子网内但当前未被任何其他容器使用的 IP 地址。
+
+4.将 `postgres_db` 容器重新连接到具有特定 IP 的网络：
+
+```bash
+docker network connect --ip <static_ip> freshrss-network postgres_db
+#例如： docker network connect --ip 172.20.0.10 freshrss-network postgres_db
+```
+
+操作完成后可以看到该容器的静态ip
+
+```text
+docker inspect postgres_db |grep IP
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:5",
+            "GlobalIPv6PrefixLen": 80,
+            "IPAddress": "172.18.0.5",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "fd00:dead:beef:c0::1",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.18.0.5",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "fd00:dead:beef:c0::1",
+                    "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:5",
+                    "GlobalIPv6PrefixLen": 80,
+                    "IPAMConfig": {
+                        "IPv4Address": "172.20.0.10"
+                    "IPAddress": "172.20.0.10",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+
+```
+
+
+
+### 设置 容器重启后自动启动
+
+1.新建容器时配置
+
+```
+docker run --restart=unless-stopped [OPTIONS] IMAGE [COMMAND] [ARG...]
+```
+
+2.对于已经存在的容器，您可以使用 `docker update` 命令更新其重启策略：
+
+```
+docker update --restart=unless-stopped [CONTAINER ID or NAME]
+```
+
+
+
+移除重启策略
+
+```
+docker update --restart=unless-stopped [CONTAINER ID or NAME]
+```
+
