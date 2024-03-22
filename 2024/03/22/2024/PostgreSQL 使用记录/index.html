@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-03-22T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-22T14:32:46.883Z">
+<meta property="article:modified_time" content="2024-03-22T15:01:28.470Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="数据库">
@@ -2173,7 +2173,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1711117975236),
+    lastupdate: new Date(1711119691982),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2994,7 +2994,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-<h2 id="创建新的数据库用户"><a href="#创建新的数据库用户" class="headerlink" title="创建新的数据库用户"></a>创建新的数据库用户</h2><h3 id="1-进入数据库命令行"><a href="#1-进入数据库命令行" class="headerlink" title="1. 进入数据库命令行"></a>1. 进入数据库命令行</h3><p>首先，以 PostgreSQL 用户身份登录，然后使用 <code>psql</code> 命令进入数据库命令行：</p>
+<h3 id="创建新的数据库用户"><a href="#创建新的数据库用户" class="headerlink" title="创建新的数据库用户"></a>创建新的数据库用户</h3><ol>
+<li>进入数据库命令行</li>
+</ol>
+<p>首先，以 PostgreSQL 用户身份登录，然后使用 <code>psql</code> 命令进入数据库命令行：</p>
 <pre class="line-numbers language-none"><code class="language-none">sudo su postgres
 psql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -3022,179 +3025,18 @@ psql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
 <p>如果需要授予 <code>dbuser</code> 对特定表的读写权限，请使用以下命令：</p>
 <pre class="line-numbers language-none"><code class="language-none">GRANT ALL PRIVILEGES ON TABLE mytable TO dbuser;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-
-
 <p><strong>注意：</strong></p>
 <ul>
-<li>授予权限的命令必须在要操作的数据库中执行。</li>
-<li>授予所有权限时，请谨慎操作，因为它会授予用户对数据库的完全控制权。</li>
-<li>对于生产环境，建议使用更细粒度的权限授予策略。</li>
+<li><p>授予权限的命令必须在要操作的数据库中执行。</p>
+</li>
+<li><p>授予所有权限时，请谨慎操作，因为它会授予用户对数据库的完全控制权。</p>
+</li>
+<li><p>对于生产环境，建议使用更细粒度的权限授予策略。</p>
+</li>
 </ul>
+<p>6.删除角色</p>
 <pre class="line-numbers language-none"><code class="language-none">drop role memos; # 删除角色<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-
-
-
-
-<pre class="line-numbers language-none"><code class="language-none">docker run -d --name memos -p 5230:5230 -v &#x2F;home&#x2F;ehzyil&#x2F;data&#x2F;docker_data&#x2F;memos&#x2F;:&#x2F;var&#x2F;opt&#x2F;memos ghcr.io&#x2F;usememos&#x2F;memos:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h3 id="安装freshrss"><a href="#安装freshrss" class="headerlink" title="安装freshrss"></a>安装freshrss</h3><pre class="line-numbers language-none"><code class="language-none">docker run -d --restart unless-stopped --log-opt max-size&#x3D;10m \
-  -p 39954:80 \
-  -e CRON_MIN&#x3D;&#39;*&#x2F;45&#39; \
-  -e TZ&#x3D;Asia&#x2F;Shanghai \
-  -v &#x2F;data&#x2F;freshrss&#x2F;data:&#x2F;var&#x2F;www&#x2F;FreshRSS&#x2F;data \
-  -v &#x2F;data&#x2F;freshrss&#x2F;extensions:&#x2F;var&#x2F;www&#x2F;FreshRSS&#x2F;extensions \
-  --name freshrss-app \
-  freshrss&#x2F;freshrss<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注意在数据库配置时</p>
-<p>用户名、密码、数据库分别对应之前 Docker Compose 配置文件中的 <code>POSTGRES_USER</code>、<code>POSTGRES_PASSWORD</code>、<code>POSTGRES_DB</code>；表前缀任意填；主机名要稍微注意一下，既非 <code>127.0.0.1</code>&#x2F;<code>localhost</code>，而要用容器的 IP，用下述命令可以得到。</p>
-<pre class="line-numbers language-none"><code class="language-none"># 获取 Container ID
-docker ps
-
-# 查看指定容器信息
-docker inspect &lt;container id&gt; |grep IP
-
-# 例如
-root@iZj6caytd8hmoddao18kslZ:~# docker inspect 70705536578b|grep IP
-            &quot;LinkLocalIPv6Address&quot;: &quot;&quot;,
-            &quot;LinkLocalIPv6PrefixLen&quot;: 0,
-            &quot;SecondaryIPAddresses&quot;: null,
-            &quot;SecondaryIPv6Addresses&quot;: null,
-            &quot;GlobalIPv6Address&quot;: &quot;fd00:dead:beef:c0:0:242:ac12:3&quot;,
-            &quot;GlobalIPv6PrefixLen&quot;: 80,
-            &quot;IPAddress&quot;: &quot;172.18.0.3&quot;,
-            &quot;IPPrefixLen&quot;: 16,
-            &quot;IPv6Gateway&quot;: &quot;fd00:dead:beef:c0::1&quot;,
-                    &quot;IPAMConfig&quot;: null,
-                    &quot;IPAddress&quot;: &quot;172.18.0.3&quot;,
-                    &quot;IPPrefixLen&quot;: 16,
-                    &quot;IPv6Gateway&quot;: &quot;fd00:dead:beef:c0::1&quot;,
-                    &quot;GlobalIPv6Address&quot;: &quot;fd00:dead:beef:c0:0:242:ac12:3&quot;,
-                    &quot;GlobalIPv6PrefixLen&quot;: 80,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>解决因为docker重启造成docker内部ip变动造成的无法连接</p>
-<blockquote>
-<p>HTTP 500: Application problem</p>
-<p>Access to database is denied for <code>ehzyil</code>: SQLSTATE[08006] [7] connection to server at “172.18.0.3”, port 5432 failed: Connection refused</p>
-</blockquote>
-<p> 修改<code>/data/freshrss/data/config.php</code>下的host为postgresql的docker内部ip</p>
-<pre class="line-numbers language-none"><code class="language-none">&#39;db&#39; &#x3D;&gt; 
- array (
-   &#39;type&#39; &#x3D;&gt; &#39;pgsql&#39;,
-   &#39;host&#39; &#x3D;&gt; &#39;172.18.0.3&#39;,
-   &#39;user&#39; &#x3D;&gt; &#39;ehzyil&#39;,
-   &#39;password&#39; &#x3D;&gt; &#39;postgresql&#39;,
-   &#39;base&#39; &#x3D;&gt; &#39;freshrss&#39;,
-   &#39;prefix&#39; &#x3D;&gt; &#39;&#39;,
-   &#39;connection_uri_params&#39; &#x3D;&gt; &#39;&#39;,
-   &#39;pdo_options&#39; &#x3D;&gt; 
-   array (
-   ),
- ),
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="安装青龙面板"><a href="#安装青龙面板" class="headerlink" title="安装青龙面板"></a>安装青龙面板</h3><pre class="line-numbers language-none"><code class="language-none">docker run -dit \
-   -v $PWD&#x2F;ql&#x2F;config:&#x2F;ql&#x2F;config \
-   -v $PWD&#x2F;ql&#x2F;log:&#x2F;ql&#x2F;log \
-   -v $PWD&#x2F;ql&#x2F;db:&#x2F;ql&#x2F;db \
-   -p 5700:5700 \
-   --privileged&#x3D;true \
-   --name qinglong \
-   --hostname qinglong \
-   --restart always \
-   whyour&#x2F;qinglong:latest
-   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果忘记账号密码，也可以在控制台执行一下命令查看</p>
-<pre class="line-numbers language-none"><code class="language-none">docker exec -it qinglong cat &#x2F;ql&#x2F;config&#x2F;auth.json<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>MTIxNzgyMTI5NTg2NjI4NjE3M</p>
-<h3 id="将容器放在一个网络下"><a href="#将容器放在一个网络下" class="headerlink" title="将容器放在一个网络下"></a>将容器放在一个网络下</h3><ol>
-<li><strong>创建网络</strong></li>
-</ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network create freshrss-network<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ol start="2">
-<li><strong>将容器连接到网络</strong></li>
-</ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network connect freshrss-network freshrss-app
-<span class="token function">docker</span> network connect freshrss-network postgres_db<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>现在，<code>freshrss-app</code> 和 <code>postgres_db</code> 容器将位于同一个网络中。它们可以通过其容器名称或 IP 地址相互通信。</p>
-<p><strong>验证</strong></p>
-<p>要验证容器是否已连接到网络，可以使用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network inspect freshrss-network<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>输出应显示已连接到网络的容器列表，包括 <code>freshrss-app</code> 和 <code>postgres_db</code>。</p>
-<p><strong>其他提示</strong></p>
-<ul>
-<li>可以使用 <code>docker network ls</code> 命令列出所有可用的网络。</li>
-<li>可以使用 <code>docker network rm</code> 命令删除网络。</li>
-<li>有关 Docker 网络的更多信息，请参阅 Docker 文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/network/">https://docs.docker.com/network/</a></li>
-</ul>
-<h3 id="如何使容器重启后ip不改变"><a href="#如何使容器重启后ip不改变" class="headerlink" title="如何使容器重启后ip不改变"></a>如何使容器重启后ip不改变</h3><blockquote>
-<p>freshrss-app和postgres_db已经在一个网络了  如何让 postgres_db在容器内的ip重启后不改变</p>
-</blockquote>
-<p><strong>方法：创建的 Docker 网络中为容器分配静态 IP。</strong></p>
-<p>1.首先，从网络中删除 <code>postgres_db</code> 容器。注意：您可能需要先停止容器，然后再将其从网络中删除。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network disconnect freshrss-network postgres_db<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>2.接下来，您需要检查网络以查找子网和网关来定义网络使用的 IP 范围。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network inspect freshrss-network<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>3.根据子网和网关信息，选择位于同一子网内但当前未被任何其他容器使用的 IP 地址。</p>
-<p>4.将 <code>postgres_db</code> 容器重新连接到具有特定 IP 的网络：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> network connect <span class="token parameter variable">--ip</span> <span class="token operator">&lt;</span>static_ip<span class="token operator">></span> freshrss-network postgres_db
-<span class="token comment">#例如： docker network connect --ip 172.20.0.10 freshrss-network postgres_db</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>操作完成后可以看到该容器的静态ip</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">docker inspect postgres_db |grep IP
-            "LinkLocalIPv6Address": "",
-            "LinkLocalIPv6PrefixLen": 0,
-            "SecondaryIPAddresses": null,
-            "SecondaryIPv6Addresses": null,
-            "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:5",
-            "GlobalIPv6PrefixLen": 80,
-            "IPAddress": "172.18.0.5",
-            "IPPrefixLen": 16,
-            "IPv6Gateway": "fd00:dead:beef:c0::1",
-                    "IPAMConfig": null,
-                    "IPAddress": "172.18.0.5",
-                    "IPPrefixLen": 16,
-                    "IPv6Gateway": "fd00:dead:beef:c0::1",
-                    "GlobalIPv6Address": "fd00:dead:beef:c0:0:242:ac12:5",
-                    "GlobalIPv6PrefixLen": 80,
-                    "IPAMConfig": &#123;
-                        "IPv4Address": "172.20.0.10"
-                    "IPAddress": "172.20.0.10",
-                    "IPPrefixLen": 16,
-                    "IPv6Gateway": "",
-                    "GlobalIPv6Address": "",
-                    "GlobalIPv6PrefixLen": 0,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="设置-容器重启后自动启动"><a href="#设置-容器重启后自动启动" class="headerlink" title="设置 容器重启后自动启动"></a>设置 容器重启后自动启动</h3><p>1.新建容器时配置</p>
-<pre class="line-numbers language-none"><code class="language-none">docker run --restart&#x3D;unless-stopped [OPTIONS] IMAGE [COMMAND] [ARG...]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>2.对于已经存在的容器，您可以使用 <code>docker update</code> 命令更新其重启策略：</p>
-<pre class="line-numbers language-none"><code class="language-none">docker update --restart&#x3D;unless-stopped [CONTAINER ID or NAME]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>移除重启策略</p>
-<pre class="line-numbers language-none"><code class="language-none">docker update --restart&#x3D;unless-stopped [CONTAINER ID or NAME]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
   </div>
@@ -3220,7 +3062,7 @@ root@iZj6caytd8hmoddao18kslZ:~# docker inspect 70705536578b|grep IP
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-03-22T14:32:46+00:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-03-22T15:01:28+00:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年3月22日</p>
@@ -3377,7 +3219,7 @@ S...</p>
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95"><span class="toc-text">PostgreSQL 使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85PostgreSQL"><span class="toc-text">Docker安装PostgreSQL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="toc-text">创建新的数据库用户</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%9B%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">1. 进入数据库命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85freshrss"><span class="toc-text">安装freshrss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF"><span class="toc-text">安装青龙面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%AE%B9%E5%99%A8%E6%94%BE%E5%9C%A8%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E4%B8%8B"><span class="toc-text">将容器放在一个网络下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%B9%E5%99%A8%E9%87%8D%E5%90%AF%E5%90%8Eip%E4%B8%8D%E6%94%B9%E5%8F%98"><span class="toc-text">如何使容器重启后ip不改变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-%E5%AE%B9%E5%99%A8%E9%87%8D%E5%90%AF%E5%90%8E%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8"><span class="toc-text">设置 容器重启后自动启动</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95"><span class="toc-text">PostgreSQL 使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85PostgreSQL"><span class="toc-text">Docker安装PostgreSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="toc-text">创建新的数据库用户</span></a></li></ol></li></ol>
   </div>
 </section>
 
@@ -4245,7 +4087,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/记录/","name":"记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL 使用记录/","name":"PostgreSQL 使用记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"PostgreSQL 使用记录","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/","wordCount":0,"datePublished":"2024-03-22T00:00:00.000Z","dateModified":"2024-03-22T14:32:46.883Z","articleSection":"记录","keywords":"Docker,数据库,PostgreSQL","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.ehzyil.xyz/categories/记录/","name":"记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL 使用记录/","name":"PostgreSQL 使用记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"PostgreSQL 使用记录","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/","wordCount":0,"datePublished":"2024-03-22T00:00:00.000Z","dateModified":"2024-03-22T15:01:28.470Z","articleSection":"记录","keywords":"Docker,数据库,PostgreSQL","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
