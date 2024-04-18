@@ -1206,6 +1206,8 @@ docker run -d --name memos -p 5230:5230 -v /home/ehzyil/data/docker_data/memos/:
 
 
 
+**配置反向代理**
+
 ## 安装freshrss
 
 ```
@@ -1306,8 +1308,10 @@ docker exec -it qinglong cat /ql/config/auth.json
 1. **创建网络**
 
 ```bash
-docker network create freshrss-network
+docker network create --subnet=172.18.0.0/16 freshrss-network 
 ```
+
+> 若不指定子网会报`Error response from daemon: user specified IP address is supported only when connecting to networks with user configured subnets`异常。
 
 2. **将容器连接到网络**
 
@@ -1336,6 +1340,33 @@ docker network inspect freshrss-network
 
 
 
+**配置反向代理**
+
+使用nginx配置反向代理的前提：
+
+1. 创建一个A记录，将 `qingl` 指向的服务器的 IP 地址
+2. 将服务放在一个网络中并分配静态 IP，若nginx也是docker部署，需要将nginx也添加到同一网络内
+
+```
+# ql.conf 
+server {
+        listen 80;
+        listen [::]:80;
+        server_name qingl.ehzyil.xyz;
+
+        location / {
+            proxy_pass http://172.19.0.3:5700;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            client_max_body_size 0;
+        }
+}
+```
+
+
+
 ## 如何使容器重启后ip不改变
 
 
@@ -1357,6 +1388,26 @@ docker network inspect freshrss-network
 ```
 
 3.根据子网和网关信息，选择位于同一子网内但当前未被任何其他容器使用的 IP 地址。
+
+```
+"IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+
+```
+
+**Subnet字段的值是子网的 CIDR 表示法，`"Gateway"` 字段的值是网关的 IP 地址。**
+
+因为子网字段的值（`172.20.0.0/16`）是子网的 CIDR 表示法，CIDR 表示法指定了 IP 地址范围和子网掩码。在这种情况下，子网掩码是 `/16`，这意味着前 16 位用于网络地址，后 16 位用于主机地址。
+
+因此，网络使用的 IP 范围是从 `172.20.0.0` 到 `172.20.255.255`。
 
 4.将 `postgres_db` 容器重新连接到具有特定 IP 的网络：
 
@@ -1396,7 +1447,7 @@ docker inspect postgres_db |grep IP
 
 
 
-### 设置 容器重启后自动启动
+## 设置 容器重启后自动启动
 
 1.新建容器时配置
 

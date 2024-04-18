@@ -350,3 +350,11 @@ SQL> alter user "WF-TRAIN" quota unlimited on "USERS";
   - 当用户在表空间没有足够的权限时，将触发ORA-01950错误。
 - **什么导致了'ORA-01950: 对表空间 'USERS' 无权限'错误？**
   - 当用户在表空间没有足够的空间时，会出现此错误。
+
+### 八、如何关闭本地启动的 Oracle
+
+```
+sqlplus / as sysdba 
+
+SHUTDOWN IMMEDIATE
+```
