@@ -116,5 +116,5 @@ Hi ehZyiL! You've successfully authenticated, but GitHub does not provide shell 
 ---
 references:
   -  [GIT同时连接gitlab和github - 简书](https://www.jianshu.com/p/88005b56fb4d) 
-  - 
+  -  [Generating a new SSH key and adding it to the ssh-agent - GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=windows) 
 ---

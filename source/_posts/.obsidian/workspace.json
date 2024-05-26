@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024/SpringBoot实现微信公众号自动登录.md",
+                "file": "obsidian/drafts/COZE-BOT.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "vue",
+                "query": "coze",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2024/SpringBoot实现微信公众号自动登录.md",
+                "file": "obsidian/drafts/COZE-BOT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2024/SpringBoot实现微信公众号自动登录.md",
+                "file": "obsidian/drafts/COZE-BOT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2024/SpringBoot实现微信公众号自动登录.md"
+                "file": "obsidian/drafts/COZE-BOT.md"
               }
             }
           },
@@ -158,9 +159,23 @@
   },
   "active": "e5048d6f8c9c4031",
   "lastOpenFiles": [
+    "2024/PostgreSQL 使用记录.md",
+    "2023/Docker的配置与软件安装.md",
+    "obsidian/drafts/acount.md",
+    "2023/小白初遇服务器.md",
+    "2024/Docker安装Nginx.md",
+    "2023/CentOS下的软件.md",
+    "obsidian/drafts/COZE-BOT.md",
+    "2024/Frp内网穿透.md",
+    "2024/git同时连接gitlab和github.md",
+    "2023/开启 Azure 虚拟机的 root 账户.md",
+    "obsidian/drafts/assets/Pasted image 20240401130706.png",
+    "2024/通用敏感词替换.md",
+    "2024/使用StringUtils.isNotEmpty遇到的问题.md",
+    "obsidian/drafts/未命名.md",
+    "2024/SpringBoot实现微信公众号自动登录.md",
     "obsidian/drafts/查看 Docker 容器日志.md",
     "2024/修改某个人在Git中所有提交记录的名字.md",
-    "obsidian/drafts/COZE-BOT.md",
     "obsidian/drafts/jQuery学习.md",
     "obsidian/drafts/freemarker基本语法.md",
     "obsidian/drafts/Ajax.md",
@@ -171,22 +186,8 @@
     "2023/Docker指令报错的解决方法：'permission denied while trying to connect to the Docker...'.md",
     "2023/异常之doesn't have a default value.md",
     "2023/一条SQL更新语句是如何执行的？.md",
-    "2023/一条SQL查询语句是如何执行的？.md",
-    "2023/小白初遇服务器.md",
-    "2023/线程池.md",
-    "2023/通过 BotFather 创建 Telegram 机器人.md",
-    "2024/Git问题：解决“sshconnect to host github.com port 22 Connection timed out”.md",
-    "2024/git同时连接gitlab和github.md",
-    "2024/Oracle数据库使用记录.md",
-    "Excalidraw/Drawing 2024-03-29 16.07.03.excalidraw.md",
-    "Excalidraw/Drawing 2024-04-01 12.59.21.excalidraw.md",
-    "2024/Vue学习.md",
-    "obsidian/drafts/标签插件.md",
-    "obsidian/drafts/assets/Pasted image 20240401130706.png",
     "2024/assets/Pasted image 20240401130706.png",
     "obsidian/drafts/assets",
-    "2024/PostgreSQL 使用记录.md",
-    "2023/Docker的配置与软件安装.md",
     "Excalidraw/Drawing 2024-03-23 22.27.54.excalidraw.png",
     "未命名.canvas",
     "Excalidraw",

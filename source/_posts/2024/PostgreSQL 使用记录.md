@@ -13,7 +13,7 @@ headimg:
 
 ## PostgreSQL 使用记录
 
-### Docker安装PostgreSQL 
+## Docker安装PostgreSQL 
 
 **安装 Docker**
 
@@ -73,7 +73,7 @@ select now();
 
 
 
-### 创建新的数据库用户
+## 创建新的数据库用户
 
 1. 进入数据库命令行
 
@@ -108,6 +108,7 @@ CREATE DATABASE exampledb OWNER dbuser;
 GRANT ALL PRIVILEGES ON DATABASE exampledb TO dbuser;
 ```
 
+
 5. 授予表权限（可选）
 
 如果需要授予 `dbuser` 对特定表的读写权限，请使用以下命令：
@@ -115,7 +116,10 @@ GRANT ALL PRIVILEGES ON DATABASE exampledb TO dbuser;
 ```
 GRANT ALL PRIVILEGES ON TABLE mytable TO dbuser;
 ```
-
+授予当前库所有表的权限
+```
+GRANT ALL PRIVILEGES ON all tables in schema public TO dbuser;
+```
 **注意：**
 
 - 授予权限的命令必须在要操作的数据库中执行。
@@ -133,3 +137,37 @@ drop role memos; # 删除角色
 ```
 
 
+### 删除数据库
+
+
+1. **查找正在使用数据库的会话**：首先，找出哪些会话正在使用您想要删除的数据库。    
+    `SELECT pid, usename, datname, query, state FROM pg_stat_activity WHERE datname = 'memos';`
+    
+    这将列出所有正在使用 `memos` 数据库的会话及其详细信息。
+    
+2. **终止会话**：知道了这些会话的 `pid`（即进程 ID），可以使用 `pg_terminate_backend` 函数来终止它们：
+    
+    `SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'memos';`
+    
+    这将终止所有正在使用 `memos` 数据库的会话。
+    
+3. **删除数据库**：在所有相关会话被终止后，能够成功删除数据库：
+    
+    `DROP DATABASE memos;`
+
+## 如何切换用户
+
+> 在PostgreSQL数据库中，切换用户通常指的是以不同的用户身份登录数据库。这可以通过以下几种方式实现：
+
+
+1. **使用命令行或终端**：  
+    如果你已经以某个用户身份登录了PostgreSQL，并且想要切换到另一个用户，你可以退出当前会话，然后使用新用户的凭据重新登录。例如：
+    
+    `psql -U 新用户名 -d 数据库名`
+    其中，`新用户名`是你想要切换到的用户名称，`数据库名`是你想要连接的数据库。
+2. **在psql会话中**：  
+    如果你已经通过`psql`命令行工具登录到PostgreSQL，你可以使用`\c`命令来切换数据库和用户。例如：
+    
+    `\c 数据库名 新用户名`
+    
+    这将切换到指定的数据库，并尝试以`新用户名`登录。如果该用户没有访问该数据库的权限，切换将失败。

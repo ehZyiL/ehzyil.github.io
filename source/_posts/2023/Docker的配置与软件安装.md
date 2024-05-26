@@ -1205,18 +1205,30 @@ docker run -d --name memos -p 5230:5230 -v /home/ehzyil/data/docker_data/memos/:
 ```
 
 
+```
+version: '3.8'  
+services:
+  memos:
+    image: neosmemo/memos:stable
+    container_name: memos
+    ports:
+      - "5230:5230"
+    volumes:
+      - "/data/docker/memos:/var/opt/memos"  # 使用环境变量来获取当前目录
+    environment:
+      MEMOS_DRIVER: postgres
+      MEMOS_DSN: 'postgresql://memos:dbformemos@172.20.0.10:5432/memos?sslmode=disable'
 
-**配置反向代理**
-
+```
 ## 安装freshrss
 
 ```
 docker run -d --restart unless-stopped --log-opt max-size=10m \
   -p 39954:80 \
-  -e CRON_MIN='*/45' \
+  -e CRON_MIN='*/60' \
   -e TZ=Asia/Shanghai \
-  -v /data/freshrss/data:/var/www/FreshRSS/data \
-  -v /data/freshrss/extensions:/var/www/FreshRSS/extensions \
+  -v $(pwd)/freshrss/data:/var/www/FreshRSS/data \
+  -v $(pwd)/freshrss/extensions:/var/www/FreshRSS/extensions \
   --name freshrss-app \
   freshrss/freshrss
 ```

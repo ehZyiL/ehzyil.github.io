@@ -14,9 +14,9 @@ headimg:
 ###  创建挂载目录
 
 ```
-mkdir -p /home/ehzyil/data/docker_data/nginx/conf
-mkdir -p /home/ehzyil/data/docker_data/nginx/log
-mkdir -p /home/ehzyil/data/docker_data/nginx/html
+mkdir -p /data/docker/nginx/conf
+mkdir -p /data/docker/nginx/nginx
+mkdir -p /data/docker/nginx/html
 ```
 
 ### 拉取docker镜像
@@ -28,7 +28,7 @@ docker pull nginx:latest
 ### 创建Nginx容器并运行
 
 ```
-docker run -d --name nginx -p 80:80 -v /home/ehzyil/data/docker_data:/data nginx
+docker run -d --name nginx -p 81:80 -v /data/docker/nginx:/data nginx
 ```
 
 ### 容器中的nginx.conf文件、conf.d文件和html文件夹复制到宿主机
@@ -54,7 +54,14 @@ docker rm nginx
 ### 创建Nginx容器，指定挂载点和端口号并运行
 
 ```
-docker run -p 81:80 --name nginx -v   /home/ehzyil/data/docker_data/nginx/nginx.conf:/etc/nginx/nginx.conf -v  /home/ehzyil/data/docker_data/nginx/conf.d:/etc/nginx/conf.d -v /home/nginx/log:/var/log/nginx -v  /home/ehzyil/data/docker_data/nginx/html:/usr/share/nginx/html -d nginx:latest
+docker run \
+  -p 81:80 \
+  --name nginx \
+  -v /data/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \
+  -v /data/docker/nginx/conf.d:/etc/nginx/conf.d \
+  -v /home/nginx/nginx:/var/log/nginx \
+  -v /data/docker/nginx/html:/usr/share/nginx/html \
+  -d nginx:latest
 ```
 
 
