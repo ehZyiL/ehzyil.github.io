@@ -1,0 +1,4436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/#6.0.0-alpha.1'>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="Volantis" content="6.0.0-alpha.1">
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+  <link rel="canonical" href="https://blog.ehzyil.xyz/2024/06/17/2024/java 业务开发常见错误 100 例/30 _ 如何正确保存和传输敏感数据？/"/>
+  <!-- 渲染优化 -->
+    <meta http-equiv='x-dns-prefetch-control' content='on' />
+      <link rel='dns-prefetch' href='https://unpkg.com'>
+      <link rel="preconnect" href="https://unpkg.com" crossorigin>
+      <link rel='dns-prefetch' href='https://cdn.bootcdn.net'>
+      <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content=" default-src 'self' https:; block-all-mixed-content; base-uri 'self' https:; form-action 'self' https:; worker-src 'self' https:; connect-src 'self' https: *; img-src 'self' data: https: *; media-src 'self' https: *; font-src 'self' data: https: *; frame-src 'self' https: *; manifest-src 'self' https: *; child-src https:; script-src 'self' https: 'unsafe-inline' *; style-src 'self' https: 'unsafe-inline' *; ">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <!-- import head_begin begin -->
+      <link rel="apple-touch-icon" sizes="180x180" href="https://unpkg.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="https://unpkg.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="https://unpkg.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/favicon-16x16.png">
+      <link rel="manifest" href="https://unpkg.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/site.webmanifest">
+  <!-- import head_begin end -->
+  <!-- Custom Files headBegin begin-->
+  
+  <!-- Custom Files headBegin end-->
+  <link rel="preload" href="/css/style.css" as="style">
+  <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <!-- feed -->
+  <!-- 页面元数据 -->
+  <title>ehzyil's blog</title>
+  <meta name="keywords" content="null">
+  <meta desc name="description" content="test description - John Doe - ehzyil's blog">
+  
+<meta property="og:type" content="article">
+<meta property="og:title" content="ehzyil&#39;s blog">
+<meta property="og:url" content="https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/index.html">
+<meta property="og:site_name" content="ehzyil&#39;s blog">
+<meta property="og:description" content="30 | 如何正确保存和传输敏感数据？作者: 朱晔 完成时间: 总结时间:   你好，我是朱晔。 今天，我们从安全角度来聊聊用户名、密码、身份证等敏感信息，应该怎么保存和传输。同时，你还可以进一步复习加密算法中的散列、对称加密和非对称加密算法，以及HTTPS等相关知识。 应该怎样保存用户密码？最敏感的数据恐怕就是用户的密码了。黑客一旦窃取了用户密码，或许就可以登录进用户的账号，消耗其资产、发布不良">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2024-06-17T00:50:30.694Z">
+<meta property="article:modified_time" content="2024-06-17T00:50:30.694Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+  <style>
+    /* 首屏样式 */
+    #safearea {
+  display: none;
+}
+:root {
+  --color-site-body: #f4f4f4;
+  --color-site-bg: #f4f4f4;
+  --color-site-inner: rgba(0,0,0,0) 0;
+  --color-site-footer: #666;
+  --color-card: #fff;
+  --color-text: #444;
+  --color-block: #f6f6f6;
+  --color-inlinecode: #c74f00;
+  --color-codeblock: #fff7ea;
+  --color-h1: #3a3a3a;
+  --color-h2: #3a3a3a;
+  --color-h3: #333;
+  --color-h4: #444;
+  --color-h5: #555;
+  --color-h6: #666;
+  --color-p: #444;
+  --color-list: #666;
+  --color-list-hl: #30ad91;
+  --color-meta: #888;
+  --color-read-bkg: #e0d8c8;
+  --color-read-post: #f8f1e2;
+  --color-copyright-bkg: #f5f5f5;
+}
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+*::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+*::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3dd9b6;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+html {
+  color: var(--color-text);
+  width: 100%;
+  height: 100%;
+  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-size: 16px;
+}
+html >::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+html >::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+html >::-webkit-scrollbar-thumb {
+  background: #3dd9b6;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+html >::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+body {
+  background-color: var(--color-site-body);
+  text-rendering: optimizelegibility;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body.modal-active {
+  overflow: hidden;
+}
+@media screen and (max-width: 680px) {
+  body.modal-active {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+a {
+  color: #2092ec;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+a:hover {
+  color: #ff5722;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+ul,
+ol {
+  padding-left: 0;
+}
+ul li,
+ol li {
+  list-style: none;
+}
+header {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+img {
+  border: 0;
+  background: none;
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  height: 0;
+  border: 0;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-bottom: 1px solid rgba(68,68,68,0.1);
+}
+button,
+input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+@supports (backdrop-filter: blur(20px)) {
+  .blur {
+    background: rgba(255,255,255,0.9) !important;
+    backdrop-filter: saturate(200%) blur(20px);
+  }
+}
+@supports (backdrop-filter: blur(20px)) {
+  .blur#comments {
+    backdrop-filter: unset;
+  }
+}
+#layoutHelper-comments {
+  margin-bottom: 100px;
+}
+.shadow {
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+}
+.shadow.floatable {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.shadow.floatable:hover {
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
+}
+#l_cover {
+  min-height: 64px;
+}
+.cover-wrapper {
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: 100vh;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  color: var(--color-site-inner);
+  padding: 0 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -100px;
+}
+.cover-wrapper .cover-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+}
+.cover-wrapper .cover-bg.lazyload:not(.loaded) {
+  opacity: 0;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+}
+.cover-wrapper .cover-bg.lazyload.loaded {
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-name: fadeIn;
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -khtml-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -khtml-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -khtml-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -khtml-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+.cover-wrapper .cover-body {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cover-wrapper#full {
+  height: calc(100vh + 100px);
+  padding-bottom: 100px;
+}
+.cover-wrapper#half {
+  max-height: 640px;
+  min-height: 400px;
+  height: calc(36vh - 64px + 200px);
+}
+.cover-wrapper #scroll-down {
+  width: 100%;
+  height: 64px;
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+.cover-wrapper #scroll-down .scroll-down-effects {
+  color: #fff;
+  font-size: 24px;
+  line-height: 64px;
+  position: absolute;
+  width: 24px;
+  left: calc(50% - 12px);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  animation: scroll-down-effect 1.5s infinite;
+  -webkit-animation: scroll-down-effect 1.5s infinite;
+  -khtml-animation: scroll-down-effect 1.5s infinite;
+  -moz-animation: scroll-down-effect 1.5s infinite;
+  -o-animation: scroll-down-effect 1.5s infinite;
+  -ms-animation: scroll-down-effect 1.5s infinite;
+}
+@-moz-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-webkit-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-o-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+.cover-wrapper .cover-body {
+  margin-top: 64px;
+  margin-bottom: 100px;
+}
+.cover-wrapper .cover-body,
+.cover-wrapper .cover-body .top,
+.cover-wrapper .cover-body .bottom {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  max-width: 100%;
+}
+.cover-wrapper .cover-body .bottom {
+  margin-top: 32px;
+}
+.cover-wrapper .cover-body .title {
+  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-size: 3.125rem;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.cover-wrapper .cover-body .subtitle {
+  font-size: 20px;
+}
+.cover-wrapper .cover-body .logo {
+  max-height: 120px;
+  max-width: calc(100% - 4 * 16px);
+}
+@media screen and (min-height: 1024px) {
+  .cover-wrapper .cover-body .title {
+    font-size: 3rem;
+  }
+  .cover-wrapper .cover-body .subtitle {
+    font-size: 1.05rem;
+  }
+  .cover-wrapper .cover-body .logo {
+    max-height: 150px;
+  }
+}
+.cover-wrapper .cover-body .m_search {
+  position: relative;
+  max-width: calc(100% - 16px);
+  width: 320px;
+  vertical-align: middle;
+}
+.cover-wrapper .cover-body .m_search .form {
+  position: relative;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  width: 100%;
+}
+.cover-wrapper .cover-body .m_search .icon,
+.cover-wrapper .cover-body .m_search .input {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.cover-wrapper .cover-body .m_search .icon {
+  position: absolute;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  line-height: 2.5rem;
+  width: 32px;
+  top: 0;
+  left: 5px;
+  color: rgba(68,68,68,0.75);
+}
+.cover-wrapper .cover-body .m_search .input {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  height: 2.5rem;
+  width: 100%;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 0.875rem;
+  -webkit-appearance: none;
+  padding-left: 36px;
+  border-radius: 1.4rem;
+  -webkit-border-radius: 1.4rem;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  color: var(--color-text);
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper .cover-body .m_search .input {
+    padding-left: 36px;
+  }
+}
+.cover-wrapper .cover-body .m_search .input:hover {
+  background: rgba(255,255,255,0.8);
+}
+.cover-wrapper .cover-body .m_search .input:focus {
+  background: #fff;
+}
+.cover-wrapper .list-h {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -khtml-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  align-items: stretch;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.cover-wrapper .list-h a {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 0;
+  -ms-flex: 1 0;
+  flex: 1 0;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  font-weight: 600;
+}
+.cover-wrapper .list-h a img {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  margin: 4px;
+  min-width: 40px;
+  max-width: 44px;
+}
+@media screen and (max-width: 768px) {
+  .cover-wrapper .list-h a img {
+    min-width: 36px;
+    max-width: 40px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper .list-h a img {
+    margin: 2px 4px;
+    min-width: 32px;
+    max-width: 36px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .cover-wrapper .list-h a img {
+    min-width: 28px;
+    max-width: 32px;
+  }
+}
+.cover-wrapper {
+  max-width: 100%;
+}
+.cover-wrapper.search .bottom .menu {
+  margin-top: 16px;
+}
+.cover-wrapper.search .bottom .menu .list-h a {
+  white-space: nowrap;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  align-items: baseline;
+  padding: 2px;
+  margin: 4px;
+  color: var(--color-site-inner);
+  opacity: 0.75;
+  -webkit-opacity: 0.75;
+  -moz-opacity: 0.75;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border-bottom: 2px solid transparent;
+}
+.cover-wrapper.search .bottom .menu .list-h a i {
+  margin-right: 4px;
+}
+.cover-wrapper.search .bottom .menu .list-h a p {
+  font-size: 0.9375rem;
+}
+.cover-wrapper.search .bottom .menu .list-h a:hover,
+.cover-wrapper.search .bottom .menu .list-h a.active,
+.cover-wrapper.search .bottom .menu .list-h a:active {
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  border-bottom: 2px solid var(--color-site-inner);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mode: 'dark';
+  }
+  :root:not([color-scheme]) {
+    --color-site-body: #121212;
+    --color-read-bkg: #1f1f1f;
+    --color-read-post: #262626;
+    --color-site-bg: #1f1f1f;
+    --color-site-inner: rgba(238,238,238,0.871);
+    --color-site-footer: rgba(170,170,170,0.871);
+    --color-card: #262626;
+    --color-text: rgba(238,238,238,0.871);
+    --color-block: #434343;
+    --color-codeblock: #1f1f1f;
+    --color-inlinecode: #d56d28;
+    --color-h1: rgba(255,255,255,0.871);
+    --color-h2: rgba(255,255,255,0.871);
+    --color-h3: rgba(255,255,255,0.6);
+    --color-h4: rgba(255,255,255,0.6);
+    --color-h5: rgba(255,255,255,0.6);
+    --color-h6: rgba(255,255,255,0.6);
+    --color-p: rgba(217,217,217,0.871);
+    --color-list: rgba(217,217,217,0.871);
+    --color-list-hl: #63e0c4;
+    --color-meta: rgba(191,191,191,0.871);
+    --color-link: rgba(191,191,191,0.871);
+    --color-copyright-bkg: #21252b;
+  }
+  :root:not([color-scheme]) img {
+    filter: brightness(70%) !important;
+  }
+  :root:not([color-scheme]) .blur {
+    background: rgba(31,31,31,0.9) !important;
+  }
+  :root:not([color-scheme]) .white-box.blur {
+    background: rgba(38,38,38,0.9) !important;
+  }
+  :root:not([color-scheme]) .nav-main .u-search-input {
+    background: var(--color-card) !important;
+  }
+  :root:not([color-scheme]) #l_main .article .prev-next>a {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) #l_main .article .prev-next>a:hover {
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) .article blockquote {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .article-title a {
+    color: var(--color-h1) !important;
+  }
+  :root:not([color-scheme]) details>summary {
+    color: var(--color-p) !important;
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) details {
+    border: 1px solid var(--color-site-bg) !important;
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) #u-search .modal,
+  :root:not([color-scheme]) #u-search .modal-header,
+  :root:not([color-scheme]) #u-search .modal-body {
+    background: var(--color-card) !important;
+  }
+  :root:not([color-scheme]) #u-search .modal-body .modal-results .result:hover {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .u-search-input:hover {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .u-search-input:focus {
+    background: var(--color-site-body) !important;
+  }
+}
+[color-scheme='dark'] {
+  --color-site-body: #121212;
+  --color-read-bkg: #1f1f1f;
+  --color-read-post: #262626;
+  --color-site-bg: #1f1f1f;
+  --color-site-inner: rgba(238,238,238,0.871);
+  --color-site-footer: rgba(170,170,170,0.871);
+  --color-card: #262626;
+  --color-text: rgba(238,238,238,0.871);
+  --color-block: #434343;
+  --color-codeblock: #1f1f1f;
+  --color-inlinecode: #d56d28;
+  --color-h1: rgba(255,255,255,0.871);
+  --color-h2: rgba(255,255,255,0.871);
+  --color-h3: rgba(255,255,255,0.6);
+  --color-h4: rgba(255,255,255,0.6);
+  --color-h5: rgba(255,255,255,0.6);
+  --color-h6: rgba(255,255,255,0.6);
+  --color-p: rgba(217,217,217,0.871);
+  --color-list: rgba(217,217,217,0.871);
+  --color-list-hl: #63e0c4;
+  --color-meta: rgba(191,191,191,0.871);
+  --color-link: rgba(191,191,191,0.871);
+  --color-copyright-bkg: #21252b;
+}
+[color-scheme='dark'] img {
+  filter: brightness(70%) !important;
+}
+[color-scheme='dark'] .blur {
+  background: rgba(31,31,31,0.9) !important;
+}
+[color-scheme='dark'] .white-box.blur {
+  background: rgba(38,38,38,0.9) !important;
+}
+[color-scheme='dark'] .nav-main .u-search-input {
+  background: var(--color-card) !important;
+}
+[color-scheme='dark'] #l_main .article .prev-next>a {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] #l_main .article .prev-next>a:hover {
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] .article blockquote {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .article-title a {
+  color: var(--color-h1) !important;
+}
+[color-scheme='dark'] details>summary {
+  color: var(--color-p) !important;
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] details {
+  border: 1px solid var(--color-site-bg) !important;
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] #u-search .modal,
+[color-scheme='dark'] #u-search .modal-header,
+[color-scheme='dark'] #u-search .modal-body {
+  background: var(--color-card) !important;
+}
+[color-scheme='dark'] #u-search .modal-body .modal-results .result:hover {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .u-search-input:hover {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .u-search-input:focus {
+  background: var(--color-site-body) !important;
+}
+@media screen and (max-width: 500px) {
+  [color-scheme='dark'] .l_header .m_search {
+    background: var(--color-site-bg) !important;
+  }
+}
+@font-face {
+  font-family: 'UbuntuMono';
+  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Varela Round';
+  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+  font-display: swap;
+}
+.l_header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: var(--color-card);
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+}
+.l_header.auto {
+  transition: opacity 0.4s ease;
+  -webkit-transition: opacity 0.4s ease;
+  -khtml-transition: opacity 0.4s ease;
+  -moz-transition: opacity 0.4s ease;
+  -o-transition: opacity 0.4s ease;
+  -ms-transition: opacity 0.4s ease;
+  visibility: hidden;
+}
+.l_header.auto.show {
+  opacity: 1 !important;
+  -webkit-opacity: 1 !important;
+  -moz-opacity: 1 !important;
+  visibility: visible;
+}
+.l_header .container {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.l_header #wrapper {
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.l_header #wrapper .nav-main,
+.l_header #wrapper .nav-sub {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -khtml-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-justify-content: space-between;
+  align-items: center;
+}
+.l_header #wrapper .nav-main {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.l_header #wrapper.sub .nav-main {
+  transform: translateY(-64px);
+  -webkit-transform: translateY(-64px);
+  -khtml-transform: translateY(-64px);
+  -moz-transform: translateY(-64px);
+  -o-transform: translateY(-64px);
+  -ms-transform: translateY(-64px);
+}
+.l_header #wrapper .nav-sub {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  opacity: 0;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  height: 64px;
+  width: calc(100% - 2 * 16px);
+  position: absolute;
+}
+.l_header #wrapper .nav-sub ::-webkit-scrollbar {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+}
+@media screen and (min-width: 2048px) {
+  .l_header #wrapper .nav-sub {
+    max-width: 55vw;
+    margin: auto;
+  }
+}
+.l_header #wrapper.sub .nav-sub {
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+}
+.l_header #wrapper .title {
+  position: relative;
+  color: var(--color-text);
+  padding-left: 24px;
+  max-height: 64px;
+}
+.l_header #wrapper .nav-main .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  line-height: 64px;
+  padding: 0 24px;
+  font-size: 1.25rem;
+  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+}
+.l_header #wrapper .nav-main .title img {
+  height: 64px;
+}
+.l_header .nav-sub {
+  max-width: 1080px;
+  margin: auto;
+}
+.l_header .nav-sub .title {
+  font-weight: bold;
+  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  line-height: 1.2;
+  max-height: 64px;
+  white-space: normal;
+  flex-shrink: 1;
+}
+.l_header .switcher {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  line-height: 64px;
+  align-items: center;
+}
+.l_header .switcher .s-toc {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .l_header .switcher .s-toc {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: -ms-flexbox /* TWEENER - IE 10 */;
+    display: -webkit-flex /* NEW - Chrome */;
+    display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+    display: flex;
+  }
+}
+.l_header .switcher >li {
+  height: 48px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  margin: 2px;
+}
+@media screen and (max-width: 500px) {
+  .l_header .switcher >li {
+    margin: 0 1px;
+    height: 48px;
+  }
+}
+.l_header .switcher >li >a {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0.85em 1.1em;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  color: #3dd9b6;
+}
+.l_header .switcher >li >a:hover {
+  border: none;
+}
+.l_header .switcher >li >a.active,
+.l_header .switcher >li >a:active {
+  border: none;
+  background: var(--color-site-bg);
+}
+@media screen and (max-width: 500px) {
+  .l_header .switcher >li >a {
+    width: 36px;
+    height: 48px;
+  }
+}
+.l_header .nav-sub .switcher {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+}
+.l_header .m_search {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  height: 64px;
+  width: 240px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+@media screen and (max-width: 1024px) {
+  .l_header .m_search {
+    width: 44px;
+    min-width: 44px;
+  }
+  .l_header .m_search input::placeholder {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+  }
+  .l_header .m_search:hover {
+    width: 240px;
+  }
+  .l_header .m_search:hover input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@media screen and (min-width: 500px) {
+  .l_header .m_search:hover .input {
+    width: 100%;
+  }
+  .l_header .m_search:hover .input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search {
+    min-width: 0;
+  }
+  .l_header .m_search input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+.l_header .m_search .form {
+  position: relative;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.l_header .m_search .icon {
+  position: absolute;
+  width: 36px;
+  left: 5px;
+  color: var(--color-meta);
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search .icon {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: none;
+  }
+}
+.l_header .m_search .input {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 1.3;
+  width: 100%;
+  color: var(--color-text);
+  background: #fafafa;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-left: 40px;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+@media screen and (min-width: 500px) {
+  .l_header .m_search .input:focus {
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search .input {
+    background: var(--color-block);
+    padding-left: 8px;
+    border: none;
+  }
+  .l_header .m_search .input:hover,
+  .l_header .m_search .input:focus {
+    border: none;
+  }
+}
+@media (max-width: 500px) {
+  .l_header .m_search {
+    left: 0;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+    background: #fff;
+    transition: all 0.28s ease;
+    -webkit-transition: all 0.28s ease;
+    -khtml-transition: all 0.28s ease;
+    -moz-transition: all 0.28s ease;
+    -o-transition: all 0.28s ease;
+    -ms-transition: all 0.28s ease;
+  }
+  .l_header .m_search .input {
+    border-radius: 32px;
+    -webkit-border-radius: 32px;
+    margin-left: 16px;
+    padding-left: 16px;
+  }
+  .l_header.z_search-open .m_search {
+    width: 100%;
+  }
+  .l_header.z_search-open .m_search .input {
+    width: calc(100% - 120px);
+  }
+}
+ul.m-pc >li>a {
+  color: inherit;
+  border-bottom: 2px solid transparent;
+}
+ul.m-pc >li>a:active,
+ul.m-pc >li>a.active {
+  border-bottom: 2px solid #3dd9b6;
+}
+ul.m-pc li:hover >ul.list-v,
+ul.list-v li:hover >ul.list-v {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+ul.nav-list-h {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  align-items: stretch;
+}
+ul.nav-list-h>li {
+  position: relative;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  height: 100%;
+  line-height: 2.4;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+ul.nav-list-h>li >a {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+}
+ul.list-v {
+  z-index: 1;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  position: absolute;
+  background: var(--color-card);
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,0.08), 0 4px 8px 0px rgba(0,0,0,0.08), 0 8px 16px 0px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0 2px 4px 0px rgba(0,0,0,0.08), 0 4px 8px 0px rgba(0,0,0,0.08), 0 8px 16px 0px rgba(0,0,0,0.08);
+  margin-top: -6px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding: 8px 0;
+}
+ul.list-v.show {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+ul.list-v hr {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+ul.list-v >li {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+ul.list-v >li.header {
+  font-size: 0.78125rem;
+  font-weight: bold;
+  line-height: 2em;
+  color: var(--color-meta);
+  margin: 8px 16px 4px;
+}
+ul.list-v >li.header i {
+  margin-right: 8px;
+}
+ul.list-v >li ul {
+  margin-left: 0;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  margin-top: -40px;
+}
+ul.list-v .aplayer-container {
+  min-height: 64px;
+  padding: 6px 16px;
+}
+ul.list-v >li>a {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  color: var(--color-list);
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 36px;
+  padding: 0 20px 0 16px;
+  text-overflow: ellipsis;
+  margin: 0 4px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+@media screen and (max-width: 1024px) {
+  ul.list-v >li>a {
+    line-height: 40px;
+  }
+}
+ul.list-v >li>a >i {
+  margin-right: 8px;
+}
+ul.list-v >li>a:active,
+ul.list-v >li>a.active {
+  color: var(--color-list-hl);
+}
+ul.list-v >li>a:hover {
+  color: var(--color-list-hl);
+  background: var(--color-site-bg);
+}
+.l_header .menu >ul>li>a {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  padding: 0 8px;
+}
+.l_header .menu >ul>li>a >i {
+  margin-right: 4px;
+}
+.l_header ul.nav-list-h>li {
+  color: var(--color-list);
+  line-height: 64px;
+}
+.l_header ul.nav-list-h>li >a {
+  max-height: 64px;
+  overflow: hidden;
+  color: inherit;
+}
+.l_header ul.nav-list-h>li >a:active,
+.l_header ul.nav-list-h>li >a.active {
+  color: #3dd9b6;
+}
+.l_header ul.nav-list-h>li:hover>a {
+  color: var(--color-list-hl);
+}
+.l_header ul.nav-list-h>li i.music {
+  animation: rotate-effect 1.5s linear infinite;
+  -webkit-animation: rotate-effect 1.5s linear infinite;
+  -khtml-animation: rotate-effect 1.5s linear infinite;
+  -moz-animation: rotate-effect 1.5s linear infinite;
+  -o-animation: rotate-effect 1.5s linear infinite;
+  -ms-animation: rotate-effect 1.5s linear infinite;
+}
+@-moz-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+.menu-phone li ul.list-v {
+  right: calc(100% - 0.5 * 16px);
+}
+.menu-phone li ul.list-v ul {
+  right: calc(100% - 0.5 * 16px);
+}
+#wrapper {
+  max-width: 1080px;
+  margin: auto;
+}
+@media screen and (min-width: 2048px) {
+  #wrapper {
+    max-width: 55vw;
+  }
+}
+#wrapper .menu {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  margin: 0 16px 0 0;
+}
+#wrapper .menu .list-v ul {
+  left: calc(100% - 0.5 * 16px);
+}
+.menu-phone {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  margin-top: 16px;
+  right: 8px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.menu-phone ul {
+  right: calc(100% - 0.5 * 16px);
+}
+@media screen and (max-width: 500px) {
+  .menu-phone {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: block;
+  }
+}
+.l_header {
+  max-width: 65vw;
+  left: calc((100% - 65vw) * 0.5);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+@media screen and (max-width: 2048px) {
+  .l_header {
+    max-width: 1112px;
+    left: calc((100% - 1112px) * 0.5);
+  }
+}
+@media screen and (max-width: 1112px) {
+  .l_header {
+    left: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .l_header #wrapper .nav-main .title {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .l_header #wrapper .nav-sub {
+    width: 100%;
+  }
+  .l_header #wrapper .nav-sub .title {
+    overflow-y: scroll;
+    margin-top: 2px;
+    padding: 8px 16px;
+  }
+  .l_header #wrapper .switcher {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: -ms-flexbox /* TWEENER - IE 10 */;
+    display: -webkit-flex /* NEW - Chrome */;
+    display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+    display: flex;
+    margin-right: 8px;
+  }
+  .l_header .menu {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .list-v li {
+    max-width: 270px;
+  }
+}
+#u-search {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 20px;
+  z-index: 1001;
+}
+@media screen and (max-width: 680px) {
+  #u-search {
+    padding: 0px;
+  }
+}
+@media screen and (prefers-color-scheme: dark) and (max-width: 500px) {
+  .l_header .m_search {
+    background: var(--color-site-bg) !important;
+  }
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+    <script>
+      let userColorScheme=localStorage.getItem("color-scheme")
+      if(userColorScheme){
+        document.documentElement.setAttribute("color-scheme", userColorScheme);
+      }
+    </script>
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+    '.kill-t{'+
+      'font-size: 2rem;'+
+    '}'+
+    '.kill-c{'+
+      'font-size: 1.2rem;'+
+    '}'+
+		'#l_header,#l_body{'+
+			'display: none;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        `<span class="kill-t"><b>抱歉，您的浏览器无法访问本站</b></span><br/>`+
+        `<span class="kill-c">微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</span><br/>`+
+        `<a target="_blank" rel="noopener" href="https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/"><strong>了解详情 ></strong></a>`+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+    .kill-t{
+      font-size: 2rem;
+    }
+    .kill-c{
+      font-size: 1.2rem;
+    }
+		#l_header,#l_body{
+			display: none;
+		}
+	</style>
+    <div class="kill-noscript">
+        <span class="kill-t"><b>抱歉，您的浏览器无法访问本站</b></span><br/>
+        <span class="kill-c">本页面需要浏览器支持（启用）JavaScript</span><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+
+  <script>
+  /************这个文件存放不需要重载的全局变量和全局函数*********/
+  window.volantis = {}; // volantis 全局变量
+  volantis.debug = "env"; // 调试模式
+  volantis.dom = {}; // 页面Dom see: /source/js/app.js etc.
+  /******************** volantis.dom.$ ********************************/
+  // 注：这里没有选择器，也没有forEach一次只处理一个dom，这里重新封装主题常用的dom方法，返回的是dom对象，对象包含了以下方法，同时保留dom的原生API
+  function volantisDom(ele) {
+    if (!ele) ele = document.createElement("div")
+    this.ele = ele;
+    // ==============================================================
+    this.ele.find = (c) => {
+      let q = this.ele.querySelector(c)
+      if (q)
+        return new volantisDom(q)
+    }
+    // ==============================================================
+    this.ele.hasClass = (c) => {
+      return this.ele.className.match(new RegExp('(\\s|^)' + c + '(\\s|$)'));
+    }
+    this.ele.addClass = (c) => {
+      this.ele.classList.add(c);
+      return this.ele
+    }
+    this.ele.removeClass = (c) => {
+      this.ele.classList.remove(c);
+      return this.ele
+    }
+    this.ele.toggleClass = (c) => {
+      if (this.ele.hasClass(c)) {
+        this.ele.removeClass(c)
+      } else {
+        this.ele.addClass(c)
+      }
+      return this.ele
+    }
+    // ==============================================================
+    this.ele.on = (c, f) => {
+      this.ele.addEventListener(c, f, false)
+      return this.ele
+    }
+    this.ele.click = (f, r) => {
+      this.ele.on("click", f, r)
+      return this.ele
+    }
+    this.ele.scroll = (f, r) => {
+      this.ele.on("scroll", f, r)
+      return this.ele
+    }
+    // ==============================================================
+    this.ele.html = (c) => {
+      // if(c=== undefined){
+      //   return this.ele.innerHTML
+      // }else{
+      this.ele.innerHTML = c
+      return this.ele
+      // }
+    }
+    // ==============================================================
+    this.ele.hide = (c) => {
+      this.ele.style.display = "none"
+      return this.ele
+    }
+    this.ele.show = (c) => {
+      this.ele.style.display = "block"
+      return this.ele
+    }
+    // ==============================================================
+    return this.ele
+  }
+  volantis.dom.$ = (ele) => {
+    return !!ele ? new volantisDom(ele) : null;
+  }
+  /******************** RunItem ********************************/
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          volantis.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+  /******************** RightMenu ********************************/
+  // volantis.rightmenu.handle(callBack[,"callBackName"]) 外部菜单项控制
+  // 可在 volantis.mouseEvent 处获取右键事件
+  volantis.rightmenu = {};
+  volantis.rightmenu.method = {
+    handle: new RunItem(),
+  }
+  volantis.rightmenu = Object.assign(volantis.rightmenu, {
+    handle: volantis.rightmenu.method.handle.push,
+  });
+  /********************  Dark Mode  ********************************/
+  // /layout/_partial/scripts/darkmode.ejs
+  // volantis.dark.mode 当前模式 dark or light
+  // volantis.dark.toggle() 暗黑模式触发器
+  // volantis.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  volantis.dark = {};
+  volantis.dark.method = {
+    toggle: new RunItem(),
+  };
+  volantis.dark = Object.assign(volantis.dark, {
+    push: volantis.dark.method.toggle.push,
+  });
+  /********************  Message  ********************************/
+  // VolantisApp.message
+  /********************  isMobile  ********************************/
+  // /source/js/app.js
+  // volantis.isMobile
+  // volantis.isMobileOld
+  /********************脚本动态加载函数********************************/
+  // volantis.js(src, cb)  cb 可以传入onload回调函数 或者 JSON对象 例如: volantis.js("src", ()=>{}) 或 volantis.js("src", {defer:true,onload:()=>{}})
+  // volantis.css(src)
+
+  // 返回Promise对象，如下方法同步加载资源，这利于处理文件资源之间的依赖关系，例如：APlayer 需要在 MetingJS 之前加载
+  // (async () => {
+  //     await volantis.js("...theme.plugins.aplayer.js.aplayer...")
+  //     await volantis.js("...theme.plugins.aplayer.js.meting...")
+  // })();
+
+  // 已经加入了setTimeout
+  volantis.js = (src, cb) => {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+  volantis.css = (src) => {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  }
+  /********************按需加载的插件********************************/
+  // volantis.import.jQuery().then(()=>{})
+  volantis.import = {
+    jQuery: () => {
+      if (typeof jQuery == "undefined") {
+        return volantis.js("https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js")
+      } else {
+        return new Promise(resolve => {
+          resolve()
+        });
+      }
+    }
+  }
+  /********************** requestAnimationFrame ********************************/
+  // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+  // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+  volantis.requestAnimationFrame = (fn) => {
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+    }
+    window.requestAnimationFrame(fn)
+  }
+  /************************ layoutHelper *****************************************/
+  volantis.layoutHelper = (helper, html, opt) => {
+    opt = Object.assign({ clean: false}, opt)
+    function myhelper(helper, html, clean) {
+      volantis.tempDiv = document.createElement("div");
+      volantis.tempDiv.innerHTML = html;
+      let layoutHelper = document.querySelector("#layoutHelper-" + helper)
+      if (layoutHelper) {
+        if (clean) {
+          layoutHelper.innerHTML = ""
+        }
+        layoutHelper.append(volantis.tempDiv);
+      }
+    }
+    myhelper(helper, html, opt.clean)
+  }
+  /****************************** 滚动事件处理 ****************************************/
+  volantis.scroll = {
+    engine: new RunItem(),
+    unengine: new RunItem(),
+  };
+  volantis.scroll = Object.assign(volantis.scroll, {
+    push: volantis.scroll.engine.push,
+  });
+  // 滚动条距离顶部的距离
+  volantis.scroll.getScrollTop = () => {
+    let scrollPos;
+    if (window.pageYOffset) {
+      scrollPos = window.pageYOffset;
+    } else if (document.compatMode && document.compatMode != 'BackCompat') {
+      scrollPos = document.documentElement.scrollTop;
+    } else if (document.body) {
+      scrollPos = document.body.scrollTop;
+    }
+    return scrollPos;
+  }
+  volantis.scroll.scrollHeight = function () {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+    )
+  }
+  volantis.scroll.offsetHeight = function () {
+    return Math.max(
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    )
+  }
+  volantis.scroll.progress = function () {
+    return volantis.scroll.getScrollTop() / (volantis.scroll.scrollHeight() - volantis.scroll.offsetHeight())
+  }
+  // 使用 requestAnimationFrame 处理滚动事件
+  // `volantis.scroll.del` 中存储了一个数值, 该数值检测一定时间间隔内滚动条滚动的位移, 数值的检测频率是浏览器的刷新频率. 数值为正数时, 表示向下滚动. 数值为负数时, 表示向上滚动.
+  volantis.scroll.handleScrollEvents = () => {
+    volantis.scroll.lastScrollTop = volantis.scroll.getScrollTop()
+    function loop() {
+      const scrollTop = volantis.scroll.getScrollTop();
+      if (volantis.scroll.lastScrollTop !== scrollTop) {
+        volantis.scroll.del = scrollTop - volantis.scroll.lastScrollTop;
+        volantis.scroll.lastScrollTop = scrollTop;
+        // if (volantis.scroll.del > 0) {
+        //   console.log("向下滚动");
+        // } else {
+        //   console.log("向上滚动");
+        // }
+        // 注销过期的unengine未滚动事件
+        volantis.scroll.unengine.list = []
+        volantis.scroll.engine.start();
+      } else {
+        volantis.scroll.unengine.start();
+      }
+      volantis.requestAnimationFrame(loop)
+    }
+    volantis.requestAnimationFrame(loop)
+  }
+  volantis.scroll.handleScrollEvents()
+  volantis.scroll.ele = null;
+  // 触发页面滚动至目标元素位置
+  volantis.scroll.to = (ele, option = {}) => {
+    if (!ele) return;
+    volantis.scroll.ele = ele;
+    // 默认配置
+    opt = {
+      top: ele.getBoundingClientRect().top + document.documentElement.scrollTop,
+      behavior: "smooth"
+    }
+    // 定义配置
+    if ("top" in option) {
+      opt.top = option.top
+    }
+    if ("behavior" in option) {
+      opt.behavior = option.behavior
+    }
+    if ("addTop" in option) {
+      opt.top += option.addTop
+    }
+    if (!("observerDic" in option)) {
+      option.observerDic = 100
+    }
+    // 滚动
+    window.scrollTo(opt);
+    // 监视器
+    // 监视并矫正元素滚动到指定位置
+    // 用于处理 lazyload 引起的 cls 导致的定位失败问题
+    // option.observer = false
+    if (option.observer) {
+      setTimeout(() => {
+        if (volantis.scroll.ele != ele) {
+          return
+        }
+        volantis.scroll.unengine.push(() => {
+          let me = ele.getBoundingClientRect().top
+          if (!(me >= -option.observerDic && me <= option.observerDic)) {
+            volantis.scroll.to(ele, option)
+          }
+          volantis.scroll.unengine.remove("unengineObserver")
+        }, "unengineObserver")
+      }, 1000)
+    }
+  }
+  /********************** Content Visibility ********************************/
+  // 见 source/css/first.styl 如果遇到任何问题 删除 .post-story 即可
+  // 一个元素被声明 content-visibility 属性后 如果元素不在 viewport 中 浏览器不会计算其后代元素样式和属性 从而节省 Style & Layout 耗时
+  // content-visibility 的副作用: 锚点失效 等等(实验初期 暂不明确), 使用此方法清除样式
+  volantis.cleanContentVisibility = () => {
+    if (document.querySelector(".post-story")) {
+      console.log("cleanContentVisibility");
+      document.querySelectorAll(".post-story").forEach(e => {
+        e.classList.remove("post-story")
+      })
+    }
+  }
+  /******************************************************************************/
+  /******************************************************************************/
+  /******************************************************************************/
+  //图像加载出错时的处理
+  function errorImgAvatar(img) {
+    img.src = "https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg";
+    img.onerror = null;
+  }
+  function errorImgCover(img) {
+    img.src = "https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg";
+    img.onerror = null;
+  }
+  /******************************************************************************/
+</script>
+
+<script>
+  window.pdata={}
+  pdata.ispage=false;
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  pdata.commentConfig={};
+  volantis.GLOBAL_CONFIG ={
+    root: '/',
+    debug: "env",
+    default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
+    lastupdate: new Date(1718585449922),
+    cdn: {
+      izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
+      izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
+      fancybox_css: 'https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css',
+      fancybox_js: 'https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js'
+    },
+    sidebar: {
+      for_page: ["blogger","memos_carousel","category","tagcloud","webinfo"],
+      for_post: ["toc"],
+      webinfo: {
+        lastupd: {
+          enable: true,
+          friendlyShow: true
+        },
+        runtime: {
+          data: "2023/09/01",
+          unit: "天"
+        }
+      }
+    },
+    plugins: {
+      message: {"enable":false,"icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":false,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":false,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      
+      
+      rightmenus: {"enable":true,"order":["plugins.navigation","hr","plugins.inputBox","plugins.seletctText","plugins.elementCheck","plugins.elementImage","hr","menus.darkMode","plugins.articlePage"],"options":{"iconPrefix":"fa-solid","articleShowLink":true,"musicAlwaysShow":true},"plugins":{"navigation":[{"id":"left","name":"转到上一页","icon":"fa-solid fa-arrow-left","event":"history.back()","group":"navigation"},{"id":"right","name":"转到下一页","icon":"fa-solid fa-arrow-right","event":"history.forward()","group":"navigation"},{"id":"redo","name":"刷新当前页面","icon":"fa-solid fa-redo","event":"window.location.reload()","group":"navigation"},{"id":"up","name":"回到顶部","icon":"fa-solid fa-arrow-up","event":"VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)","group":"navigation"}],"inputBox":[{"id":"copyPaste","name":"粘贴文本","icon":"fa-solid fa-paste","event":"copyPaste","group":"inputBox"},{"id":"copyAll","name":"全选文本","icon":"fa-solid fa-object-ungroup","event":"copyAll","group":"inputBox"}],"seletctText":[{"id":"copyText","name":"复制文本","icon":"fa-solid fa-copy","event":"copyText","group":"seletctText"},{"id":"searchWord","name":"站内搜索","icon":"fa-solid fa-search","event":"OpenSearch(__text__)","group":"seletctText"},{"id":"googleSearch","name":"谷歌搜索","icon":"fa-solid fa-search","event":"window.open(`https://www.google.com/search?q=${__text__}`)","group":"seletctText"}],"elementCheck":[{"id":"openTab","name":"新标签页打开","icon":"fa-solid fa-external-link-square-alt","event":"window.open(__link__)","group":"elementCheck"},{"id":"copyLink","name":"复制链接地址","icon":"fa-solid fa-link","event":"copyLink","group":"elementCheck"}],"elementImage":[{"id":"copyImg","name":"复制图片","icon":"fa-solid fa-image","event":"copyImg","group":"elementImage"},{"id":"googleImg","name":"谷歌识图","icon":"fa-solid fa-images","event":"window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)","group":"elementImage"}],"articlePage":[{"id":"printMode","name":"打印页面","icon":"fa-solid fa-print","event":"printMode","group":"articlePage"},{"id":"readMode","name":"阅读模式","icon":"fa-solid fa-book-open","event":"readMode","group":"articlePage"}]},"menus":{"link":[{"id":"home","name":"回到首页","icon":"fa-solid fa-home","link":"/","group":"link"}],"darkMode":[{"id":"darkMode","name":"暗黑模式","icon":"fa-solid fa-moon","event":"volantis.dark.toggle()","group":"darkMode"}]}}
+      
+    },
+    search: {
+      
+
+      
+        dataPath: (("/" || "/").endsWith("/") ? "/" || "/" : "//" || "/") + "content.json",
+      
+
+      
+    },
+    languages: {
+      
+        search: {
+          hits_empty: "找不到您查询的内容：${query}",
+          hits_stats: "找到 ${hits} 条结果，用时 ${time} 毫秒",
+        }
+      
+    }
+  }
+</script>
+  <!-- import head_end begin -->
+      <meta name="hello" content="world">
+  <!-- import head_end end -->
+  <!-- Custom Files headEnd begin-->
+  
+  <!-- Custom Files headEnd end-->
+</head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <!-- import body_begin begin-->
+        <script></script>
+    <!-- import body_begin end-->
+    <!-- Custom Files bodyBegin begin-->
+    
+    <!-- Custom Files bodyBegin end-->
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone'>
+        <li><a id="s-comment" class="fa-solid fa-comments fa-fw" target="_self" title="comment"></a></li>
+        
+          <li><a id="s-toc" class="s-toc fa-solid fa-list fa-fw" target="_self" title="toc"></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/" title="首页"
+                  
+                  
+                  
+                    active-action="action-home"
+                  >
+                  <i class='fa fa-light fa-house fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="导航"
+                  
+                  
+                  >
+                  <i class='fa fa-light fa-compass fa-fw'></i>导航
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/archives/" title="文章归档"
+                  
+                  
+                  
+                    active-action="action-archives"
+                  >
+                  <i class='fa-solid fa-archive fa-fw'></i>文章归档
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/categories/" title="分类列表"
+                  
+                  
+                  
+                    active-action="action-categories"
+                  >
+                  <i class='fa-solid fa-folder-open fa-fw'></i>分类列表
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/tags/" title="文章标签"
+                  
+                  
+                  
+                    active-action="action-tags"
+                  >
+                  <i class='fa-solid fa-tags fa-fw'></i>文章标签
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/memos/" title="说说"
+                  
+                  
+                  
+                    active-action="action-memos"
+                  >
+                  <i class='fa fa-regular fa-pen-to-square fa-fw'></i>说说
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="页面"
+                  
+                  
+                  >
+                  <i class='fa fa-solid fa-bars fa-fw'></i>页面
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://img.ehzyil.xyz/" title="图床"
+                  
+                  
+                  
+                    active-action="action-https:imgehzyilxyz"
+                  >
+                  <i class='fa fa-regular fa-image fa-fw'></i>图床
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://azure.ehzyil.cloudns.org:5230/" title="memos"
+                  
+                  
+                  
+                    active-action="action-http:azureehzyilcloudnsorg:5230"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>memos
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:3000/" title="rss"
+                  
+                  
+                  
+                    active-action="action-http:479326115:3000"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>rss
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:5244/" title="alist"
+                  
+                  
+                  
+                    active-action="action-http:479326115:5244"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>alist
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:8000/" title="书签"
+                  
+                  
+                  
+                    active-action="action-http:479326115:8000"
+                  >
+                  <i class='fa fa-regular fa-bookmark fa-fw'></i>书签
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="更多"
+                  
+                  
+                  >
+                  <i class='fa fa-duotone fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/friends/" title="友链"
+                  
+                  
+                  
+                    active-action="action-friends"
+                  >
+                  <i class='fa-solid fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/about/" title="关于"
+                  
+                  
+                  
+                    active-action="action-about"
+                  >
+                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fa-solid fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+      
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fa-solid fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+      
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fa-solid fa-search fa-fw" target="_self" title="search"></a></li>
+				
+				<li>
+          <a class="s-menu fa-solid fa-bars fa-fw" target="_self" title="menu"></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/" title="首页"
+                  
+                  
+                  
+                    active-action="action-home"
+                  >
+                  <i class='fa fa-light fa-house fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="导航"
+                  
+                  
+                  >
+                  <i class='fa fa-light fa-compass fa-fw'></i>导航
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/archives/" title="文章归档"
+                  
+                  
+                  
+                    active-action="action-archives"
+                  >
+                  <i class='fa-solid fa-archive fa-fw'></i>文章归档
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/categories/" title="分类列表"
+                  
+                  
+                  
+                    active-action="action-categories"
+                  >
+                  <i class='fa-solid fa-folder-open fa-fw'></i>分类列表
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/tags/" title="文章标签"
+                  
+                  
+                  
+                    active-action="action-tags"
+                  >
+                  <i class='fa-solid fa-tags fa-fw'></i>文章标签
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/memos/" title="说说"
+                  
+                  
+                  
+                    active-action="action-memos"
+                  >
+                  <i class='fa fa-regular fa-pen-to-square fa-fw'></i>说说
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="页面"
+                  
+                  
+                  >
+                  <i class='fa fa-solid fa-bars fa-fw'></i>页面
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://img.ehzyil.xyz/" title="图床"
+                  
+                  
+                  
+                    active-action="action-https:imgehzyilxyz"
+                  >
+                  <i class='fa fa-regular fa-image fa-fw'></i>图床
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://azure.ehzyil.cloudns.org:5230/" title="memos"
+                  
+                  
+                  
+                    active-action="action-http:azureehzyilcloudnsorg:5230"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>memos
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:3000/" title="rss"
+                  
+                  
+                  
+                    active-action="action-http:479326115:3000"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>rss
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:5244/" title="alist"
+                  
+                  
+                  
+                    active-action="action-http:479326115:5244"
+                  >
+                  <i class='fa fa-solid fa-hard-drive fa-fw'></i>alist
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="http://47.93.26.115:8000/" title="书签"
+                  
+                  
+                  
+                    active-action="action-http:479326115:8000"
+                  >
+                  <i class='fa fa-regular fa-bookmark fa-fw'></i>书签
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 title="更多"
+                  
+                  
+                  >
+                  <i class='fa fa-duotone fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/friends/" title="友链"
+                  
+                  
+                  
+                    active-action="action-friends"
+                  >
+                  <i class='fa-solid fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/about/" title="关于"
+                  
+                  
+                  
+                    active-action="action-about"
+                  >
+                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fa-solid fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+
+      <!-- Custom Files header begin -->
+      
+      <!-- Custom Files header end -->
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+</div>
+
+      <div id="safearea">
+        <div class="body-wrapper">
+          
+<div id="l_main" class=''>
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/06/17/2024/Java 业务开发常见错误 100 例/30 _ 如何正确保存和传输敏感数据？/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ehzyil's blog">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="ehzyil's blog">
+    <meta itemprop="description" content="test description">
+  </span>
+  
+
+
+  
+    <span hidden>
+      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <span hidden itemprop="name headline">
+        
+      </span>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h1 id="30-如何正确保存和传输敏感数据？"><a href="#30-如何正确保存和传输敏感数据？" class="headerlink" title="30 | 如何正确保存和传输敏感数据？"></a>30 | 如何正确保存和传输敏感数据？</h1><p>作者: 朱晔</p>
+<p>完成时间:</p>
+<p>总结时间:</p>
+<p><img src="https://static001.geekbang.org/resource/image/e8/01/e89a08735edaa72f93d2d6938d16d001.jpg" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/e8/01/e89a08735edaa72f93d2d6938d16d001.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p><audio><source src="https://static001.geekbang.org/resource/audio/63/d6/63978f5797af79797ed9fbbe6b1596d6.mp3" type="audio/mpeg"></audio></p>
+<p>你好，我是朱晔。</p>
+<p>今天，我们从安全角度来聊聊用户名、密码、身份证等敏感信息，应该怎么保存和传输。同时，你还可以进一步复习加密算法中的散列、对称加密和非对称加密算法，以及HTTPS等相关知识。</p>
+<h2 id="应该怎样保存用户密码？"><a href="#应该怎样保存用户密码？" class="headerlink" title="应该怎样保存用户密码？"></a>应该怎样保存用户密码？</h2><p>最敏感的数据恐怕就是用户的密码了。黑客一旦窃取了用户密码，或许就可以登录进用户的账号，消耗其资产、发布不良信息等；更可怕的是，有些用户至始至终都是使用一套密码，密码一旦泄露，就可以被黑客用来登录全网。</p>
+<p>为了防止密码泄露，最重要的原则是不要保存用户密码。你可能会觉得很好笑，不保存用户密码，之后用户登录的时候怎么验证？其实，我指的是<strong>不保存原始密码，这样即使拖库也不会泄露用户密码。</strong></p>
+<p>我经常会听到大家说，不要明文保存用户密码，应该把密码通过MD5加密后保存。这的确是一个正确的方向，但这个说法并不准确。</p>
+<p>首先，MD5其实不是真正的加密算法。所谓加密算法，是可以使用密钥把明文加密为密文，随后还可以使用密钥解密出明文，是双向的。</p>
+<p>而MD5是散列、哈希算法或者摘要算法。不管多长的数据，使用MD5运算后得到的都是固定长度的摘要信息或指纹信息，无法再解密为原始数据。所以，MD5是单向的。<strong>最重要的是，仅仅使用MD5对密码进行摘要，并不安全</strong>。</p>
+<!-- [[[read_end]]] -->
+
+<p>比如，使用如下代码在保持用户信息时，对密码进行了MD5计算：</p>
+<pre class="line-numbers language-none"><code class="language-none">UserData userData &#x3D; new UserData();
+userData.setId(1L);
+userData.setName(name);
+&#x2F;&#x2F;密码字段使用MD5哈希后保存
+userData.setPassword(DigestUtils.md5Hex(password));
+return userRepository.save(userData);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过输出，可以看到密码是32位的MD5：</p>
+<pre class="line-numbers language-none"><code class="language-none">&quot;password&quot;: &quot;325a2cc052914ceeb8c19016c091d2ac&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>到某MD5破解网站上输入这个MD5，不到1秒就得到了原始密码：</p>
+<p><img src="https://static001.geekbang.org/resource/image/e1/de/e1b3638dea64636494c3dcb0bb9b8ade.png?wh=1836*602" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/e1/de/e1b3638dea64636494c3dcb0bb9b8ade.png?wh=1836*602" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>其实你可以想一下，虽然MD5不可解密，但是我们可以构建一个超大的数据库，把所有20位以内的数字和字母组合的密码全部计算一遍MD5存进去，需要解密的时候搜索一下MD5就可以得到原始值了。这就是字典表。</p>
+<p>目前，有些MD5解密网站使用的是彩虹表，是一种使用时间空间平衡的技术，即可以使用更大的空间来降低破解时间，也可以使用更长的破解时间来换取更小的空间。</p>
+<p><strong>此外，你可能会觉得多次MD5比较安全，其实并不是这样</strong>。比如，如下代码使用两次MD5进行摘要：</p>
+<pre class="line-numbers language-none"><code class="language-none">userData.setPassword(DigestUtils.md5Hex(DigestUtils.md5Hex( password)));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>得到下面的MD5：</p>
+<pre class="line-numbers language-none"><code class="language-none">&quot;password&quot;: &quot;ebbca84993fe002bac3a54e90d677d09&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>也可以破解出密码，并且破解网站还告知我们这是两次MD5算法：</p>
+<p><img src="https://static001.geekbang.org/resource/image/ce/b1/ce87f65a3289e50d4e29754073b7eab1.png?wh=1768*606" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/ce/b1/ce87f65a3289e50d4e29754073b7eab1.png?wh=1768*606" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>所以直接保存MD5后的密码是不安全的。一些同学可能会说，还需要加盐。是的，但是加盐如果不当，还是非常不安全，比较重要的有两点。</p>
+<p>第一，<strong>不能在代码中写死盐，且盐需要有一定的长度</strong>，比如这样：</p>
+<pre class="line-numbers language-none"><code class="language-none">userData.setPassword(DigestUtils.md5Hex(&quot;salt&quot; + password));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>得到了如下MD5：</p>
+<pre class="line-numbers language-none"><code class="language-none">&quot;password&quot;: &quot;58b1d63ed8492f609993895d6ba6b93a&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>对于这样一串MD5，虽然破解网站上找不到原始密码，但是黑客可以自己注册一个账号，使用一个简单的密码，比如1：</p>
+<pre class="line-numbers language-none"><code class="language-none">&quot;password&quot;: &quot;55f312f84e7785aa1efa552acbf251db&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后，再去破解网站试一下这个MD5，就可以得到原始密码是salt，也就知道了盐值是salt：</p>
+<p><img src="https://static001.geekbang.org/resource/image/32/ca/321dfe5822da9fe186b17f283bda1fca.png?wh=1758*594" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/32/ca/321dfe5822da9fe186b17f283bda1fca.png?wh=1758*594" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>其实，知道盐是什么没什么关系，关键的是我们是在代码里写死了盐，并且盐很短、所有用户都是这个盐。这么做有三个问题：</p>
+<ul>
+<li>因为盐太短、太简单了，如果用户原始密码也很简单，那么整个拼起来的密码也很短，这样一般的MD5破解网站都可以直接解密这个MD5，除去盐就知道原始密码了。</li>
+<li>相同的盐，意味着使用相同密码的用户MD5值是一样的，知道了一个用户的密码就可能知道了多个。</li>
+<li>我们也可以使用这个盐来构建一张彩虹表，虽然会花不少代价，但是一旦构建完成，所有人的密码都可以被破解。</li>
+</ul>
+<!-- -->
+
+<p><strong>所以，最好是每一个密码都有独立的盐，并且盐要长一点，比如超过20位</strong>。</p>
+<p>第二，<strong>虽然说每个人的盐最好不同，但我也不建议将一部分用户数据作为盐。</strong>比如，使用用户名作为盐：</p>
+<pre class="line-numbers language-none"><code class="language-none">userData.setPassword(DigestUtils.md5Hex(name + password));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果世界上所有的系统都是按照这个方案来保存密码，那么root、admin这样的用户使用再复杂的密码也总有一天会被破解，因为黑客们完全可以针对这些常用用户名来做彩虹表。<strong>所以，盐最好是随机的值，并且是全球唯一的，意味着全球不可能有现成的彩虹表给你用。</strong></p>
+<p>正确的做法是，使用全球唯一的、和用户无关的、足够长的随机值作为盐。比如，可以使用UUID作为盐，把盐一起保存到数据库中：</p>
+<pre class="line-numbers language-none"><code class="language-none">userData.setSalt(UUID.randomUUID().toString());
+userData.setPassword(DigestUtils.md5Hex(userData.getSalt() + password));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>并且每次用户修改密码的时候都重新计算盐，重新保存新的密码。你可能会问，盐保存在数据库中，那被拖库了不是就可以看到了吗？难道不应该加密保存吗？</p>
+<p>在我看来，盐没有必要加密保存。盐的作用是，防止通过彩虹表快速实现密码“解密”，如果用户的盐都是唯一的，那么生成一次彩虹表只可能拿到一个用户的密码，这样黑客的动力会小很多。</p>
+<p><strong>更好的做法是，不要使用像MD5这样快速的摘要算法，而是使用慢一点的算法</strong>。比如Spring Security已经废弃了MessageDigestPasswordEncoder，推荐使用BCryptPasswordEncoder，也就是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt">BCrypt</a>来进行密码哈希。BCrypt是为保存密码设计的算法，相比MD5要慢很多。</p>
+<p>写段代码来测试一下MD5，以及使用不同代价因子的BCrypt，看看哈希一次密码的耗时。</p>
+<pre class="line-numbers language-none"><code class="language-none">private static BCryptPasswordEncoder passwordEncoder &#x3D; new BCryptPasswordEncoder();
+
+@GetMapping(&quot;performance&quot;)
+public void performance() &#123;
+    StopWatch stopWatch &#x3D; new StopWatch();
+    String password &#x3D; &quot;Abcd1234&quot;;
+    stopWatch.start(&quot;MD5&quot;);
+    &#x2F;&#x2F;MD5
+    DigestUtils.md5Hex(password);
+    stopWatch.stop();
+    stopWatch.start(&quot;BCrypt(10)&quot;);
+    &#x2F;&#x2F;代价因子为10的BCrypt
+    String hash1 &#x3D; BCrypt.gensalt(10);
+    BCrypt.hashpw(password, hash1);
+    System.out.println(hash1);
+    stopWatch.stop();
+    stopWatch.start(&quot;BCrypt(12)&quot;);
+    &#x2F;&#x2F;代价因子为12的BCrypt
+    String hash2 &#x3D; BCrypt.gensalt(12);
+    BCrypt.hashpw(password, hash2);
+    System.out.println(hash2);
+    stopWatch.stop();
+    stopWatch.start(&quot;BCrypt(14)&quot;);
+    &#x2F;&#x2F;代价因子为14的BCrypt
+    String hash3 &#x3D; BCrypt.gensalt(14);
+    BCrypt.hashpw(password, hash3);
+    System.out.println(hash3);
+    stopWatch.stop();
+    log.info(&quot;&#123;&#125;&quot;, stopWatch.prettyPrint());
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，MD5只需要0.8毫秒，而三次BCrypt哈希（代价因子分别设置为10、12和14）耗时分别是82毫秒、312毫秒和1.2秒：</p>
+<p><img src="https://static001.geekbang.org/resource/image/13/46/13241938861dd3ca9ba984776cc90846.png?wh=988*334" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/13/46/13241938861dd3ca9ba984776cc90846.png?wh=988*334" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>也就是说，如果制作8位密码长度的MD5彩虹表需要5个月，那么对于BCrypt来说，可能就需要几十年，大部分黑客应该都没有这个耐心。</p>
+<p>我们写一段代码观察下，BCryptPasswordEncoder生成的密码哈希的规律：</p>
+<pre class="line-numbers language-none"><code class="language-none">@GetMapping(&quot;better&quot;)
+public UserData better(@RequestParam(value &#x3D; &quot;name&quot;, defaultValue &#x3D; &quot;zhuye&quot;) String name, @RequestParam(value &#x3D; &quot;password&quot;, defaultValue &#x3D; &quot;Abcd1234&quot;) String password) &#123;
+    UserData userData &#x3D; new UserData();
+    userData.setId(1L);
+    userData.setName(name);
+    &#x2F;&#x2F;保存哈希后的密码
+    userData.setPassword(passwordEncoder.encode(password));
+    userRepository.save(userData);
+    &#x2F;&#x2F;判断密码是否匹配
+    log.info(&quot;match ? &#123;&#125;&quot;, passwordEncoder.matches(password, userData.getPassword()));
+    return userData;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以发现三点规律。</p>
+<p>第一，我们调用encode、matches方法进行哈希、做密码比对的时候，不需要传入盐。<strong>BCrypt把盐作为了算法的一部分，强制我们遵循安全保存密码的最佳实践。</strong></p>
+<p>第二，生成的盐和哈希后的密码拼在了一起：<code>$</code>是字段分隔符，其中第一个<code>$</code>后的2a代表算法版本，第二个<code>$</code>后的10是代价因子（默认是10，代表2的10次方次哈希），第三个<code>$</code>后的22个字符是盐，再后面是摘要。所以说，我们不需要使用单独的数据库字段来保存盐。</p>
+<pre class="line-numbers language-none"><code class="language-none">&quot;password&quot;: &quot;$2a$10$wPWdQwfQO2lMxqSIb6iCROXv7lKnQq5XdMO96iCYCj7boK9pk6QPC&quot;
+&#x2F;&#x2F;格式为：$&lt;ver&gt;$&lt;cost&gt;$&lt;salt&gt;&lt;digest&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第三，代价因子的值越大，BCrypt哈希的耗时越久。因此，对于代价因子的值，更建议的实践是，根据用户的忍耐程度和硬件，设置一个尽可能大的值。</p>
+<p>最后，我们需要注意的是，虽然黑客已经很难通过彩虹表来破解密码了，但是仍然有可能暴力破解密码，也就是对于同一个用户名使用常见的密码逐一尝试登录。因此，除了做好密码哈希保存的工作外，我们还要建设一套完善的安全防御机制，在感知到暴力破解危害的时候，开启短信验证、图形验证码、账号暂时锁定等防御机制来抵御暴力破解。</p>
+<h2 id="应该怎么保存姓名和身份证？"><a href="#应该怎么保存姓名和身份证？" class="headerlink" title="应该怎么保存姓名和身份证？"></a>应该怎么保存姓名和身份证？</h2><p>我们把姓名和身份证，叫做二要素。</p>
+<p>现在互联网非常发达，很多服务都可以在网上办理，很多网站仅仅依靠二要素来确认你是谁。所以，二要素是比较敏感的数据，如果在数据库中明文保存，那么数据库被攻破后，黑客就可能拿到大量的二要素信息。如果这些二要素被用来申请贷款等，后果不堪设想。</p>
+<p>之前我们提到的单向散列算法，显然不适合用来加密保存二要素，因为数据无法解密。这个时候，我们需要选择真正的加密算法。可供选择的算法，包括对称加密和非对称加密算法两类。</p>
+<p>对称加密算法，是使用相同的密钥进行加密和解密。使用对称加密算法来加密双方的通信的话，双方需要先约定一个密钥，加密方才能加密，接收方才能解密。如果密钥在发送的时候被窃取，那么加密就是白忙一场。因此，这种加密方式的特点是，加密速度比较快，但是密钥传输分发有泄露风险。</p>
+<p>非对称加密算法，或者叫公钥密码算法。公钥密码是由一对密钥对构成的，使用公钥或者说加密密钥来加密，使用私钥或者说解密密钥来解密，公钥可以任意公开，私钥不能公开。使用非对称加密的话，通信双方可以仅分享公钥用于加密，加密后的数据没有私钥无法解密。因此，这种加密方式的特点是，加密速度比较慢，但是解决了密钥的配送分发安全问题。</p>
+<p>但是，对于保存敏感信息的场景来说，加密和解密都是我们的服务端程序，不太需要考虑密钥的分发安全性，也就是说使用非对称加密算法没有太大的意义。在这里，我们使用对称加密算法来加密数据。</p>
+<p>接下来，我就重点与你说说对称加密算法。对称加密常用的加密算法，有DES、3DES和AES。</p>
+<p>虽然，现在仍有许多老项目使用了DES算法，但我不推荐使用。在1999年的DES挑战赛3中，DES密码破解耗时不到一天，而现在DES密码破解更快，使用DES来加密数据非常不安全。因此，<strong>在业务代码中要避免使用DES加密</strong>。</p>
+<p>而3DES算法，是使用不同的密钥进行三次DES串联调用，虽然解决了DES不够安全的问题，但是比AES慢，也不太推荐。</p>
+<p>AES是当前公认的比较安全，兼顾性能的对称加密算法。不过严格来说，AES并不是实际的算法名称，而是算法标准。2000年，NIST选拔出Rijndael算法作为AES的标准。</p>
+<p>AES有一个重要的特点就是分组加密体制，一次只能处理128位的明文，然后生成128位的密文。如果要加密很长的明文，那么就需要迭代处理，而迭代方式就叫做模式。网上很多使用AES来加密的代码，使用的是最简单的ECB模式（也叫电子密码本模式），其基本结构如下：</p>
+<p><img src="https://static001.geekbang.org/resource/image/27/8b/27c2534caeefcac4a5dd1a2814957d8b.png?wh=1714*750" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/27/8b/27c2534caeefcac4a5dd1a2814957d8b.png?wh=1714*750" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>可以看到，这种结构有两个风险：明文和密文是一一对应的，如果明文中有重复的分组，那么密文中可以观察到重复，掌握密文的规律；因为每一个分组是独立加密和解密的 ，如果密文分组的顺序，也可以反过来操纵明文，那么就可以实现不解密密文的情况下，来修改明文。</p>
+<p>我们写一段代码来测试下。在下面的代码中，我们使用ECB模式测试：</p>
+<ul>
+<li>加密一段包含16个字符的字符串，得到密文A；然后把这段字符串复制一份成为一个32个字符的字符串，再进行加密得到密文B。我们验证下密文B是不是重复了一遍的密文A。</li>
+<li>模拟银行转账的场景，假设整个数据由发送方账号、接收方账号、金额三个字段构成。我们尝试改变密文中数据的顺序来操纵明文。</li>
+</ul>
+<!-- -->
+
+<pre class="line-numbers language-none"><code class="language-none">private static final String KEY &#x3D; &quot;secretkey1234567&quot;; &#x2F;&#x2F;密钥
+&#x2F;&#x2F;测试ECB模式
+@GetMapping(&quot;ecb&quot;)
+public void ecb() throws Exception &#123;
+	Cipher cipher &#x3D; Cipher.getInstance(&quot;AES&#x2F;ECB&#x2F;NoPadding&quot;);
+	test(cipher, null);
+&#125;
+&#x2F;&#x2F;获取加密秘钥帮助方法
+private static SecretKeySpec setKey(String secret) &#123;
+    return new SecretKeySpec(secret.getBytes(), &quot;AES&quot;);
+&#125;
+&#x2F;&#x2F;测试逻辑
+private static void test(Cipher cipher, AlgorithmParameterSpec parameterSpec) throws Exception &#123;
+    &#x2F;&#x2F;初始化Cipher
+    cipher.init(Cipher.ENCRYPT_MODE, setKey(KEY), parameterSpec);
+    &#x2F;&#x2F;加密测试文本
+    System.out.println(&quot;一次：&quot; + Hex.encodeHexString(cipher.doFinal(&quot;abcdefghijklmnop&quot;.getBytes())));
+    &#x2F;&#x2F;加密重复一次的测试文本
+    System.out.println(&quot;两次：&quot; + Hex.encodeHexString(cipher.doFinal(&quot;abcdefghijklmnopabcdefghijklmnop&quot;.getBytes())));
+    &#x2F;&#x2F;下面测试是否可以通过操纵密文来操纵明文    
+    &#x2F;&#x2F;发送方账号
+    byte[] sender &#x3D; &quot;1000000000012345&quot;.getBytes();
+    &#x2F;&#x2F;接收方账号
+    byte[] receiver &#x3D; &quot;1000000000034567&quot;.getBytes();
+    &#x2F;&#x2F;转账金额
+    byte[] money &#x3D; &quot;0000000010000000&quot;.getBytes();
+    &#x2F;&#x2F;加密发送方账号
+    System.out.println(&quot;发送方账号：&quot; + Hex.encodeHexString(cipher.doFinal(sender)));
+    &#x2F;&#x2F;加密接收方账号
+    System.out.println(&quot;接收方账号：&quot; + Hex.encodeHexString(cipher.doFinal(receiver)));
+    &#x2F;&#x2F;加密金额
+    System.out.println(&quot;金额：&quot; + Hex.encodeHexString(cipher.doFinal(money)));
+    &#x2F;&#x2F;加密完整的转账信息
+    byte[] result &#x3D; cipher.doFinal(ByteUtils.concatAll(sender, receiver, money));
+    System.out.println(&quot;完整数据：&quot; + Hex.encodeHexString(result));
+    &#x2F;&#x2F;用于操纵密文的临时字节数组
+    byte[] hack &#x3D; new byte[result.length];
+    &#x2F;&#x2F;把密文前两段交换
+    System.arraycopy(result, 16, hack, 0, 16);
+    System.arraycopy(result, 0, hack, 16, 16);
+    System.arraycopy(result, 32, hack, 32, 16);
+    cipher.init(Cipher.DECRYPT_MODE, setKey(KEY), parameterSpec);
+    &#x2F;&#x2F;尝试解密
+    System.out.println(&quot;原始明文：&quot; + new String(ByteUtils.concatAll(sender, receiver, money)));
+    System.out.println(&quot;操纵密文：&quot; + new String(cipher.doFinal(hack)));
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出如下：</p>
+<p><img src="https://static001.geekbang.org/resource/image/cd/59/cd506b4cf8a020d4b6077fdfa3b34959.png?wh=2170*408" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/cd/59/cd506b4cf8a020d4b6077fdfa3b34959.png?wh=2170*408" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>可以看到：</p>
+<ul>
+<li>两个相同明文分组产生的密文，就是两个相同的密文分组叠在一起。</li>
+<li>在不知道密钥的情况下，我们操纵密文实现了对明文数据的修改，对调了发送方账号和接收方账号。</li>
+</ul>
+<!-- -->
+
+<p>所以说，<strong>ECB模式虽然简单，但是不安全，不推荐使用</strong>。我们再看一下另一种常用的加密模式，CBC模式。</p>
+<p>CBC模式，在解密或解密之前引入了XOR运算，第一个分组使用外部提供的初始化向量IV，从第二个分组开始使用前一个分组的数据，这样即使明文是一样的，加密后的密文也是不同的，并且分组的顺序不能任意调换。这就解决了ECB模式的缺陷：</p>
+<p><img src="https://static001.geekbang.org/resource/image/79/e8/7955a199e2400adc7ac7577b3712bae8.png?wh=1920*692" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/79/e8/7955a199e2400adc7ac7577b3712bae8.png?wh=1920*692" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>我们把之前的代码修改为CBC模式，再次进行测试：</p>
+<pre class="line-numbers language-none"><code class="language-none">private static final String initVector &#x3D; &quot;abcdefghijklmnop&quot;; &#x2F;&#x2F;初始化向量
+
+@GetMapping(&quot;cbc&quot;)
+public void cbc() throws Exception &#123;
+    Cipher cipher &#x3D; Cipher.getInstance(&quot;AES&#x2F;CBC&#x2F;NoPadding&quot;);
+    IvParameterSpec iv &#x3D; new IvParameterSpec(initVector.getBytes(&quot;UTF-8&quot;));
+    test(cipher, iv);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，相同的明文字符串复制一遍得到的密文并不是重复两个密文分组，并且调换密文分组的顺序无法操纵明文：</p>
+<p><img src="https://static001.geekbang.org/resource/image/8b/08/8b79074d6533a84c32e48eab3daef808.png?wh=2142*378" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/8b/08/8b79074d6533a84c32e48eab3daef808.png?wh=2142*378" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>其实，除了ECB模式和CBC模式外，AES算法还有CFB、OFB、CTR模式，你可以参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">这里</a>了解它们的区别。《实用密码学》一书比较推荐的是CBC和CTR模式。还需要注意的是，ECB和CBC模式还需要设置合适的填充模式，才能处理超过一个分组的数据。</p>
+<p>对于敏感数据保存，除了选择AES+合适模式进行加密外，我还推荐以下几个实践：</p>
+<ul>
+<li>不要在代码中写死一个固定的密钥和初始化向量，最好和之前提到的盐一样，是唯一、独立并且每次都变化的。</li>
+<li>推荐使用独立的加密服务来管控密钥、做加密操作，千万不要把密钥和密文存在一个数据库，加密服务需要设置非常高的管控标准。</li>
+<li>数据库中不能保存明文的敏感信息，但可以保存脱敏的信息。普通查询的时候，直接查脱敏信息即可。</li>
+</ul>
+<!-- -->
+
+<p>接下来，我们按照这个策略完成相关代码实现。</p>
+<p>第一步，对于用户姓名和身份证，我们分别保存三个信息，脱敏后的明文、密文和加密ID。加密服务加密后返回密文和加密ID，随后使用加密ID来请求加密服务进行解密：</p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+@Entity
+public class UserData &#123;
+    @Id
+    private Long id;
+    private String idcard;&#x2F;&#x2F;脱敏的身份证
+    private Long idcardCipherId;&#x2F;&#x2F;身份证加密ID
+    private String idcardCipherText;&#x2F;&#x2F;身份证密文
+    private String name;&#x2F;&#x2F;脱敏的姓名
+    private Long nameCipherId;&#x2F;&#x2F;姓名加密ID
+    private String nameCipherText;&#x2F;&#x2F;姓名密文
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第二步，加密服务数据表保存加密ID、初始化向量和密钥。加密服务表中没有密文，实现了密文和密钥分离保存：</p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+@Entity
+public class CipherData &#123;
+    @Id
+    @GeneratedValue(strategy &#x3D; AUTO)
+    private Long id;
+    private String iv;&#x2F;&#x2F;初始化向量
+    private String secureKey;&#x2F;&#x2F;密钥
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第三步，加密服务使用GCM模式（ Galois&#x2F;Counter Mode）的AES-256对称加密算法，也就是AES-256-GCM。</p>
+<p>这是一种<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5116">AEAD</a>（Authenticated Encryption with Associated Data）认证加密算法，除了能实现普通加密算法提供的保密性之外，还能实现可认证性和密文完整性，是目前最推荐的AES模式。</p>
+<p>使用类似GCM的AEAD算法进行加解密，除了需要提供初始化向量和密钥之外，还可以提供一个AAD（附加认证数据，additional authenticated data），用于验证未包含在明文中的附加信息，解密时不使用加密时的AAD将解密失败。其实，GCM模式的内部使用的就是CTR模式，只不过还使用了GMAC签名算法，对密文进行签名实现完整性校验。</p>
+<p>接下来，我们实现基于AES-256-GCM的加密服务，包含下面的主要逻辑：</p>
+<ul>
+<li>加密时允许外部传入一个AAD用于认证，加密服务每次都会使用新生成的随机值作为密钥和初始化向量。</li>
+<li>在加密后，加密服务密钥和初始化向量保存到数据库中，返回加密ID作为本次加密的标识。</li>
+<li>应用解密时，需要提供加密ID、密文和加密时的AAD来解密。加密服务使用加密ID，从数据库查询出密钥和初始化向量。</li>
+</ul>
+<!-- -->
+
+<p>这段逻辑的实现代码比较长，我加了详细注释方便你仔细阅读：</p>
+<pre class="line-numbers language-none"><code class="language-none">@Service
+public class CipherService &#123;
+    &#x2F;&#x2F;密钥长度
+    public static final int AES_KEY_SIZE &#x3D; 256;
+    &#x2F;&#x2F;初始化向量长度
+    public static final int GCM_IV_LENGTH &#x3D; 12;
+    &#x2F;&#x2F;GCM身份认证Tag长度
+    public static final int GCM_TAG_LENGTH &#x3D; 16;
+    @Autowired
+    private CipherRepository cipherRepository;
+
+    &#x2F;&#x2F;内部加密方法
+    public static byte[] doEncrypt(byte[] plaintext, SecretKey key, byte[] iv, byte[] aad) throws Exception &#123;
+        &#x2F;&#x2F;加密算法
+        Cipher cipher &#x3D; Cipher.getInstance(&quot;AES&#x2F;GCM&#x2F;NoPadding&quot;);
+        &#x2F;&#x2F;Key规范
+        SecretKeySpec keySpec &#x3D; new SecretKeySpec(key.getEncoded(), &quot;AES&quot;);
+        &#x2F;&#x2F;GCM参数规范
+        GCMParameterSpec gcmParameterSpec &#x3D; new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+        &#x2F;&#x2F;加密模式
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, gcmParameterSpec);
+        &#x2F;&#x2F;设置aad
+        if (aad !&#x3D; null)
+            cipher.updateAAD(aad);
+        &#x2F;&#x2F;加密
+        byte[] cipherText &#x3D; cipher.doFinal(plaintext);
+        return cipherText;
+    &#125;
+
+    &#x2F;&#x2F;内部解密方法
+    public static String doDecrypt(byte[] cipherText, SecretKey key, byte[] iv, byte[] aad) throws Exception &#123;
+        &#x2F;&#x2F;加密算法
+        Cipher cipher &#x3D; Cipher.getInstance(&quot;AES&#x2F;GCM&#x2F;NoPadding&quot;);
+        &#x2F;&#x2F;Key规范
+        SecretKeySpec keySpec &#x3D; new SecretKeySpec(key.getEncoded(), &quot;AES&quot;);
+        &#x2F;&#x2F;GCM参数规范
+        GCMParameterSpec gcmParameterSpec &#x3D; new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+        &#x2F;&#x2F;解密模式
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, gcmParameterSpec);
+        &#x2F;&#x2F;设置aad
+        if (aad !&#x3D; null)
+            cipher.updateAAD(aad);
+        &#x2F;&#x2F;解密
+        byte[] decryptedText &#x3D; cipher.doFinal(cipherText);
+        return new String(decryptedText);
+    &#125;
+
+    &#x2F;&#x2F;加密入口
+    public CipherResult encrypt(String data, String aad) throws Exception &#123;
+        &#x2F;&#x2F;加密结果
+        CipherResult encryptResult &#x3D; new CipherResult();
+        &#x2F;&#x2F;密钥生成器
+        KeyGenerator keyGenerator &#x3D; KeyGenerator.getInstance(&quot;AES&quot;);
+        &#x2F;&#x2F;生成密钥
+        keyGenerator.init(AES_KEY_SIZE);
+        SecretKey key &#x3D; keyGenerator.generateKey();
+        &#x2F;&#x2F;IV数据
+        byte[] iv &#x3D; new byte[GCM_IV_LENGTH];
+        &#x2F;&#x2F;随机生成IV
+        SecureRandom random &#x3D; new SecureRandom();
+        random.nextBytes(iv);
+        &#x2F;&#x2F;处理aad
+        byte[] aaddata &#x3D; null;
+        if (!StringUtils.isEmpty(aad))
+            aaddata &#x3D; aad.getBytes();
+        &#x2F;&#x2F;获得密文
+        encryptResult.setCipherText(Base64.getEncoder().encodeToString(doEncrypt(data.getBytes(), key, iv, aaddata)));
+        &#x2F;&#x2F;加密上下文数据
+        CipherData cipherData &#x3D; new CipherData();
+        &#x2F;&#x2F;保存IV
+        cipherData.setIv(Base64.getEncoder().encodeToString(iv));
+        &#x2F;&#x2F;保存密钥
+        cipherData.setSecureKey(Base64.getEncoder().encodeToString(key.getEncoded()));
+        cipherRepository.save(cipherData);
+        &#x2F;&#x2F;返回本地加密ID
+        encryptResult.setId(cipherData.getId());
+        return encryptResult;
+    &#125;
+
+    &#x2F;&#x2F;解密入口
+    public String decrypt(long cipherId, String cipherText, String aad) throws Exception &#123;
+        &#x2F;&#x2F;使用加密ID找到加密上下文数据
+        CipherData cipherData &#x3D; cipherRepository.findById(cipherId).orElseThrow(() -&gt; new IllegalArgumentException(&quot;invlaid cipherId&quot;));
+        &#x2F;&#x2F;加载密钥
+        byte[] decodedKey &#x3D; Base64.getDecoder().decode(cipherData.getSecureKey());
+        &#x2F;&#x2F;初始化密钥
+        SecretKey originalKey &#x3D; new SecretKeySpec(decodedKey, 0, decodedKey.length, &quot;AES&quot;);
+        &#x2F;&#x2F;加载IV
+        byte[] decodedIv &#x3D; Base64.getDecoder().decode(cipherData.getIv());
+        &#x2F;&#x2F;处理aad
+        byte[] aaddata &#x3D; null;
+        if (!StringUtils.isEmpty(aad))
+            aaddata &#x3D; aad.getBytes();
+        &#x2F;&#x2F;解密
+        return doDecrypt(Base64.getDecoder().decode(cipherText.getBytes()), originalKey, decodedIv, aaddata);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第四步，分别实现加密和解密接口用于测试。</p>
+<p>我们可以让用户选择，如果需要保护二要素的话，就自己输入一个查询密码作为AAD。系统需要读取用户敏感信息的时候，还需要用户提供这个密码，否则无法解密。这样一来，即使黑客拿到了用户数据库的密文、加密服务的密钥和IV，也会因为缺少AAD无法解密：</p>
+<pre class="line-numbers language-none"><code class="language-none">@Autowired
+private CipherService cipherService;
+
+
+&#x2F;&#x2F;加密
+@GetMapping(&quot;right&quot;)
+public UserData right(@RequestParam(value &#x3D; &quot;name&quot;, defaultValue &#x3D; &quot;朱晔&quot;) String name,
+                      @RequestParam(value &#x3D; &quot;idcard&quot;, defaultValue &#x3D; &quot;300000000000001234&quot;) String idCard,
+                      @RequestParam(value &#x3D; &quot;aad&quot;, required &#x3D; false)String aad) throws Exception &#123;
+    UserData userData &#x3D; new UserData();
+    userData.setId(1L);
+    &#x2F;&#x2F;脱敏姓名
+    userData.setName(chineseName(name));
+    &#x2F;&#x2F;脱敏身份证
+    userData.setIdcard(idCard(idCard));
+    &#x2F;&#x2F;加密姓名
+    CipherResult cipherResultName &#x3D; cipherService.encrypt(name,aad);
+    userData.setNameCipherId(cipherResultName.getId());
+    userData.setNameCipherText(cipherResultName.getCipherText());
+    &#x2F;&#x2F;加密身份证
+    CipherResult cipherResultIdCard &#x3D; cipherService.encrypt(idCard,aad);
+    userData.setIdcardCipherId(cipherResultIdCard.getId());
+    userData.setIdcardCipherText(cipherResultIdCard.getCipherText());
+    return userRepository.save(userData);
+&#125;
+
+&#x2F;&#x2F;解密
+@GetMapping(&quot;read&quot;)
+public void read(@RequestParam(value &#x3D; &quot;aad&quot;, required &#x3D; false)String aad) throws Exception &#123;
+    &#x2F;&#x2F;查询用户信息
+    UserData userData &#x3D; userRepository.findById(1L).get();
+    &#x2F;&#x2F;使用AAD来解密姓名和身份证
+    log.info(&quot;name : &#123;&#125; idcard : &#123;&#125;&quot;,
+            cipherService.decrypt(userData.getNameCipherId(), userData.getNameCipherText(),aad),
+            cipherService.decrypt(userData.getIdcardCipherId(), userData.getIdcardCipherText(),aad));
+
+&#125;
+&#x2F;&#x2F;脱敏身份证
+private static String idCard(String idCard) &#123;
+    String num &#x3D; StringUtils.right(idCard, 4);
+    return StringUtils.leftPad(num, StringUtils.length(idCard), &quot;*&quot;);
+&#125;
+&#x2F;&#x2F;脱敏姓名
+public static String chineseName(String chineseName) &#123;
+    String name &#x3D; StringUtils.left(chineseName, 1);
+    return StringUtils.rightPad(name, StringUtils.length(chineseName), &quot;*&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>访问加密接口获得如下结果，可以看到数据库表中只有脱敏数据和密文：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;&quot;id&quot;:1,&quot;name&quot;:&quot;朱*&quot;,&quot;idcard&quot;:&quot;**************1234&quot;,&quot;idcardCipherId&quot;:26346,&quot;idcardCipherText&quot;:&quot;t&#x2F;wIh1XTj00wJP1Lt3aGzSvn9GcqQWEwthN58KKU4KZ4Tw&#x3D;&#x3D;&quot;,&quot;nameCipherId&quot;:26347,&quot;nameCipherText&quot;:&quot;+gHrk1mWmveBMVUo+CYon8Zjj9QAtw&#x3D;&#x3D;&quot;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>访问解密接口，可以看到解密成功了：</p>
+<pre class="line-numbers language-none"><code class="language-none">[21:46:00.079] [http-nio-45678-exec-6] [INFO ] [o.g.t.c.s.s.StoreIdCardController:102 ] - name : 朱晔 idcard : 300000000000001234<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果AAD输入不对，会得到如下异常：</p>
+<pre class="line-numbers language-none"><code class="language-none">javax.crypto.AEADBadTagException: Tag mismatch!
+	at com.sun.crypto.provider.GaloisCounterMode.decryptFinal(GaloisCounterMode.java:578)
+	at com.sun.crypto.provider.CipherCore.finalNoPadding(CipherCore.java:1116)
+	at com.sun.crypto.provider.CipherCore.fillOutputBuffer(CipherCore.java:1053)
+	at com.sun.crypto.provider.CipherCore.doFinal(CipherCore.java:853)
+	at com.sun.crypto.provider.AESCipher.engineDoFinal(AESCipher.java:446)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2164)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>经过这样的设计，二要素就比较安全了。黑客要查询用户二要素的话，需要同时拿到密文、IV+密钥、AAD。而这三者可能由三方掌管，要全部拿到比较困难。</p>
+<h2 id="用一张图说清楚HTTPS"><a href="#用一张图说清楚HTTPS" class="headerlink" title="用一张图说清楚HTTPS"></a>用一张图说清楚HTTPS</h2><p>我们知道，HTTP协议传输数据使用的是明文。那在传输敏感信息的场景下，如果客户端和服务端中间有一个黑客作为中间人拦截请求，就可以窃听到这些数据，还可以修改客户端传过来的数据。这就是很大的安全隐患。</p>
+<p>为解决这个安全隐患，有了HTTPS协议。HTTPS&#x3D;SSL&#x2F;TLS+HTTP，通过使用一系列加密算法来确保信息安全传输，以实现数据传输的机密性、完整性和权威性。</p>
+<ul>
+<li>机密性：使用非对称加密来加密密钥，然后使用密钥来加密数据，既安全又解决了非对称加密大量数据慢的问题。你可以做一个实验来测试两者的差距。</li>
+<li>完整性：使用散列算法对信息进行摘要，确保信息完整无法被中间人篡改。</li>
+<li>权威性：使用数字证书，来确保我们是在和合法的服务端通信。</li>
+</ul>
+<!-- -->
+
+<p>可以看出，理解HTTPS的流程，将有助于我们理解各种加密算法的区别，以及证书的意义。此外，SSL&#x2F;TLS还是混合加密系统的一个典范，如果你需要自己开发应用层数据加密系统，也可以参考它的流程。</p>
+<p>那么，我们就来看看HTTPS TLS 1.2连接（RSA握手）的整个过程吧。</p>
+<p><img src="https://static001.geekbang.org/resource/image/98/7c/982510795a50e4b18808eed81dac647c.png?wh=1778*1676" class="lazyload" data-srcset="https://static001.geekbang.org/resource/image/98/7c/982510795a50e4b18808eed81dac647c.png?wh=1778*1676" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>作为准备工作，网站管理员需要申请并安装CA证书到服务端。CA证书中包含非对称加密的公钥、网站域名等信息，密钥是服务端自己保存的，不会在任何地方公开。</p>
+<p>建立HTTPS连接的过程，首先是TCP握手，然后是TLS握手的一系列工作，包括：</p>
+<ol>
+<li>客户端告知服务端自己支持的密码套件（比如TLS_RSA_WITH_AES_256_GCM_SHA384，其中RSA是密钥交换的方式，AES_256_GCM是加密算法，SHA384是消息验证摘要算法），提供客户端随机数。</li>
+<li>服务端应答选择的密码套件，提供服务端随机数。</li>
+<li>服务端发送CA证书给客户端，客户端验证CA证书（后面详细说明）。</li>
+<li>客户端生成PreMasterKey，并使用非对称加密+公钥加密PreMasterKey。</li>
+<li>客户端把加密后的PreMasterKey传给服务端。</li>
+<li>服务端使用非对称加密+私钥解密得到PreMasterKey，并使用PreMasterKey+两个随机数，生成MasterKey。</li>
+<li>客户端也使用PreMasterKey+两个随机数生成MasterKey。</li>
+<li>客户端告知服务端之后将进行加密传输。</li>
+<li>客户端使用MasterKey配合对称加密算法，进行对称加密测试。</li>
+<li>服务端也使用MasterKey配合对称加密算法，进行对称加密测试。</li>
+</ol>
+<!-- -->
+
+<p>接下来，客户端和服务端的所有通信都是加密通信，并且数据通过签名确保无法篡改。你可能会问，客户端怎么验证CA证书呢？</p>
+<p>其实，CA证书是一个证书链，你可以看一下上图的左边部分：</p>
+<ul>
+<li>从服务端拿到的CA证书是用户证书，我们需要通过证书中的签发人信息找到上级中间证书，再网上找到根证书。</li>
+<li>根证书只有为数不多的权威机构才能生成，一般预置在OS中，根本无法伪造。</li>
+<li>找到根证书后，提取其公钥来验证中间证书的签名，判断其权威性。</li>
+<li>最后再拿到中间证书的公钥，验证用户证书的签名。</li>
+</ul>
+<!-- -->
+
+<p>这，就验证了用户证书的合法性，然后再校验其有效期、域名等信息进一步验证有效性。</p>
+<p>总结一下，TLS通过巧妙的流程和算法搭配解决了传输安全问题：使用对称加密加密数据，使用非对称加密算法确保密钥无法被中间人解密；使用CA证书链认证，确保中间人无法伪造自己的证书和公钥。</p>
+<p>如果网站涉及敏感数据的传输，必须使用HTTPS协议。作为用户，如果你看到网站不是HTTPS的或者看到无效证书警告，也不应该继续使用这个网站，以免敏感信息被泄露。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>今天，我们一起学习了如何保存和传输敏感数据。我来带你回顾一下重点内容。</p>
+<p>对于数据保存，你需要记住两点：</p>
+<ul>
+<li>用户密码不能加密保存，更不能明文保存，需要使用全球唯一的、具有一定长度的、随机的盐，配合单向散列算法保存。使用BCrypt算法，是一个比较好的实践。</li>
+<li>诸如姓名和身份证这种需要可逆解密查询的敏感信息，需要使用对称加密算法保存。我的建议是，把脱敏数据和密文保存在业务数据库，独立使用加密服务来做数据加解密；对称加密需要用到的密钥和初始化向量，可以和业务数据库分开保存。</li>
+</ul>
+<!-- -->
+
+<p>对于数据传输，则务必通过SSL&#x2F;TLS进行传输。对于用于客户端到服务端传输数据的HTTP，我们需要使用基于SSL&#x2F;TLS的HTTPS。对于一些走TCP的RPC服务，同样可以使用SSL&#x2F;TLS来确保传输安全。</p>
+<p>最后，我要提醒你的是，如果不确定应该如何实现加解密方案或流程，可以咨询公司内部的安全专家，或是参考业界各大云厂商的方案，切勿自己想当然地去设计流程，甚至创造加密算法。</p>
+<p>今天用到的代码，我都放在了GitHub上，你可以点击<a target="_blank" rel="noopener" href="https://github.com/JosephZhu1983/java-common-mistakes">这个链接</a>查看。</p>
+<h2 id="思考与讨论"><a href="#思考与讨论" class="headerlink" title="思考与讨论"></a>思考与讨论</h2><ol>
+<li>虽然我们把用户名和密码脱敏加密保存在数据库中，但日志中可能还存在明文的敏感数据。你有什么思路在框架或中间件层面，对日志进行脱敏吗？</li>
+<li>你知道HTTPS双向认证的目的是什么吗？流程上又有什么区别呢？</li>
+</ol>
+<!-- -->
+
+<p>关于各种加密算法，你还遇到过什么坑吗？你又是如何保存敏感数据的呢？我是朱晔，欢迎在评论区与我留言分享你的想法，也欢迎你把今天的内容分享给你的朋友或同事，一起交流。</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
+      
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-06-17T00:50:30+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2024年6月17日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/&title= - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/&title= - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/&title= - ehzyil's blog&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/29%20_%20%E6%95%B0%E6%8D%AE%E5%92%8C%E4%BB%A3%E7%A0%81%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%B0%B1%E6%98%AF%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BB%A3%E7%A0%81%E5%B0%B1%E6%98%AF%E4%BB%A3%E7%A0%81/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>2024年6月17日</p>
+          <p class='content'>29 | 数据和代码：数据就是数据，代码就是代码作者: 朱晔
+完成时间:
+总结时间:
+
+
+你好，我是朱晔。今天，我来和你聊聊数据和代码的问题。
+正如这一讲标题“数据就是数据，代码就是代码”所说，...</p>
+        </a>
+      
+      
+        <a class='next' href='/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/31%20_%20%E5%8A%A0%E9%A4%901%EF%BC%9A%E5%B8%A6%E4%BD%A0%E5%90%83%E9%80%8F%E8%AF%BE%E7%A8%8B%E4%B8%ADJava%208%E7%9A%84%E9%82%A3%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%80%EF%BC%89/'>
+          <p class='title'>2024年6月17日<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>31 | 加餐1：带你吃透课程中Java 8的那些重要知识点（一）作者: 朱晔
+完成时间:
+总结时间:
+
+
+你好，我是朱晔。
+Java 8是目前最常用的JDK版本，在增强代码可读性、简化代码方面...</p>
+        </a>
+      
+    </div>
+  
+  <!-- 文章推荐 -->
+  
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
+    
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
+  
+
+  
+    
+    
+      
+    
+  
+
+
+<div class="widget-sticky">
+
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E8%AF%A5%E6%80%8E%E6%A0%B7%E4%BF%9D%E5%AD%98%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%9F"><span class="toc-text">应该怎样保存用户密码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E4%BF%9D%E5%AD%98%E5%A7%93%E5%90%8D%E5%92%8C%E8%BA%AB%E4%BB%BD%E8%AF%81%EF%BC%9F"><span class="toc-text">应该怎么保存姓名和身份证？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%B8%80%E5%BC%A0%E5%9B%BE%E8%AF%B4%E6%B8%85%E6%A5%9AHTTPS"><span class="toc-text">用一张图说清楚HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span class="toc-text">思考与讨论</span></a></li></ol>
+  </div>
+</section>
+
+  
+
+</div>
+
+  <!-- Custom Files side begin -->
+  
+  <!-- Custom Files side end -->
+</aside>
+
+
+
+        </div>
+        
+  
+  <footer class="footer clearfix"  itemscope itemtype="http://schema.org/WPFooter">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper" itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/#6.0.0-alpha.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © since 1000-7</a></p>
+
+        </div>
+      
+    
+    <!-- Custom Files footer begin-->
+    
+    <!-- Custom Files footer end-->
+  </footer>
+
+
+        <a id="s-top" class="fa-solid fa-arrow-up fa-fw" title="top"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+  /******************** volantis.dom ********************************/
+  // 页面选择器 将dom对象缓存起来 see: /source/js/app.js etc.
+  volantis.dom.bodyAnchor = volantis.dom.$(document.getElementById("safearea")); // 页面主体
+  volantis.dom.topBtn = volantis.dom.$(document.getElementById('s-top')); // 向上
+  volantis.dom.wrapper = volantis.dom.$(document.getElementById('wrapper')); // 整个导航栏
+  volantis.dom.coverAnchor = volantis.dom.$(document.querySelector('#l_cover .cover-wrapper')); // 1个
+  volantis.dom.switcher = volantis.dom.$(document.querySelector('#l_header .switcher .s-search')); // 搜索按钮   移动端 1个
+  volantis.dom.header = volantis.dom.$(document.getElementById('l_header')); // 移动端导航栏
+  volantis.dom.search = volantis.dom.$(document.querySelector('#l_header .m_search')); // 搜索框 桌面端 移动端 1个
+  volantis.dom.mPhoneList = volantis.dom.$(document.querySelectorAll('#l_header .m-phone .list-v')); //  手机端 子菜单 多个
+</script>
+
+<script>
+  
+  volantis.css("https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+  
+  
+  
+</script>
+
+<!-- required -->
+
+
+<!-- internal -->
+
+<script src="/js/app.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="rightmenu-wrapper">
+  <ul class="list-v rightmenu" id="rightmenu-content">
+    
+  <li class='navigation menuNavigation-Content'>
+
+
+    <a class="nav icon-only fix-cursor-default" onclick="history.back()"><i class="fa-solid fa-arrow-left fa-fw"></i></a>
+
+
+
+    <a class="nav icon-only fix-cursor-default" onclick="history.forward()"><i class="fa-solid fa-arrow-right fa-fw"></i></a>
+
+
+
+    <a class="nav icon-only fix-cursor-default" onclick="window.location.reload()"><i class="fa-solid fa-redo fa-fw"></i></a>
+
+
+
+    <a class="nav icon-only fix-cursor-default" onclick="VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)"><i class="fa-solid fa-arrow-up fa-fw"></i></a>
+
+
+  </li>
+
+
+    <hr class="menuLoad-Content" >
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="copyPaste" data-event="copyPaste" data-group="inputBox">
+      <i class="fa-solid fa-paste fa-fw"></i>
+      粘贴文本
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="copyAll" data-event="copyAll" data-group="inputBox">
+      <i class="fa-solid fa-object-ungroup fa-fw"></i>
+      全选文本
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="copyText" data-event="copyText" data-group="seletctText">
+      <i class="fa-solid fa-copy fa-fw"></i>
+      复制文本
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="searchWord" data-event="OpenSearch(__text__)" data-group="seletctText">
+      <i class="fa-solid fa-search fa-fw"></i>
+      站内搜索
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="googleSearch" data-event="window.open(`https://www.google.com/search?q=${__text__}`)" data-group="seletctText">
+      <i class="fa-solid fa-search fa-fw"></i>
+      谷歌搜索
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="openTab" data-event="window.open(__link__)" data-group="elementCheck">
+      <i class="fa-solid fa-external-link-square-alt fa-fw"></i>
+      新标签页打开
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="copyLink" data-event="copyLink" data-group="elementCheck">
+      <i class="fa-solid fa-link fa-fw"></i>
+      复制链接地址
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="copyImg" data-event="copyImg" data-group="elementImage">
+      <i class="fa-solid fa-image fa-fw"></i>
+      复制图片
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="googleImg" data-event="window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)" data-group="elementImage">
+      <i class="fa-solid fa-images fa-fw"></i>
+      谷歌识图
+    </span>
+  </li>
+
+
+
+    <hr class="menuLoad-Content" >
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="darkMode" data-event="volantis.dark.toggle()" data-group="darkMode">
+      <i class="fa-solid fa-moon fa-fw"></i>
+      暗黑模式
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="printMode" data-event="printMode" data-group="articlePage">
+      <i class="fa-solid fa-print fa-fw"></i>
+      打印页面
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="readMode" data-event="readMode" data-group="articlePage">
+      <i class="fa-solid fa-book-open fa-fw"></i>
+      阅读模式
+    </span>
+  </li>
+
+
+  </ul>
+</div>
+<script src="/js/plugins/rightMenus.js"></script>
+<script>
+  const RightMenusFunction = {};
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  //RightMenusFunction['copyPaste'] = (fun) => {fun()}
+
+
+
+
+
+  //RightMenusFunction['copyAll'] = (fun) => {fun()}
+
+
+
+
+
+  //RightMenusFunction['copyText'] = (fun) => {fun()}
+
+
+
+
+
+  RightMenusFunction['searchWord'] = (__text__) => {OpenSearch(__text__)}
+
+
+
+
+
+  RightMenusFunction['googleSearch'] = (__text__) => {window.open(`https://www.google.com/search?q=${__text__}`)}
+
+
+
+
+
+  RightMenusFunction['openTab'] = (__link__) => {window.open(__link__)}
+
+
+
+
+
+  //RightMenusFunction['copyLink'] = (fun) => {fun()}
+
+
+
+
+
+  //RightMenusFunction['copyImg'] = (fun) => {fun()}
+
+
+
+
+
+  RightMenusFunction['googleImg'] = (__link__) => {window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)}
+
+
+
+
+
+
+
+  RightMenusFunction['darkMode'] = () => {volantis.dark.toggle()}
+
+
+
+
+
+  //RightMenusFunction['printMode'] = (fun) => {fun()}
+
+
+
+
+
+  //RightMenusFunction['readMode'] = (fun) => {fun()}
+
+
+
+</script>
+
+
+
+<!-- rightmenu要在darkmode之前（ToggleButton） darkmode要在comments之前（volantis.dark.push）-->
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "color-scheme";
+const rootElementDarkModeAttributeName = "color-scheme";
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+  getCustomDarkMode();
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+/**
+ * get target mode
+ */
+ const getCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  if(currentSetting=="dark"){
+    volantis.dark.mode="light";
+  }else{
+    volantis.dark.mode="dark";
+  }
+  // console.log(volantis.dark.mode)
+};
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+/**
+ * 暗黑模式触发器
+ */
+volantis.dark.toggle=()=>{
+  const mode = toggleCustomDarkMode();
+  applyCustomDarkModeSettings(mode);
+  // 使用 volantis.dark.push 方法传入volantis.dark.toggle回调函数 参见layout/_partial/scripts/global.ejs
+  volantis.dark.method.toggle.start();
+}
+/**
+ * bind event for toggle button
+ */
+
+function bindToggleButton() {
+  var btn= document.querySelectorAll("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn")
+  btn.forEach(function (e) {
+    volantis.dom.$(e).on('click',volantis.dark.toggle);
+  })
+}
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", ()=>{
+  volantis.requestAnimationFrame(bindToggleButton)
+});
+
+const darkModelListeners={
+  dark:(mediaQueryList )=>{
+    if(mediaQueryList.matches){
+      volantis.dark.mode = "dark";
+    }
+    volantis.dark.method.toggle.start();
+  },
+  light:(mediaQueryList)=>{
+    if(mediaQueryList.matches){
+      volantis.dark.mode = "light";
+    }
+    volantis.dark.method.toggle.start();
+  }
+}
+window.matchMedia('(prefers-color-scheme: dark)').addListener(darkModelListeners.dark)
+window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListeners.light)
+</script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    
+      const sites_api = document.getElementById('sites-api');
+      if (sites_api != undefined && typeof SitesJS === 'undefined') {
+        volantis.js("/js/plugins/tags/sites.js")
+      }
+    
+    
+      const friends_api = document.getElementById('friends-api');
+      if (friends_api != undefined && typeof FriendsJS === 'undefined') {
+        volantis.js("/js/plugins/tags/friends.js")
+      }
+    
+    
+      const contributors_api = document.getElementById('contributors-api');
+      if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
+        volantis.js("/js/plugins/tags/contributors.js")
+      }
+    
+  };
+  loadIssuesJS()
+</script>
+
+
+
+
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.1.0/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: ["#"],
+	maxRPS: 6,
+	hoverDelay: 0
+  };
+</script>
+<script defer src="https://unpkg.com/volantis-static@0.0.1660614606622/libs/flying-pages/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+      <script>
+  volantis.layoutHelper("comments",`<div id="twikoo_container"><i class="fa-solid fa-cog fa-spin fa-fw fa-2x"></i></div>`)
+  function load_twikoo() {
+    if(!document.querySelectorAll("#twikoo_container")[0])return;
+    volantis.js("https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.10/twikoo.min.js", p_twikoo)
+  }
+  function p_twikoo() {
+    if(!document.querySelectorAll("#twikoo_container")[0])return;
+    let path = pdata.commentPath;
+    let placeholder = pdata.commentPlaceholder || "" || "";
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    twikoo.init(Object.assign(Object.assign({"path":null,"envId":"https://twikoo-ten-liard.ehzyil.xyz/","placeholder":null,"visitor":true}, {
+      el: '#twikoo_container',
+      path: path,
+      placeholder: placeholder,
+      onCommentLoaded: function() {
+        if(typeof VolantisFancyBox === "undefined") {
+          const checkFancyBox = setInterval(() => {
+            if(typeof VolantisFancyBox === "undefined") return;
+            clearInterval(checkFancyBox);
+            VolantisFancyBox.groupBind('.tk-content img:not([class*="emo"])', 'Comments');
+          })
+        } else {
+          VolantisFancyBox.groupBind('.tk-content img:not([class*="emo"])', 'Comments');
+        }
+      }
+    }),pdata.commentConfig))
+  }
+  load_twikoo();
+</script>
+
+    
+
+
+
+
+
+<!-- optional -->
+
+  <script>
+  async function loadSearchScript() {
+    
+        
+    
+    return volantis.js("/js/search/hexo.js");
+  }
+
+  function loadSearchService() {
+    loadSearchScript();
+    document.querySelectorAll(".input.u-search-input").forEach((e) => {
+      e.removeEventListener("focus", loadSearchService, false);
+    });
+
+    document.querySelectorAll(".u-search-form").forEach((e) => {
+      e.addEventListener("submit", (event) => {
+        event.preventDefault();
+      }, false);
+    });
+  }
+
+  // 打开并搜索 字符串 s
+  function OpenSearch(s) {
+    if (typeof SearchService === 'undefined')
+      loadSearchScript().then(() => {
+        SearchService.setQueryText(s);
+        SearchService.search();
+      });
+    else {
+      SearchService.setQueryText(s);
+      SearchService.search();
+    }
+  }
+
+  // 访问含有 ?s=xxx  的链接时打开搜索 // 与搜索引擎 structured data 相关: /scripts/helpers/structured-data/lib/config.js
+  if (window.location.search && /^\?s=/g.test(window.location.search)) {
+    let queryText = decodeURI(window.location.search)
+      .replace(/\ /g, "-")
+      .replace(/^\?s=/g, "");
+    OpenSearch(queryText);
+  }
+
+  // 搜索输入框获取焦点时加载搜索
+  document.querySelectorAll(".input.u-search-input").forEach((e) => {
+    e.addEventListener("focus", loadSearchService, false);
+  });
+</script>
+
+
+
+
+
+
+
+  
+  
+<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+  
+<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/browse/prismjs@1.29.0/themes/prism-okaidia.css">
+
+
+  
+<link rel="stylesheet" href="https://unpkg.com/browse/prismjs@1.29.0/themes/prism-coy.css">
+
+
+<script>
+
+  function p_prismjs_copyCode(){
+    if (!document.querySelector("pre")) {
+      return;
+    }
+    let pres = document.querySelectorAll("pre")
+    pres.forEach(pre=>{
+      var wrapper = document.createElement('div');
+      wrapper.classList.add('code-toolbar');
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    })
+    VolantisApp.utilCopyCode(".code-toolbar pre")
+  }
+  volantis.requestAnimationFrame(p_prismjs_copyCode)
+
+</script>
+
+
+
+
+
+
+
+
+
+
+  <script>
+  function load_swiper() {
+    if (!document.querySelectorAll(".swiper-container")[0]) return;
+    volantis.css("https://cdn.bootcdn.net/ajax/libs/Swiper/8.3.2/swiper-bundle.min.css");
+    volantis.js("https://cdn.bootcdn.net/ajax/libs/Swiper/8.3.2/swiper-bundle.min.js").then(() => {
+      p_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function p_swiper() {
+    volantis.swiper = new Swiper('.swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  }
+
+</script>
+
+
+
+  <script>
+  volantis.css("https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css");
+  volantis.js("https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js").then(() => {
+    Pace.options.restartOnPushState = false;
+    // 阅读进度
+    volantis.scroll.push(() => {
+      Pace.stop();
+      Pace.trigger('start');
+      Pace.bar.update(volantis.scroll.progress() * 100);
+      document.body.className = document.body.className.replaceAll("pace-running ","");
+    },"阅读进度")
+    // todo：配置项开关, 哪些页面添加阅读进度
+  })
+</script>
+
+
+
+
+<script>
+  function listenSidebarTOC() {
+    const navItems = document.querySelectorAll(".toc li");
+    if (!navItems.length) return;
+    const targets = []
+    const sections = Array.from(navItems).forEach((element) => {
+      const link = element.querySelector(".toc-link");
+      const target = document.getElementById(
+        link.getAttribute("href") ? decodeURI(link.getAttribute("href")).replace("#", "") : link.getAttribute("toc-action").split("toc-")[1] // 兼容 hexo-blog-encrypt
+      );
+      targets.push(target)
+      // 解除 a 标签 href 的 锚点定位, a 标签 href 的 锚点定位 会随机启用?? 产生错位???
+      if (link.getAttribute("href")) {
+        link.setAttribute("toc-action", "toc-" + decodeURI(link.getAttribute("href")).replace("#", ""))
+        link.removeAttribute("href")
+      }
+      // 配置 点击 触发新的锚点定位
+      if (target && target.id) {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          // 这里的 addTop 是通过错位使得 toc 自动展开.
+          volantis.scroll.to(target, { addTop: 5, observer: true })
+          // Anchor id
+          history.pushState(null, document.title, "#" + target.id);
+        });
+      }
+      return target;
+    });
+
+    function activateNavByIndex(target) {
+      if (target.classList.contains("active-current")) return;
+
+      document.querySelectorAll(".toc .active").forEach((element) => {
+        element.classList.remove("active", "active-current");
+      });
+      target.classList.add("active", "active-current");
+      let parent = target.parentNode;
+      while (!parent.matches(".toc")) {
+        if (parent.matches("li")) parent.classList.add("active");
+        parent = parent.parentNode;
+      }
+    }
+
+    // 方案一：
+    volantis.activateNavIndex = 0
+    activateNavByIndex(navItems[volantis.activateNavIndex])
+    if (targets[0]) {
+      volantis.scroll.push(() => {
+        if (targets[0].getBoundingClientRect().top >= 0) {
+          volantis.activateNavIndex = 0
+        } else if (targets[targets.length - 1].getBoundingClientRect().top < 0) {
+          volantis.activateNavIndex = targets.length - 1
+        } else {
+          for (let index = 0; index < targets.length; index++) {
+            const target0 = targets[index];
+            const target1 = targets[(index + 1) % targets.length];
+            if (target0.getBoundingClientRect().top < 0 && target1.getBoundingClientRect().top >= 0) {
+              volantis.activateNavIndex = index
+              break;
+            }
+          }
+        }
+        activateNavByIndex(navItems[volantis.activateNavIndex])
+      })
+    }
+
+    // 方案二：
+    // IntersectionObserver 不是完美精确到像素级别 也不是低延时性的
+    // function findIndex(entries) {
+    //   let index = 0;
+    //   let entry = entries[index];
+    //   if (entry.boundingClientRect.top > 0) {
+    //     index = sections.indexOf(entry.target);
+    //     return index === 0 ? 0 : index - 1;
+    //   }
+    //   for (; index < entries.length; index++) {
+    //     if (entries[index].boundingClientRect.top <= 0) {
+    //       entry = entries[index];
+    //     } else {
+    //       return sections.indexOf(entry.target);
+    //     }
+    //   }
+    //   return sections.indexOf(entry.target);
+    // }
+    // function createIntersectionObserver(marginTop) {
+    //   marginTop = Math.floor(marginTop + 10000);
+    //   let intersectionObserver = new IntersectionObserver(
+    //     (entries, observe) => {
+    //       let scrollHeight = document.documentElement.scrollHeight;
+    //       if (scrollHeight > marginTop) {
+    //         observe.disconnect();
+    //         createIntersectionObserver(scrollHeight);
+    //         return;
+    //       }
+    //       let index = findIndex(entries);
+    //       activateNavByIndex(navItems[index]);
+    //     }, {
+    //       rootMargin: marginTop + "px 0px -100% 0px",
+    //       threshold: 0,
+    //     }
+    //   );
+    //   sections.forEach((element) => {
+    //     element && intersectionObserver.observe(element);
+    //   });
+    // }
+    // createIntersectionObserver(document.documentElement.scrollHeight);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    volantis.requestAnimationFrame(listenSidebarTOC)
+  });
+</script>
+
+
+
+
+
+<script>
+  document.onreadystatechange = function () {
+    if (document.readyState == 'complete') {
+      // 页面加载完毕 样式加载失败，或是当前网速慢，或是开启了省流模式
+      const { saveData, effectiveType } = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {}
+      if (getComputedStyle(document.querySelector("#safearea"), null)["display"] == "none" || saveData || /2g/.test(effectiveType)) {
+        document.querySelectorAll(".reveal").forEach(function (e) {
+          e.style["opacity"] = "1";
+        });
+        document.querySelector("#safearea").style["display"] = "block";
+      }
+    }
+  }
+</script>
+
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","sameAs":["https://github.com/volantis-x"],"description":"test description"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.ehzyil.xyz/","name":"ehzyil's blog"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.ehzyil.xyz/2024/06/17/2024/Java 业务开发常见错误 100 例/30 _ 如何正确保存和传输敏感数据？/"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","keywords":null,"description":"test description","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/","description":"test description"},"publisher":{"@type":"Organization","name":"ehzyil's blog","url":"https://blog.ehzyil.xyz/","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.ehzyil.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"test description","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.ehzyil.xyz/"},"publisher":{"@type":"Organization","name":"ehzyil's blog","logo":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.ehzyil.xyz/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/30%20_%20%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E4%BF%9D%E5%AD%98%E5%92%8C%E4%BC%A0%E8%BE%93%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%EF%BC%9F/","wordCount":0,"datePublished":"2024-06-17T00:50:30.694Z","dateModified":"2024-06-17T00:50:30.694Z","image":{"@type":"ImageObject","url":"https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+
+
+
+
+    </div>
+    <!-- import body_end begin-->
+        <script></script>
+    <!-- import body_end end-->
+    <!-- Custom Files bodyEnd begin-->
+    
+    <!-- Custom Files bodyEnd end-->
+  </body>
+</html>

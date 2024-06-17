@@ -2168,7 +2168,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1711122341290),
+    lastupdate: new Date(1718585449922),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2858,7 +2858,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/19/2023/JVM学习笔记/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/06/17/2024/Java 业务开发常见错误 100 例/04、连接池：别让连接池帮了倒忙/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2876,30 +2876,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/19/2023/JVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"  itemprop="url">
-        JVM学习笔记
+      <a href="/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/04%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%B8%AE%E4%BA%86%E5%80%92%E5%BF%99/"  itemprop="url">
+        2024年6月17日
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        初始JVM什么是JVMJVM 全称是 Java Virtual Machine，中文译名 Java虚拟机。
-JVM 本质上是一个运行在计算机上的程序，他的职责是运行Java字节码文件。
+        04 | 连接池：别让连接池帮了倒忙作者: 朱晔
+完成时间:
+总结时间:
 
 
-
-
-JVM 的功能解释和运行
-
-对字节码文件中的指令实时的解释成机器码让计算机执行
-
-内存管理
-
-自动为对象、方法等分配内存
-自动的垃圾回收机制，回收不再使用的对象
-
-即时编译 ——主要是为了支持跨平台特...
+你好，我是朱晔。今天，我们来聊聊使用连接池需要注意的问题。
+在上一讲，我们学习了使用线程池需要注意的问题。今天，我再与你说说另一种很重要的池化技术，即连接池。
+我先和你说说连接池的结构。连接池一般对外提供获得连接、归还连接的接口给客户端使用，并暴露最小空闲连接数、最大连接数等可配置参数，在内部则实现连接建立、连接心...
       
     
   </div>
@@ -2908,27 +2900,19 @@ JVM 的功能解释和运行
       <div>
         
           
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
+          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
           <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="请设置文章作者">
+            <meta itemprop="url" content="/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-19T00:00:00+00:00">2023-10-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
+        <time itemprop="dateCreated datePublished" datetime="2024-06-17T00:50:30+00:00">2024-06-17</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/19/2023/JVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/' itemprop="url">
+          <a class='readmore' href='/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/04%E3%80%81%E8%BF%9E%E6%8E%A5%E6%B1%A0%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%B8%AE%E4%BA%86%E5%80%92%E5%BF%99/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2944,7 +2928,7 @@ JVM 的功能解释和运行
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/19/数据结构与算法/LeetCode刷题笔记/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/06/17/2024/Java 业务开发常见错误 100 例/05、HTTP调用：你考虑到超时、重试、并发了吗？/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2962,21 +2946,24 @@ JVM 的功能解释和运行
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"  itemprop="url">
-        LeetCode刷题笔记
+      <a href="/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/05%E3%80%81HTTP%E8%B0%83%E7%94%A8%EF%BC%9A%E4%BD%A0%E8%80%83%E8%99%91%E5%88%B0%E8%B6%85%E6%97%B6%E3%80%81%E9%87%8D%E8%AF%95%E3%80%81%E5%B9%B6%E5%8F%91%E4%BA%86%E5%90%97%EF%BC%9F/"  itemprop="url">
+        2024年6月17日
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        1、两数之和给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。
-你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
-你可以按任意顺序返回答案。
-示例 1：
-输入：nums &#x3D; [2,7,11,15], target &#x3D; 9
-输出：[0,1]
-解释：...
+        05 | HTTP调用：你考虑到超时、重试、并发了吗？作者: 朱晔
+完成时间:
+总结时间:
+
+
+你好，我是朱晔。今天，我们一起聊聊进行HTTP调用需要注意的超时、重试、并发等问题。
+与执行本地方法不同，进行HTTP调用本质上是通过HTTP协议进行一次网络请求。网络请求必然有超时的可能性，因此我们必须考虑到这三点：
+
+首先，框架设置的默认超时是否合理；
+其次，考虑到网络的不稳定，超时后的请求重...
       
     
   </div>
@@ -2985,27 +2972,19 @@ JVM 的功能解释和运行
       <div>
         
           
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
+          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
           <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="请设置文章作者">
+            <meta itemprop="url" content="/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-19T00:00:00+00:00">2023-10-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url"><span itemprop="name">数据结构与算法</span></a>
-            </span>
-          
+        <time itemprop="dateCreated datePublished" datetime="2024-06-17T00:50:30+00:00">2024-06-17</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/' itemprop="url">
+          <a class='readmore' href='/2024/06/17/2024/Java%20%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%20100%20%E4%BE%8B/05%E3%80%81HTTP%E8%B0%83%E7%94%A8%EF%BC%9A%E4%BD%A0%E8%80%83%E8%99%91%E5%88%B0%E8%B6%85%E6%97%B6%E3%80%81%E9%87%8D%E8%AF%95%E3%80%81%E5%B9%B6%E5%8F%91%E4%BA%86%E5%90%97%EF%BC%9F/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3021,7 +3000,7 @@ JVM 的功能解释和运行
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/CentOS下的软件/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/04/17/2024/修改某个人在Git中所有提交记录的名字/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3039,20 +3018,18 @@ JVM 的功能解释和运行
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/CentOS%E4%B8%8B%E7%9A%84%E8%BD%AF%E4%BB%B6/"  itemprop="url">
-        CentOS下的软件
+      <a href="/2024/04/17/2024/%E4%BF%AE%E6%94%B9%E6%9F%90%E4%B8%AA%E4%BA%BA%E5%9C%A8Git%E4%B8%AD%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%9A%84%E5%90%8D%E5%AD%97/"  itemprop="url">
+        修改某个人在Git中所有提交记录的名字
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        CentOS下MySQLMySQL8.0.27 安装[root@localhost ~]# uname -m
-x86_64
-[root@localhost ~]# cat &#x2F;etc&#x2F;redhat-release
-CentOS Linux release 7.9.2009 (Core)
-#解压
-tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
+        
+确认本地全局邮箱&#x2F;用户名： 使用命令git config user.name和git config user.email查看当前设置的用户名和邮箱。如果需要修改，可以使用git config --global user.name &quot;新用户名&quot;和git config --global user.email &quot;新邮箱地址&quot;进行设置【3】。
+
+使...
       
     
   </div>
@@ -3068,7 +3045,154 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-04-17T00:00:00+00:00">2024-04-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/04/17/2024/%E4%BF%AE%E6%94%B9%E6%9F%90%E4%B8%AA%E4%BA%BA%E5%9C%A8Git%E4%B8%AD%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%9A%84%E5%90%8D%E5%AD%97/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/04/01/2024/git同时连接gitlab和github/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ehzyil's blog">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="ehzyil's blog">
+    <meta itemprop="description" content="test description">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/04/01/2024/git%E5%90%8C%E6%97%B6%E8%BF%9E%E6%8E%A5gitlab%E5%92%8Cgithub/"  itemprop="url">
+        git同时连接gitlab和github
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        GIT同时连接gitlab和github1、生成秘钥公司的 Gitlab 生成一个 SSH-Key
+# 在~&#x2F;.ssh&#x2F;目录会生成id-rsa_lab和id-rsa_lab.pub私钥和公钥。
+$ ssh-keygen -t rsa -C &quot;注册的gitlab邮箱&quot; -f ~&#x2F;.ssh&#x2F;id_rsa_lab
+
+公网 Github 生...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
+            <meta itemprop="name" content="ehzyil">
+            <meta itemprop="url" content="https://ehzyil.github.io/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-04-01T00:00:00+00:00">2024-04-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/04/01/2024/git%E5%90%8C%E6%97%B6%E8%BF%9E%E6%8E%A5gitlab%E5%92%8Cgithub/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/22/2024/Linux下如何查看CPU使用率/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ehzyil's blog">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="ehzyil's blog">
+    <meta itemprop="description" content="test description">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/03/22/2024/Linux%E4%B8%8B%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8BCPU%E4%BD%BF%E7%94%A8%E7%8E%87/"  itemprop="url">
+        Linux下如何查看CPU使用率
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        Linux下如何查看CPU使用率在Linux环境下，我们有多种命令和工具可以用于查看CPU使用率和系统资源使用情况。以下是几种常用方法：
+一、使用top命令查看Linux资源占用情况top命令可以实时动态地查看运行中的系统状态，包括系统任务、系统负载、运行队列、活动进程等信息。它是Linux下常用的查看cpu使用情况的命令。使用时，在终端里输入top，然后按回车，就可以看到CPU、内存、任务...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
+            <meta itemprop="name" content="ehzyil">
+            <meta itemprop="url" content="https://ehzyil.github.io/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-03-22T00:00:00+00:00">2024-03-22</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Linux/">Linux</a>
@@ -3081,7 +3205,7 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/CentOS%E4%B8%8B%E7%9A%84%E8%BD%AF%E4%BB%B6/' itemprop="url">
+          <a class='readmore' href='/2024/03/22/2024/Linux%E4%B8%8B%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8BCPU%E4%BD%BF%E7%94%A8%E7%8E%87/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3097,7 +3221,7 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/SpringBoot项目中集成第三方登录功能/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/22/2024/Oracle数据库使用记录/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3115,16 +3239,18 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/SpringBoot%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/"  itemprop="url">
-        SpringBoot项目中集成第三方登录功能
+      <a href="/2024/03/22/2024/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"  itemprop="url">
+        Oracle数据库使用记录
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        TODO！！！
-
+        Oracle数据库使用记录一、Oracle忘记用户名和密码　　1、打开命令提示符，输入命令sqlplus ,进入oracle控制台
+　　2、用户名输入 sqlplus &#x2F; as sysdba，口令：空（回车即可）
+　　3、连接成功后，输入“select username from dba_users”查看用户列表
+　　4、若修改某一个用户密码， 修改用户口令 格式为（注意后面的分号...
       
     
   </div>
@@ -3140,20 +3266,20 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-22T00:00:00+00:00">2024-03-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/SpringBoot%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/' itemprop="url">
+          <a class='readmore' href='/2024/03/22/2024/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3169,7 +3295,7 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/基于@ControllerAdvice实现全局异常处理/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/22/2024/PostgreSQL 使用记录/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3187,18 +3313,27 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/%E5%9F%BA%E4%BA%8E@ControllerAdvice%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"  itemprop="url">
-        基于@ControllerAdvice实现全局异常处理
+      <a href="/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"  itemprop="url">
+        PostgreSQL 使用记录
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        RestControllerAdvice注解与全局异常处理1.前置知识@RestControllerAdvice 和 @ExceptionHandler 是 Spring 框架中用于处理全局异常的注解。
+        PostgreSQL 使用记录Docker安装PostgreSQL安装 Docker
 
-@RestControllerAdvice:
-@RestControllerAdvice 是一个组合注解，结合了 @ControllerAdvice 和 @ResponseBody。它用于...
+访问 Docker 官方网站：https://docs.docker.com/desktop/
+
+拉取 PostgreSQL 镜像
+
+打开终端或命令提示符。
+运行以下命令拉取 PostgreSQL 镜像：
+
+docker pull postgres:13.0
+
+创建 PostgreSQL 容器
+运行以下命...
       
     
   </div>
@@ -3214,20 +3349,20 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-22T00:00:00+00:00">2024-03-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/%E5%9F%BA%E4%BA%8E@ControllerAdvice%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/' itemprop="url">
+          <a class='readmore' href='/2024/03/22/2024/PostgreSQL%20%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3243,7 +3378,7 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/基于AOP实现访客日志记录/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/22/2024/Prompt  Summarize/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3261,20 +3396,18 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/%E5%9F%BA%E4%BA%8EAOP%E5%AE%9E%E7%8E%B0%E8%AE%BF%E5%AE%A2%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/"  itemprop="url">
-        基于AOP实现访客日志记录
+      <a href="/2024/03/22/2024/Prompt%20%20Summarize/"  itemprop="url">
+        Prompt Summarize
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        基于AOP实现访客日志记录1.准备所需的日志表create table t_visit_log
-(
-    id          int auto_increment comment 'id'
-        primary key,
-    page        varchar(50) null comment '访问页面',
-    ip_address  varchar(50) n...
+        Prompt SummarizeB站视频分章节You are a helpful assistant that summarize key points of video subtitle.
+Summarize 3 to 8 brief key points in language &#39;中文简体&#39;.
+Answer in markdown json format.
+The emo...
       
     
   </div>
@@ -3290,20 +3423,20 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-22T00:00:00+00:00">2024-03-22</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/%E5%9F%BA%E4%BA%8EAOP%E5%AE%9E%E7%8E%B0%E8%AE%BF%E5%AE%A2%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/' itemprop="url">
+          <a class='readmore' href='/2024/03/22/2024/Prompt%20%20Summarize/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3319,7 +3452,7 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/基于策略模式实现图片上传/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/11/2024/Git问题：解决“sshconnect to host github.com port 22 Connection timed out”/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3337,22 +3470,18 @@ tar -zxvf mysql-8.0.27-1.el7.x86_64.rpm-...
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/%E5%9F%BA%E4%BA%8E%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/"  itemprop="url">
-        基于策略模式实现图片上传
+      <a href="/2024/03/11/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/"  itemprop="url">
+        Git连接超时
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        基于策略模式实现图片上传1.前置准备-策略接口的编写新建一个名称为 strategy 的文件夹（在代码规范中，使用设计模式要明确的体现出来，便于后期维护）
-public interface UploadStrategy &#123;
-    /**
-     * 上传文件
-     *
-     * @param file 文件
-     * @param path 上传路径
-     * ...
+        Git问题：解决“sshconnect to host github.com port 22 Connection timed out”在写毕设的时候提交代码发现报错，查了查以为公司网禁不能提交代码，后来发现用自己热点也提交不了，于是继续在网上寻找解决方案。
+
+Push failed 
+ssh: connect to host github.com port 22: Connection t...
       
     
   </div>
@@ -3368,20 +3497,20 @@ public interface UploadStrategy &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-11T20:22:46+00:00">2024-03-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/%E5%9F%BA%E4%BA%8E%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/' itemprop="url">
+          <a class='readmore' href='/2024/03/11/2024/Git%E9%97%AE%E9%A2%98%EF%BC%9A%E8%A7%A3%E5%86%B3%E2%80%9Csshconnect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E2%80%9D/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3397,7 +3526,7 @@ public interface UploadStrategy &#123;
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/17/2023/异常之doesn't have a default value/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/03/11/2024/MyBatis test表达式中判断相等无效/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3415,17 +3544,19 @@ public interface UploadStrategy &#123;
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/17/2023/%E5%BC%82%E5%B8%B8%E4%B9%8Bdoesn't%20have%20a%20default%20value/"  itemprop="url">
-        异常之doesn't have a default value
+      <a href="/2024/03/11/2024/MyBatis%20test%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E5%88%A4%E6%96%AD%E7%9B%B8%E7%AD%89%E6%97%A0%E6%95%88/"  itemprop="url">
+        MyBatis test表达式中判断相等无效
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        MySQL报错Field ‘user_id’ doesn’t have a default value一、问题
-执行sql语句时，报错Field ‘user_id’ doesn’t have a default value；
-![image-20231017122452384](.&#x2F;images&#x2F;异常之doesn’t have a default value&#x2F;i...
+        
+现象
+
+想通过传入一个remarkflag标志，当remarkflag为”0”时，查询数据库中remark列为空字符串的行，当remarkflag为”1”时，查询数据库中某字段为非空字符串的行。代码如下：
+&lt;if test&#x3D;&quot;remarkflag !&#x3D; &#39;&#39; and remarkflag &#x3D;&#x3D; &#39;0&#39;&...
       
     
   </div>
@@ -3441,178 +3572,20 @@ public interface UploadStrategy &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+00:00">2023-10-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-11T20:22:46+00:00">2024-03-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url"><span itemprop="name">记录</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/10/17/2023/%E5%BC%82%E5%B8%B8%E4%B9%8Bdoesn't%20have%20a%20default%20value/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/16/2023/Spring Boot整合Quartz实现动态定时任务/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/16/2023/Spring%20Boot%E6%95%B4%E5%90%88Quartz%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"  itemprop="url">
-        Spring Boot整合Quartz实现动态定时任务
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        本文目的是Spring Boot整合Quartz实现动态任务配置和实现定时清理日志。
-Spring Boot整合Quartz 详见 Quartz 使用教程
-前置准备/**
- * 定时任务
- */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Task &#123;
-
-    /**
-     * 任务id...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-10-16T20:22:46+00:00">2023-10-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/10/16/2023/Spring%20Boot%E6%95%B4%E5%90%88Quartz%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/15/2023/Git常用操作/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"  itemprop="url">
-        Git常用操作
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        Git拉取远程分支到本地以https://github.com/houqingying/ChatViewer/tree/main该仓库为例，拉取frontend分支的代码到ChatViewer-frontend文件夹
-步骤：
-1、新建一个空文件，文件名为ChatViewer-frontend
-2、初始化  git init
-ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-10-15T18:19:34+00:00">2023-10-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/10/15/2023/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/' itemprop="url">
+          <a class='readmore' href='/2024/03/11/2024/MyBatis%20test%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E5%88%A4%E6%96%AD%E7%9B%B8%E7%AD%89%E6%97%A0%E6%95%88/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3639,7 +3612,7 @@ ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
           </a>
         
         <p class="current">
-          5 / 7
+          5 / 11
         </p>
         
           <a class="next" rel="next" href="/page/6/">
@@ -3797,7 +3770,7 @@ ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
           <li><a class="flat-box"
             title="/categories/%E8%AE%B0%E5%BD%95/" href="/categories/%E8%AE%B0%E5%BD%95/"
             active-action="action-categoriesE8AEB0E5BD95"
-            ><div class='name'>记录</div><div class='badge'>(21)</div></a></li>
+            ><div class='name'>记录</div><div class='badge'>(22)</div></a></li>
         
       </ul>
     </div>
@@ -3822,7 +3795,7 @@ ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/Azure/" style="font-size: 14px; color: #999">Azure</a> <a href="/tags/CentOS/" style="font-size: 15.67px; color: #8e8e8e">CentOS</a> <a href="/tags/Docker/" style="font-size: 19px; color: #777">Docker</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 14px; color: #999">IntelliJ IDEA</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java-Script/" style="font-size: 14px; color: #999">Java Script</a> <a href="/tags/Leetcode/" style="font-size: 15.67px; color: #8e8e8e">Leetcode</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 17.33px; color: #828282">Mybatis</a> <a href="/tags/Nacos/" style="font-size: 14px; color: #999">Nacos</a> <a href="/tags/Oracle/" style="font-size: 14px; color: #999">Oracle</a> <a href="/tags/PostgreSQL/" style="font-size: 14px; color: #999">PostgreSQL</a> <a href="/tags/Prompt/" style="font-size: 14px; color: #999">Prompt</a> <a href="/tags/Quartz/" style="font-size: 15.67px; color: #8e8e8e">Quartz</a> <a href="/tags/Spring/" style="font-size: 15.67px; color: #8e8e8e">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 14px; color: #999">Spring Security</a> <a href="/tags/SpringBoot/" style="font-size: 22.33px; color: #606060">SpringBoot</a> <a href="/tags/Telegram/" style="font-size: 15.67px; color: #8e8e8e">Telegram</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/Yauaa/" style="font-size: 14px; color: #999">Yauaa</a> <a href="/tags/docker/" style="font-size: 14px; color: #999">docker</a> <a href="/tags/git/" style="font-size: 15.67px; color: #8e8e8e">git</a> <a href="/tags/linux/" style="font-size: 15.67px; color: #8e8e8e">linux</a> <a href="/tags/node-js/" style="font-size: 14px; color: #999">node.js</a> <a href="/tags/render/" style="font-size: 14px; color: #999">render</a> <a href="/tags/rss/" style="font-size: 14px; color: #999">rss</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 14px; color: #999">内网穿透</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" style="font-size: 14px; color: #999">图片上传</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 15.67px; color: #8e8e8e">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15.67px; color: #8e8e8e">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 17.33px; color: #828282">数据结构与算法</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 14px; color: #999">日志</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 14px; color: #999">服务器</a> <a href="/tags/%E7%BD%91%E4%B8%8A%E5%86%B2%E6%B5%AA%E6%8C%87%E5%8D%97/" style="font-size: 14px; color: #999">网上冲浪指南</a> <a href="/tags/%E7%BD%91%E7%9B%98/" style="font-size: 14px; color: #999">网盘</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 14px; color: #999">踩坑</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 17.33px; color: #828282">软件</a>
+      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/AOP/" style="font-size: 14px; color: #999">AOP</a> <a href="/tags/Azure/" style="font-size: 14px; color: #999">Azure</a> <a href="/tags/CentOS/" style="font-size: 15.43px; color: #8f8f8f">CentOS</a> <a href="/tags/Docker/" style="font-size: 19.71px; color: #727272">Docker</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 14px; color: #999">IntelliJ IDEA</a> <a href="/tags/JSP/" style="font-size: 14px; color: #999">JSP</a> <a href="/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Java-Script/" style="font-size: 14px; color: #999">Java Script</a> <a href="/tags/Leetcode/" style="font-size: 15.43px; color: #8f8f8f">Leetcode</a> <a href="/tags/Linux/" style="font-size: 15.43px; color: #8f8f8f">Linux</a> <a href="/tags/MySQL/" style="font-size: 21.14px; color: #686868">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 16.86px; color: #868686">Mybatis</a> <a href="/tags/Nacos/" style="font-size: 14px; color: #999">Nacos</a> <a href="/tags/Oracle/" style="font-size: 14px; color: #999">Oracle</a> <a href="/tags/PostgreSQL/" style="font-size: 14px; color: #999">PostgreSQL</a> <a href="/tags/Prompt/" style="font-size: 14px; color: #999">Prompt</a> <a href="/tags/Quartz/" style="font-size: 15.43px; color: #8f8f8f">Quartz</a> <a href="/tags/Spring/" style="font-size: 15.43px; color: #8f8f8f">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 14px; color: #999">Spring Security</a> <a href="/tags/SpringBoot/" style="font-size: 22.57px; color: #5f5f5f">SpringBoot</a> <a href="/tags/Telegram/" style="font-size: 14px; color: #999">Telegram</a> <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/Yauaa/" style="font-size: 14px; color: #999">Yauaa</a> <a href="/tags/docker/" style="font-size: 14px; color: #999">docker</a> <a href="/tags/git/" style="font-size: 18.29px; color: #7c7c7c">git</a> <a href="/tags/linux/" style="font-size: 15.43px; color: #8f8f8f">linux</a> <a href="/tags/node-js/" style="font-size: 14px; color: #999">node.js</a> <a href="/tags/render/" style="font-size: 14px; color: #999">render</a> <a href="/tags/rss/" style="font-size: 14px; color: #999">rss</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 14px; color: #999">内网穿透</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 14px; color: #999">前端</a> <a href="/tags/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" style="font-size: 14px; color: #999">图片上传</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 14px; color: #999">并发</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 16.86px; color: #868686">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15.43px; color: #8f8f8f">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 16.86px; color: #868686">数据结构与算法</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 14px; color: #999">日志</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 14px; color: #999">服务器</a> <a href="/tags/%E7%BD%91%E4%B8%8A%E5%86%B2%E6%B5%AA%E6%8C%87%E5%8D%97/" style="font-size: 14px; color: #999">网上冲浪指南</a> <a href="/tags/%E7%BD%91%E7%9B%98/" style="font-size: 14px; color: #999">网盘</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 15.43px; color: #8f8f8f">踩坑</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 16.86px; color: #868686">软件</a>
     </div>
   </section>
 
@@ -3848,7 +3821,7 @@ ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>64 篇</div>
+          <div>107 篇</div>
         </div>
       
 
@@ -3862,7 +3835,7 @@ ehZyiL@DESKTOP-1H567GC MINGW64 /d/...
       
         <div class="webinfo-item">
           <div>最后活动时间：</div>
-          <div id="last-update-show">2024-03-22 日</div>
+          <div id="last-update-show">2024-06-17 日</div>
         </div>
       
     </div>
