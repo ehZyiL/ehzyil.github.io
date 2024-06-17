@@ -2168,7 +2168,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1718586303889),
+    lastupdate: new Date(1718586539631),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2858,7 +2858,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2024/01/06/2024/通用敏感词替换/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/10/09/2023/node的卸载与安装/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2876,23 +2876,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/01/06/2024/%E9%80%9A%E7%94%A8%E6%95%8F%E6%84%9F%E8%AF%8D%E6%9B%BF%E6%8D%A2/"  itemprop="url">
-        通用敏感词替换
+      <a href="/2023/10/09/2023/node%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"  itemprop="url">
+        node的卸载与安装
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        
-本文基于开源项目sensitive-word，基础使用方法请看文档。
+        一、node.js卸载1、打开cmd 输入下列命令 查看npm包路径 
+#查看全局安装位置
+npm root -g
 
-敏感词服务类新增一个敏感词配置类，处理自定义的敏感词、与白名单
-@Data
-@Component
-@ConfigurationProperties(prefix &#x3D; &quot;forum.sensitive&quot;)
-public class SensitiveProperty &#123;
-    &...
+得到npm的文件路径
+
+下面的命令，可以用于查看本机的npm缓存的位置：
+npm config get cache
+
+2、删除C:\Users\用户名\AppData\Roaming目录下的npm和npm-cache；
+3、在控制面板中找到Node.js的卸载程序，运行卸载程...
       
     
   </div>
@@ -2908,7 +2910,7 @@ public class SensitiveProperty &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2024-01-06T20:22:46+00:00">2024-01-06</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-10-09T00:00:00+00:00">2023-10-09</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -2921,7 +2923,7 @@ public class SensitiveProperty &#123;
       </div>
       
         <div>
-          <a class='readmore' href='/2024/01/06/2024/%E9%80%9A%E7%94%A8%E6%95%8F%E6%84%9F%E8%AF%8D%E6%9B%BF%E6%8D%A2/' itemprop="url">
+          <a class='readmore' href='/2023/10/09/2023/node%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2937,7 +2939,7 @@ public class SensitiveProperty &#123;
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/29/2023/基于AbstractRoutingDataSource与AOP实现多数据源切换/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/09/16/2023/Spring Security/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -2955,20 +2957,18 @@ public class SensitiveProperty &#123;
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/"  itemprop="url">
-        基于AbstractRoutingDataSource与AOP实现多数据源切换
+      <a href="/2023/09/16/2023/Spring%20Security/"  itemprop="url">
+        Spring Security
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        环境准备环境配置代码地址
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt;
-&lt;&#x2F;dependency&gt;
-&lt;d...
+        Spring Security1.认证认证原理SpringSecurity的原理其实就是一个过滤器链，内部包含了提供各种功能的过滤器。例如快速入门案例里面使用到的三种过滤器，如下图
+监听器 -&gt; 过滤器链 -&gt; dispatcherservlet(前置拦截器 -&gt; mapperHandle -&gt; 后置拦截器 -&gt; 最终拦截器)
+
+下面介绍过滤器链中主要的几个过滤...
       
     
   </div>
@@ -2984,7 +2984,7 @@ public class SensitiveProperty &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-12-29T00:00:00+00:00">2023-12-29</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-16T00:00:00+00:00">2023-09-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -2997,7 +2997,7 @@ public class SensitiveProperty &#123;
       </div>
       
         <div>
-          <a class='readmore' href='/2023/12/29/2023/%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2/' itemprop="url">
+          <a class='readmore' href='/2023/09/16/2023/Spring%20Security/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3013,7 +3013,7 @@ public class SensitiveProperty &#123;
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/28/2023/数据库表自动初始化/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/07/05/2023/Docker的配置与软件安装/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3031,21 +3031,18 @@ public class SensitiveProperty &#123;
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/28/2023/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"  itemprop="url">
-        数据库表自动初始化
+      <a href="/2023/07/05/2023/Docker%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"  itemprop="url">
+        Docker的配置与软件安装
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        数据库表自动初始化Liquibase数据库表版本管理依赖配置在Maven的pom文件中添加Liquibase依赖
-&lt;dependency>
-    &lt;groupId>org.liquibase&lt;/groupId>
-    &lt;artifactId>liquibase-core&lt;/artifactId>
-&lt;/dependency>
-
-配置数据源和Liquiba...
+        1.CentOS安装DockerDocker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。
+Docker CE 分为 stable test 和 nightly 三个更新频道。
+官方网站上有各种环境下的 安装指南，这里主要介绍 Docker CE 在 CentOS上的安装。
+Docker CE 支持 6...
       
     
   </div>
@@ -3061,20 +3058,20 @@ public class SensitiveProperty &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-12-28T00:00:00+00:00">2023-12-28</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-07-05T00:00:00+00:00">2023-07-05</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+          <a class="category-link" href="/categories/Docker/">Docker</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+              <a href="/categories/Docker/" itemprop="url"><span itemprop="name">Docker</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/12/28/2023/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/' itemprop="url">
+          <a class='readmore' href='/2023/07/05/2023/Docker%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3090,7 +3087,7 @@ public class SensitiveProperty &#123;
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Docker指令报错的解决方法：'permission denied while trying to connect to the Docker...'/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/07/05/2023/Nacos安装指南/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3108,20 +3105,18 @@ public class SensitiveProperty &#123;
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Docker%E6%8C%87%E4%BB%A4%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A'permission%20denied%20while%20trying%20to%20connect%20to%20the%20Docker...'/"  itemprop="url">
-        Docker指令报错的解决方法'permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:'
+      <a href="/2023/07/05/2023/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/"  itemprop="url">
+        Nacos安装指南
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        
-使用azure的服务器查看docker容器内的进程的时候出现一下错误，
-
-意思是试图连接unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock:，但权限不够。
-
-原因分析：这是因为你当前的用户没有这个权限。默认情况下，docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和 docker 组的用...
+        1.Windows安装开发阶段采用单机安装即可。
+1.1.下载安装包在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码：
+GitHub主页：https://github.com/alibaba/nacos
+GitHub的Release下载页：https://github.com/alibaba/../../../images/nacos/release...
       
     
   </div>
@@ -3137,7 +3132,7 @@ public class SensitiveProperty &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-07-05T00:00:00+00:00">2023-07-05</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -3150,7 +3145,7 @@ public class SensitiveProperty &#123;
       </div>
       
         <div>
-          <a class='readmore' href='/2023/12/26/2023/Docker%E6%8C%87%E4%BB%A4%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A'permission%20denied%20while%20trying%20to%20connect%20to%20the%20Docker...'/' itemprop="url">
+          <a class='readmore' href='/2023/07/05/2023/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3166,7 +3161,7 @@ public class SensitiveProperty &#123;
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/JS常用日期函数/">
+  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2019/11/09/2023/Telegram：新手指南、使用教程及频道推荐/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="ehzyil's blog">
   </span>
@@ -3184,22 +3179,15 @@ public class SensitiveProperty &#123;
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/JS%E5%B8%B8%E7%94%A8%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0/"  itemprop="url">
-        JS常用日期函数
+      <a href="/2019/11/09/2023/Telegram%EF%BC%9A%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97%E3%80%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E9%A2%91%E9%81%93%E6%8E%A8%E8%8D%90/"  itemprop="url">
+        [转载]Telegram（电报）：新手指南、使用教程及频道推荐
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      
-        JS常用日期函数 
- &#x2F;&#x2F;获取完整的日期
- var date&#x3D;new Date;
- var year&#x3D;date.getFullYear(); 
- var month&#x3D;date.getMonth()+1;
- month &#x3D;(month&lt;10 ? &quot;0&quot;+month:month); 
- var mydate &...
-      
+      <p><img src="/telegram/telegram.png" class="lazyload" data-srcset="/telegram/telegram.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="telegram"></p>
+<p>Telegram 是迄今为止最棒的即时聊天软件，在这个自由新世界，不必自我审查（Freedom of speech）。</p>
     
   </div>
   
@@ -3214,396 +3202,12 @@ public class SensitiveProperty &#123;
             <meta itemprop="url" content="https://ehzyil.github.io/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
+        <time itemprop="dateCreated datePublished" datetime="2019-11-09T00:00:00+00:00">2019-11-09</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/12/26/2023/JS%E5%B8%B8%E7%94%A8%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Java String hashCode生成负值/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Java%20String%20hashCode%E7%94%9F%E6%88%90%E8%B4%9F%E5%80%BC/"  itemprop="url">
-        Java String hashCode生成负值
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        
-转载 java String hashCode遇到的坑
-
-在进行数据交换时，如果主键不是整型，需要对字符串，或联合主键拼接为字符串，进行hash，再进行取模分片，使用的是String自带的hashCode()方法，本来是件很方便的事，但是有些字符串取hashCode竟然是负数，使得分片为负数，找不到对应的分片，我们先看一下String 生成hashCode的代码：
-/**
-     * R...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/12/26/2023/Java%20String%20hashCode%E7%94%9F%E6%88%90%E8%B4%9F%E5%80%BC/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Java 实现 AES 加密和解密完整示例/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Java%20%E5%AE%9E%E7%8E%B0%20AES%20%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B/"  itemprop="url">
-        Java 实现 AES 加密和解密完整示例
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        Java 实现 AES 加密和解密完整示例
-遇到需求需要给已AES加密的用户姓名解密，并给出了python代码，网上找了个很全的Java 实现 AES 加密和解密完整示例，记录以下方便以后查阅。
-转载Java 实现 AES 加密和解密完整示例
-其他详细资料
-
-1、简介AES，全称为 Advanced Encryption Standard，是一种分组密码算法，用于保护敏感数据的传输和存储。A...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/12/26/2023/Java%20%E5%AE%9E%E7%8E%B0%20AES%20%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Java将list转字符串的方法/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Java%E5%B0%86list%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/"  itemprop="url">
-        Java将list转字符串的方法
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        第一种：join()String.join(&quot;,&quot;, strList)
-
-第二种：循环插入逗号public static &lt;T&gt; String parseListToStr(List&lt;T&gt; list)&#123;
-    StringBuffer sb &#x3D; new StringBuffer();
-    if(listIsNotNull(...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/12/26/2023/Java%E5%B0%86list%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Java循环删除List中元素/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Java%E5%BE%AA%E7%8E%AF%E5%88%A0%E9%99%A4List%E4%B8%AD%E5%85%83%E7%B4%A0/"  itemprop="url">
-        Java循环删除List中元素的正确方式
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        Java循环删除List中元素的正确方式There are a few different ways to correctly delete elements from a List in Java. Here are some common methods:
-
-Using an Iterator: You can use an Iterator to loop through the Li...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/12/26/2023/Java%E5%BE%AA%E7%8E%AF%E5%88%A0%E9%99%A4List%E4%B8%AD%E5%85%83%E7%B4%A0/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.ehzyil.xyz/2023/12/26/2023/Java数组转List的三种方式/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ehzyil's blog">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="ehzyil's blog">
-    <meta itemprop="description" content="test description">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689 volantis-static/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/12/26/2023/Java%E6%95%B0%E7%BB%84%E8%BD%ACList%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/"  itemprop="url">
-        Java数组转List的三种方式
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        Java数组转List的三种方式
-需求中常用到数组转集合的操作,为了避免不出错并使用高效方法去网上找了篇非常不错的文章。
-转载 Java数组转List的三种方式及对比
-
-一.最常见方式（未必最佳）通过 Arrays.asList(strArray) 方式,将数组转换List后，不能对List增删，只能查改，否则抛异常。
-关键代码： List list &#x3D; Arrays.asList...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://ehzyil.github.io/'><img src='https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://ik.imagekit.io/ehzyil/1.jpg?updatedAt=1696652594689">
-            <meta itemprop="name" content="ehzyil">
-            <meta itemprop="url" content="https://ehzyil.github.io/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-12-26T00:00:00+00:00">2023-12-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2023/12/26/2023/Java%E6%95%B0%E7%BB%84%E8%BD%ACList%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/' itemprop="url">
+          <a class='readmore' href='/2019/11/09/2023/Telegram%EF%BC%9A%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97%E3%80%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E9%A2%91%E9%81%93%E6%8E%A8%E8%8D%90/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3630,14 +3234,8 @@ Using an Iterator: You can use an Iterator to loop through the Li...
           </a>
         
         <p class="current">
-          7 / 11
+          7 / 7
         </p>
-        
-          <a class="next" rel="next" href="/page/8/">
-            <section class="post next white-box shadow floatable blur">
-              &nbsp;下一页&nbsp;<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
         
       </div>
     
@@ -3839,7 +3437,7 @@ Using an Iterator: You can use an Iterator to loop through the Li...
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>107 篇</div>
+          <div>65 篇</div>
         </div>
       
 
