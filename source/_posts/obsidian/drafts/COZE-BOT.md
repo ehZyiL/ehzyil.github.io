@@ -126,7 +126,7 @@ services:
     volumes:
       - ./data:/app/coze-discord-proxy/data
     environment:
-      - USER_AUTHORIZATION=MTIwMjk2OTg4NTk3NDcyODcxNw.G5ZPp8.Bflh84OaP6RGdayDrIdJx60njqkWxLPToGhXqg,MTIxODQzMDg0NDA1NDY3MTM3MQ.GNEsBT.uJBCeTtjGonbxUhTuoGu3C0MuXBICy_Zr5r5rU
+      - USER_AUTHORIZATION=MTIwMjk2OTg4NTk3NDcyODcxNw.G5ZPp8.Bflh84OaP6RGdayDrIdJx60njqkWxLPToGhXqg,MTIxODQzMDg0NDA1NDY3MTM3MQ.GNEsBT.uJBCeTtjGonbxUhTuoGu3C0MuXBICy_Zr5r5rU,MTI0MDA1MDEyMjk5NDM1MjE5OQ.GvyHRF.mf-MfH1LWsXZPR3Y0T2mE6075JXJT0mAjiEoOQ,MTI0MTM2NDMyOTE2MTU1NTk5MA.GdCBT3.bztEGdEyiChYMFEyGQYz1V03bnUVcvIKN1YxDo
       - BOT_TOKEN=MTIxNzgyMTgzMDc0MDU3ODM5NQ.GyCltX.OkTnna6WWTjg-u0m_AcqYszKPxWhT0ZqWhQDSs
       - GUILD_ID=1202972464657858601
       - CHANNEL_ID=1202972464657858603
@@ -217,3 +217,9 @@ http://8.210.2.174:9999/ui/#/connections
 http://clash.razord.top/#/logs
 
 
+
+
+```
+anastasia62greenholttxy@hotmail.com----Iq4xgs1jMT----anastasia62greenholttxy@hotmail.com----01128131536aA@----MTI0MDA1MDEyMjk5NDM1MjE5OQ.GvyHRF.mf-MfH1LWsXZPR3Y0T2mE6075JXJT0mAjiEoOQ
+shea80raynortdt@hotmail.com----eIRTMtEcsVs----shea80raynortdt@hotmail.com----01128131536aA@----MTI0MTM2NDMyOTE2MTU1NTk5MA.GdCBT3.bztEGdEyiChYMFEyGQYz1V03bnUVcvIKN1YxDo
+```

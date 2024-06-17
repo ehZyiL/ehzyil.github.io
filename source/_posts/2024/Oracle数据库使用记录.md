@@ -266,10 +266,6 @@ With the Partitioning, OLAP, Data Mining and Real Application Testing options
 
 https://blog.csdn.net/weixin_45740811/article/details/125841798
 
-
-
-
-
 ### 六、新建数据库
 
 **使用 Oracle 命令行界面 (CLI) 创建 WF-TRAIN 数据库**
@@ -308,6 +304,51 @@ CREATE DATABASE WF-TRAIN
 - 确保您具有创建数据库所需的权限。
 
 
+### 六点五、从建库到导入数据库
+
+
+1. 查询远程数据库的表空间：
+使用以下查询语句来查询远程数据库中的表空间：
+```sql
+select * from dba_users where username='XXX'
+```
+2. 创建本地表空间：
+使用以下命令来创建一个名为"data"的本地表空间，并指定数据文件路径和大小：
+```sql
+create tablespace data 
+datafile 'D:\ORCALE\ORADATA\ORCL\data.DBF' 
+size 200M 
+autoextend on next 5M maxsize unlimited;
+```
+然后，使用下面的命令将表空间的数据文件设置为自动扩展：
+```sql
+alter database datafile 'D:\ORCALE\ORADATA\ORCL\data.DBF' autoextend on next 5m maxsize unlimited;
+```
+最后，使用下面的命令为"USERS"表空间添加一个数据文件，大小设置为50M：
+```sql
+alter tablespace USERS add datafile 'D:\ORCALE\ORADATA\ORCL\data.DBF' size 50m
+```
+3. 创建本地用户并关联表空间：
+使用以下命令创建一个名为"USER"的本地用户，并将其默认表空间设置为"data"：
+```sql
+create user USER identified by PWD default tablespace data;
+```
+4. 对用户进行赋予权限：
+使用以下命令为"USER"用户授予DBA、CONNECT和RESOURCE权限：
+```sql
+grant dba, connect, resource to USER;
+```
+5. 将数据导入本地磁盘：
+使用以下命令将数据从远程数据库导出到本地磁盘：
+```sql
+exp USER/PWD@193.193.193.41:1521/orcl file=d:\XXX.dmp owner=GGZYXHX
+```
+6. 将数据导入数据库中：
+使用以下命令将数据从导出文件中导入到本地数据库中：
+```sql
+imp USER/PWD@orcl file=D:\XXX.dmp fromuser=GGZYXBASE touser=GGZYXBASE
+imp USER/PWD@192.168.200.30/orcl file=D:\XXX.dmp full=y
+```
 
 ### 七、处理'ORA-01950: 对表空间 'USERS' 无权限
 > 当我们使用任何形式的数据库时，遇到错误是不可避免的。Oracle数据库常见的一个错误是`ORA-01950: 对表空间 'USERS' 无权限`。
@@ -358,3 +399,56 @@ sqlplus / as sysdba
 
 SHUTDOWN IMMEDIATE
 ```
+
+### 九、设置 Oracle 数据库字符集为 UTF-8
+
+以下是在 Oracle 数据库中设置字符集为 UTF-8 的步骤：
+
+1. 查看当前字符集
+
+首先，你需要查看 Oracle 数据库当前的字符集。通过以下 SQL 语句可以查询：
+```sql
+SELECT parameter, value FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET';
+```
+2. 停止数据库
+
+在修改字符集之前，需要先停止 Oracle 数据库：
+```sh
+sqlplus / as sysdba
+SHUTDOWN IMMEDIATE;
+```
+3. 启动数据库到挂起状态
+
+启动数据库到挂起状态（MOUNT）：
+```sh
+STARTUP MOUNT;
+```
+4. 修改字符集
+
+使用以下命令将字符集更改为 UTF-8（AL32UTF8）：
+```sh
+ALTER SYSTEM ENABLE RESTRICTED SESSION;
+ALTER SYSTEM SET job_queue_processes=0;
+ALTER SYSTEM SET aq_tm_processes=0;
+ALTER DATABASE OPEN;
+ALTER DATABASE CHARACTER SET AL32UTF8;
+```
+**注意**: 上述命令中的 `ALTER DATABASE CHARACTER SET AL32UTF8` 通常只允许从相容的字符集更改。如果你需要强制更改字符集，需要使用以下命令：
+```sh
+ALTER DATABASE CHARACTER SET INTERNAL_USE AL32UTF8;
+```
+但请谨慎使用 `INTERNAL_USE`，因为它会绕过字符集的兼容性检查，可能导致数据损坏。因此，在操作前，请务必备份数据库。
+5. 重启数据库
+
+字符集更改后，关闭数据库并重新启动。
+```sh
+SHUTDOWN IMMEDIATE;
+STARTUP;
+```
+6. 验证字符集
+
+再次查询字符集，以确保更改已经生效：
+```sql
+SELECT parameter, value FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET';
+```
+通过以上步骤，你可以将 Oracle 数据库的字符集设置为 UTF-8（AL32UTF8）。

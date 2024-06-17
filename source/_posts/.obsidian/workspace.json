@@ -13,13 +13,24 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "obsidian/drafts/COZE-BOT.md",
+                "file": "2024/Frp内网穿透.md",
                 "mode": "source",
                 "source": false
               }
             }
+          },
+          {
+            "id": "443734abd77f76fe",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.3"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -48,7 +59,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "coze",
+                "query": "frp",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +76,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -86,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "obsidian/drafts/COZE-BOT.md",
+                "file": "2024/Frp内网穿透.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "obsidian/drafts/COZE-BOT.md",
+                "file": "2024/Frp内网穿透.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "obsidian/drafts/COZE-BOT.md"
+                "file": "2024/Frp内网穿透.md"
               }
             }
           },
@@ -157,35 +167,40 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e5048d6f8c9c4031",
+  "active": "443734abd77f76fe",
   "lastOpenFiles": [
-    "2024/PostgreSQL 使用记录.md",
-    "2023/Docker的配置与软件安装.md",
-    "obsidian/drafts/acount.md",
-    "2023/小白初遇服务器.md",
-    "2024/Docker安装Nginx.md",
-    "2023/CentOS下的软件.md",
-    "obsidian/drafts/COZE-BOT.md",
-    "2024/Frp内网穿透.md",
-    "2024/git同时连接gitlab和github.md",
-    "2023/开启 Azure 虚拟机的 root 账户.md",
+    "2024/Java 业务开发常见错误 100 例/结课测试 _ 关于Java业务开发的100个常见错误，你都明白其中缘由了吗？.md",
+    "2024/Java 业务开发常见错误 100 例/结束语 _ 写代码时，如何才能尽量避免踩坑？.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：设计篇思考题答案合集.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：安全篇思考题答案合集.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：加餐篇思考题答案合集.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：代码篇思考题集锦（二）.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：代码篇思考题集锦（三）.md",
+    "2024/Java 业务开发常见错误 100 例/答疑篇：代码篇思考题集锦（一）.md",
+    "2024/Java 业务开发常见错误 100 例/开篇词、业务代码真的会有这么多坑？.md",
+    "2024/Java 业务开发常见错误 100 例/38 _ 加餐8：Java程序从虚拟机迁移到Kubernetes的一些坑.md",
+    "2024/Java 业务开发常见错误 100 例/37 _ 加餐7：程序员成长28计.md",
+    "2024/Java 业务开发常见错误 100 例/36 _ 加餐6：这15年来，我是如何在工作中学习技术和英语的？.md",
+    "2024/Java 业务开发常见错误 100 例/35 _ 加餐5：分析定位Java问题，一定要用好这些工具（二）.md",
+    "2024/Java 业务开发常见错误 100 例/34 _ 加餐4：分析定位Java问题，一定要用好这些工具（一）.md",
+    "2024/Java 业务开发常见错误 100 例/33 _ 加餐3：定位应用问题，排错套路很重要.md",
+    "2024/Java 业务开发常见错误 100 例/32 _ 加餐2：带你吃透课程中Java 8的那些重要知识点（二）.md",
+    "2024/Java 业务开发常见错误 100 例/31 _ 加餐1：带你吃透课程中Java 8的那些重要知识点（一）.md",
+    "2024/Java 业务开发常见错误 100 例/30 _ 如何正确保存和传输敏感数据？.md",
+    "2024/Java 业务开发常见错误 100 例/29 _ 数据和代码：数据就是数据，代码就是代码.md",
+    "2024/Java 业务开发常见错误 100 例/28 _ 安全兜底：涉及钱时，必须考虑防刷、限量和防重.md",
+    "2024/Java 业务开发常见错误 100 例/27 _ 数据源头：任何客户端的东西都不可信任.md",
+    "2024/Java 业务开发常见错误 100 例/25、异步处理好用，但非常容易用错.md",
+    "2024/Java 业务开发常见错误 100 例/24、业务代码写完，就意味着生产就绪了？.md",
+    "2024/Java 业务开发常见错误 100 例/23、缓存设计：缓存可以锦上添花也可以落井下石.md",
+    "2024/Java 业务开发常见错误 100 例/22、接口设计：系统间对话的语言，一定要统一.md",
+    "2024/Java 业务开发常见错误 100 例/21、 代码重复：搞定代码重复的三个绝招.md",
+    "2024/Java 业务开发常见错误 100 例",
+    "obsidian/drafts/achieved/微信图片_20231225144506.png",
+    "obsidian/drafts/achieved/JAVA的内存模型（JMM）.xmind",
+    "obsidian/drafts/achieved",
+    "obsidian/drafts/新建文件夹",
     "obsidian/drafts/assets/Pasted image 20240401130706.png",
-    "2024/通用敏感词替换.md",
-    "2024/使用StringUtils.isNotEmpty遇到的问题.md",
-    "obsidian/drafts/未命名.md",
-    "2024/SpringBoot实现微信公众号自动登录.md",
-    "obsidian/drafts/查看 Docker 容器日志.md",
-    "2024/修改某个人在Git中所有提交记录的名字.md",
-    "obsidian/drafts/jQuery学习.md",
-    "obsidian/drafts/freemarker基本语法.md",
-    "obsidian/drafts/Ajax.md",
-    "2023/Linux 安装 docker遇到版本问题.md",
-    "2023/Java 实现 AES 加密和解密完整示例.md",
-    "2023/IntelliJ IDEA创建JSP项目.md",
-    "2023/Git常用操作.md",
-    "2023/Docker指令报错的解决方法：'permission denied while trying to connect to the Docker...'.md",
-    "2023/异常之doesn't have a default value.md",
-    "2023/一条SQL更新语句是如何执行的？.md",
     "2024/assets/Pasted image 20240401130706.png",
     "obsidian/drafts/assets",
     "Excalidraw/Drawing 2024-03-23 22.27.54.excalidraw.png",
@@ -197,10 +212,6 @@
     "assets",
     "obsidian/daily/新建文本文档.txt",
     "obsidian/daily",
-    "obsidian/新建文件夹",
-    "obsidian/model/新建文本文档.txt",
-    "obsidian/model",
-    "obsidian",
     "数据结构与算法/images/二分查找/image-20221125174155058-1697004146064-2.png"
   ]
 }
